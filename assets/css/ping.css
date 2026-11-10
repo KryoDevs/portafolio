@@ -7,17 +7,22 @@
 .ping .moon{fill:var(--frost);opacity:.13}
 .ping .arc{fill:none;stroke:var(--frost);stroke-width:3;stroke-linecap:round;opacity:0}
 .ping .hop{transform-origin:140px 290px}
-.ping .shadow{transform-origin:140px 293px}
+.ping .shadow{transform-origin:146px 292px}
 .ping .led{animation:led 2.4s ease-in-out infinite}
+.ping .whisk{transform-origin:119px 146px;animation:whisk 9s infinite}
+.ping .nose{transform-box:fill-box;transform-origin:center;animation:sniff 9s infinite}
+.stage{position:relative}
+.particle{position:absolute;left:50%;top:52%;width:12px;height:12px;margin:-6px;pointer-events:none;color:var(--frost)}
+.particle svg{display:block;width:100%;height:100%;fill:currentColor}
 .ping .star{animation:twinkle 3.4s ease-in-out infinite}
 .ping .s2{animation-delay:.9s}
 .ping .s3{animation-delay:1.7s}
 .ping .s4{animation-delay:2.5s}
 .ping .torso{transform-origin:140px 288px;animation:breathe 3.6s ease-in-out infinite}
-.ping .head{transform-origin:140px 204px;animation:bob 3.6s ease-in-out infinite;transition:rotate .35s ease}
+.ping .head{transform-origin:140px 160px;animation:bob 3.6s ease-in-out infinite;transition:rotate .35s ease}
 .ping-btn:hover .head{rotate:-5deg}
-.ping .tail{transform-origin:182px 274px;animation:sway 3.2s ease-in-out infinite}
-.ping .ear{transform-origin:96px 100px;animation:twitch 7s infinite}
+.ping .tail{transform-origin:196px 280px;animation:sway 3.2s ease-in-out infinite}
+.ping .ear{transform-origin:110px 80px;animation:twitch 7s infinite}
 .ping .earR{animation-delay:2.3s}
 .ping .eyes{transform-box:fill-box;transform-origin:center;animation:blink 6s infinite}
 #ping-eyes{transition:transform .25s ease-out}
@@ -34,10 +39,12 @@
 .ping.is-pinging .eyes,.ping.is-pinging .mouth{opacity:0}
 .ping.is-pinging .happy,.ping.is-pinging .smile{opacity:1}
 @keyframes led{50%{opacity:.35}}
+@keyframes whisk{0%,88%,100%{transform:rotate(0)}91%{transform:rotate(4deg)}94%{transform:rotate(-3deg)}97%{transform:rotate(2deg)}}
+@keyframes sniff{0%,88%,100%{transform:scale(1)}91%,97%{transform:scale(1.1,.94)}94%{transform:scale(.96,1.06)}}
 @keyframes twinkle{50%{opacity:.25}}
 @keyframes arc{35%{opacity:1}100%{opacity:0}}
 @keyframes breathe{50%{transform:scale(1.015,1.03)}}
-@keyframes bob{50%{transform:translateY(-2.5px) rotate(1.2deg)}}
+@keyframes bob{50%{transform:translateY(-2px) rotate(1.5deg)}}
 @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(6deg)}}
 @keyframes twitch{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-11deg)}96%{transform:rotate(4deg)}}
 @keyframes blink{0%,45%,49%,53%,100%{transform:scaleY(1)}47%,51%{transform:scaleY(.08)}}
