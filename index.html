@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portafolio de Kryo (Nicolás Esteban Díaz Carrillo): redes, desarrollo y herramientas propias desde Valdivia, Chile.">
+<title>Portafolio de Kryo</title>
+<meta property="og:title" content="Kryo · Apps web, redes y soporte técnico en Valdivia">
+<meta property="og:description" content="Portafolio y servicios de Nicolás Díaz Carrillo (Kryo).">
+<meta property="og:type" content="website">
+<!-- TODO: cuando el sitio esté publicado, reemplaza TU-URL por la dirección real y quita este comentario
+<meta property="og:image" content="https://TU-URL/assets/img/og-image.png">
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/ping.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- Símbolos reutilizables: cabeza de Ping y subrayado a mano -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><radialGradient id="iris"><stop offset=".6" stop-color="#8a5a2a"/><stop offset=".82" stop-color="#86702f"/><stop offset="1" stop-color="#5f8040"/></radialGradient></defs>
+  <symbol id="ping-head" viewBox="32 34 216 178"><path d="M70 108 C54 82 58 52 76 40 C98 48 116 64 122 86 Z" fill="var(--fur-dark)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M79 97 C70 80 72 64 81 56 C93 62 103 73 107 86 Z" fill="var(--copihue)" opacity=".6"/>
+<path d="M84 92 C80 82 81 72 85 66" fill="none" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round" opacity=".45"/><g transform="translate(280 0) scale(-1 1)"><g><path d="M70 108 C54 82 58 52 76 40 C98 48 116 64 122 86 Z" fill="var(--fur-dark)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M79 97 C70 80 72 64 81 56 C93 62 103 73 107 86 Z" fill="var(--copihue)" opacity=".6"/>
+<path d="M84 92 C80 82 81 72 85 66" fill="none" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round" opacity=".45"/></g></g>
+<path d="M140 68 C176 68 204 88 212 120 C222 128 234 140 240 152 C230 154 222 158 214 160 C222 166 228 174 230 184 C218 186 206 186 196 184 C182 198 160 204 140 204 C120 204 98 198 84 184 C74 186 62 186 50 184 C52 174 58 166 66 160 C58 158 50 154 40 152 C46 140 58 128 68 120 C76 88 104 68 140 68 Z" fill="var(--fur)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M96 92 C112 76 168 76 184 92 C168 84 112 84 96 92 Z" fill="var(--cream)" opacity=".22"/>
+<path d="M140 86 C133 104 133 126 136 146 L144 146 C147 126 147 104 140 86 Z" fill="var(--fur-dark)" opacity=".8"/>
+<path d="M134 134 C120 114 90 112 74 128 C64 138 54 148 44 152 C60 172 94 178 114 167 C127 160 134 148 134 134 Z" fill="var(--fur-dark)"/>
+<path d="M131 125 C116 100 82 100 66 123 C87 111 112 114 131 125 Z" fill="var(--cream)"/>
+<path d="M112 170 C94 180 72 180 52 184 C66 194 88 198 104 194 C110 188 113 180 112 170 Z" fill="var(--cream)" opacity=".28"/><g transform="translate(280 0) scale(-1 1)"><g><path d="M134 134 C120 114 90 112 74 128 C64 138 54 148 44 152 C60 172 94 178 114 167 C127 160 134 148 134 134 Z" fill="var(--fur-dark)"/>
+<path d="M131 125 C116 100 82 100 66 123 C87 111 112 114 131 125 Z" fill="var(--cream)"/>
+<path d="M112 170 C94 180 72 180 52 184 C66 194 88 198 104 194 C110 188 113 180 112 170 Z" fill="var(--cream)" opacity=".28"/></g></g>
+<path d="M140 146 C161 146 174 158 172 174 C170 190 155 198 140 198 C125 198 110 190 108 174 C106 158 119 146 140 146 Z" fill="var(--cream)"/>
+<path d="M112 184 C122 196 158 196 168 184 C160 200 120 200 112 184 Z" fill="var(--ink)" opacity=".1"/>
+<ellipse cx="106" cy="143" rx="12.5" ry="13.5" fill="var(--cream)"/><ellipse cx="174" cy="143" rx="12.5" ry="13.5" fill="var(--cream)"/><circle cx="106" cy="144" r="9" fill="url(#iris)" stroke="#3f3219" stroke-width="1.2"/><circle cx="106" cy="144" r="5.6" fill="var(--ink)"/><circle cx="102.5" cy="140" r="3" fill="var(--cream)"/><circle cx="109" cy="148" r="1.3" fill="var(--cream)" opacity=".85"/><circle cx="174" cy="144" r="9" fill="url(#iris)" stroke="#3f3219" stroke-width="1.2"/><circle cx="174" cy="144" r="5.6" fill="var(--ink)"/><circle cx="170.5" cy="140" r="3" fill="var(--cream)"/><circle cx="177" cy="148" r="1.3" fill="var(--cream)" opacity=".85"/><path d="M93.5 141 Q106 124 118.5 141 Q106 132 93.5 141Z M161.5 141 Q174 124 186.5 141 Q174 132 161.5 141Z" fill="var(--ink)" opacity=".85"/>
+<path d="M128 153 Q140 145 152 153 Q150 164 140 166 Q130 164 128 153 Z" fill="var(--ink)"/>
+<ellipse cx="136" cy="153" rx="3.4" ry="1.7" fill="var(--cream)" opacity=".5"/>
+<path d="M140 166 V172 M140 172 Q133 180 125 175 M140 172 Q147 180 155 175" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+<g fill="var(--fur-dark)" opacity=".45"><circle cx="120" cy="171" r="1.6"/><circle cx="116" cy="178" r="1.6"/><circle cx="124" cy="179" r="1.6"/><circle cx="160" cy="171" r="1.6"/><circle cx="164" cy="178" r="1.6"/><circle cx="156" cy="179" r="1.6"/></g>
+<g stroke="var(--cream)" stroke-width="1.7" stroke-linecap="round" opacity=".75"><path d="M106 172 L76 165 M106 177 L73 178 M107 182 L78 191"/><path d="M174 172 L204 165 M174 177 L207 178 M173 182 L202 191"/></g>
+<path d="M64 130 C56 40 224 40 216 130" fill="none" stroke="var(--copihue)" stroke-width="10" stroke-linecap="round"/>
+<path d="M86 80 C110 60 170 60 194 80" fill="none" stroke="var(--cream)" stroke-width="2.2" stroke-linecap="round" opacity=".45"/>
+<rect x="42" y="108" width="30" height="54" rx="15" fill="var(--copihue)"/>
+<rect x="42" y="108" width="14" height="54" rx="7" fill="var(--cream)" opacity=".16"/>
+<rect x="55" y="119" width="9" height="32" rx="4.5" fill="var(--ink)" opacity=".3"/>
+<circle class="led" cx="59.5" cy="135" r="3.2" fill="var(--frost)"/><g transform="translate(280 0) scale(-1 1)"><g><rect x="42" y="108" width="30" height="54" rx="15" fill="var(--copihue)"/>
+<rect x="42" y="108" width="14" height="54" rx="7" fill="var(--cream)" opacity=".16"/>
+<rect x="55" y="119" width="9" height="32" rx="4.5" fill="var(--ink)" opacity=".3"/>
+<circle class="led" cx="59.5" cy="135" r="3.2" fill="var(--frost)"/></g></g>
+<path d="M56 160 C54 192 86 206 110 195" fill="none" stroke="var(--copihue)" stroke-width="4.5" stroke-linecap="round"/>
+<ellipse cx="114" cy="194" rx="7.5" ry="5.5" fill="var(--ink)"/><ellipse cx="112" cy="192.5" rx="2.5" ry="1.4" fill="var(--cream)" opacity=".35"/></symbol>
+  <symbol id="squig" viewBox="0 0 120 12">
+    <path d="M3 7 Q13 0 23 6 T43 6 T63 6 T83 6 T103 6 T117 5"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="nav">
+  <nav class="wrap" aria-label="Navegación principal">
+    <a class="brand" href="#inicio"><svg aria-hidden="true"><use href="#ping-head"/></svg>Kryo</a>
+    <div class="menu" id="menu">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Trabajos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#certificaciones">Formación</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <p class="hand">Hola, soy</p>
+        <h1>Kryo</h1>
+        <p class="realname">Nicolás Esteban Díaz Carrillo</p>
+        <p class="thesis">Apps web, redes y soporte técnico para negocios y organizaciones de Valdivia.</p>
+        <p class="lead">Desarrollo sistemas a medida, ordeno y configuro redes, y dejo los computadores funcionando como deben. Estudio Ingeniería en Telecomunicaciones, Conectividad y Redes en INACAP Valdivia.</p>
+        <div class="btns">
+          <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
+          <a class="btn" href="#proyectos">Ver trabajos</a>
+        </div>
+        <p class="place">Valdivia, Chile · 39°48′ S, 73°14′ O</p>
+      </div>
+
+      <div class="stage">
+        <p class="say" id="ping-out" aria-live="polite">Soy Ping. Tócame y te respondo.</p>
+        <button class="ping-btn" id="ping-btn" type="button" aria-label="Enviar un ping a Ping, la mascota">
+          <svg class="ping" id="ping" viewBox="0 0 280 300" aria-hidden="true">
+<circle class="moon" cx="140" cy="150" r="126"/>
+<g class="stars" fill="var(--frost)"><path class="star s1" transform="translate(34 62)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s2" transform="translate(250 84) scale(.7)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s3" transform="translate(22 214) scale(.6)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s4" transform="translate(228 30) scale(.5)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/></g>
+<g class="arcs"><path class="arc a1" d="M130 36 A10 10 0 0 1 150 36"/><path class="arc a2" d="M121 36 A19 19 0 0 1 159 36"/><path class="arc a3" d="M112 36 A28 28 0 0 1 168 36"/></g>
+<ellipse class="shadow" cx="140" cy="293" rx="80" ry="6.5" fill="var(--ink)" opacity=".3"/>
+<g class="hop">
+<g class="tail">
+<clipPath id="tailclip"><path d="M178 280 Q204 298 232 286 L229 279 Q254 270 262 244 L256 242 Q272 218 266 192 L260 195 Q260 170 240 152 C240 162 240 168 236 172 C230 166 226 164 220 166 C226 186 220 206 208 222 C200 244 192 262 178 280 Z"/></clipPath>
+<path d="M178 280 Q204 298 232 286 L229 279 Q254 270 262 244 L256 242 Q272 218 266 192 L260 195 Q260 170 240 152 C240 162 240 168 236 172 C230 166 226 164 220 166 C226 186 220 206 208 222 C200 244 192 262 178 280 Z" fill="var(--fur)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<g clip-path="url(#tailclip)" fill="none">
+<g stroke="var(--fur-dark)" stroke-width="14"><path d="M182 254 Q210 262 230 300"/><path d="M198 230 Q230 238 262 272"/><path d="M208 204 Q240 206 274 230"/><path d="M210 176 Q240 166 272 190" stroke-width="30"/></g>
+<path d="M176 282 C192 262 200 244 208 222 C220 206 226 186 220 166" stroke="var(--ink)" stroke-width="12" opacity=".16"/>
+<path d="M254 276 C268 250 270 210 252 174" stroke="var(--cream)" stroke-width="5" opacity=".2" stroke-linecap="round"/></g>
+</g>
+<g class="torso">
+<path d="M86 194 C62 204 58 230 76 242 C104 220 176 220 204 242 C222 230 218 204 194 194 Z" fill="var(--hoodie-dark)" stroke="var(--hoodie-line)" stroke-width="1.8"/>
+<path d="M140 192 C172 192 198 206 204 234 C208 254 206 272 198 286 C180 293 100 293 82 286 C74 272 72 254 76 234 C82 206 108 192 140 192 Z" fill="var(--hoodie)" stroke="var(--hoodie-line)" stroke-width="1.8"/>
+<path d="M92 206 C108 196 172 196 188 206 C172 214 108 214 92 206 Z" fill="var(--hoodie-dark)"/>
+<path d="M108 256 L172 256 L179 279 L101 279 Z" fill="var(--hoodie-dark)" stroke="var(--hoodie-line)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M81 280 C108 291 172 291 199 280" fill="none" stroke="var(--hoodie-line)" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M120 200 L127 213 L133 204 L140 215 L147 204 L153 213 L160 200 Z" fill="var(--fur)" stroke="var(--fur)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M128 208 V228 M152 208 V224" stroke="var(--cream)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="128" cy="231" r="3" fill="var(--copihue)"/><circle cx="152" cy="227" r="3" fill="var(--copihue)"/>
+<ellipse cx="110" cy="289" rx="24" ry="10.5" fill="var(--fur-dark)"/>
+<g fill="var(--cream)" opacity=".55"><circle cx="98" cy="287" r="2.4"/><circle cx="107" cy="284.5" r="2.4"/><circle cx="116" cy="285" r="2.4"/><ellipse cx="108" cy="292" rx="6" ry="3"/></g><g transform="translate(280 0) scale(-1 1)"><g><ellipse cx="110" cy="289" rx="24" ry="10.5" fill="var(--fur-dark)"/>
+<g fill="var(--cream)" opacity=".55"><circle cx="98" cy="287" r="2.4"/><circle cx="107" cy="284.5" r="2.4"/><circle cx="116" cy="285" r="2.4"/><ellipse cx="108" cy="292" rx="6" ry="3"/></g></g></g>
+<path d="M121 250 C130 270 150 270 159 250" fill="none" stroke="var(--cream)" stroke-width="5" stroke-linecap="round"/>
+<path d="M94 216 C80 238 92 258 119 249" fill="none" stroke="var(--hoodie-line)" stroke-width="22.5" stroke-linecap="round"/>
+<path d="M94 216 C80 238 92 258 119 249" fill="none" stroke="var(--hoodie)" stroke-width="19" stroke-linecap="round"/>
+<circle cx="121" cy="248" r="11.5" fill="var(--fur-dark)"/>
+<path d="M114 243 Q121 239 128 243" fill="none" stroke="var(--cream)" stroke-width="1.8" stroke-linecap="round" opacity=".35"/>
+<path d="M116 250 V256 M121 251 V257 M126 250 V256" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" opacity=".4"/><g transform="translate(280 0) scale(-1 1)"><g><path d="M94 216 C80 238 92 258 119 249" fill="none" stroke="var(--hoodie-line)" stroke-width="22.5" stroke-linecap="round"/>
+<path d="M94 216 C80 238 92 258 119 249" fill="none" stroke="var(--hoodie)" stroke-width="19" stroke-linecap="round"/>
+<circle cx="121" cy="248" r="11.5" fill="var(--fur-dark)"/>
+<path d="M114 243 Q121 239 128 243" fill="none" stroke="var(--cream)" stroke-width="1.8" stroke-linecap="round" opacity=".35"/>
+<path d="M116 250 V256 M121 251 V257 M126 250 V256" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" opacity=".4"/></g></g>
+<g class="plug"><rect x="110" y="218" width="20" height="24" rx="4" fill="var(--cream)" stroke="var(--ink)" stroke-opacity=".25" stroke-width="2"/>
+<path d="M115 223 V230 M120 223 V230 M125 223 V230" stroke="var(--copihue)" stroke-width="2.2" stroke-linecap="round"/></g>
+<g transform="translate(120 204)"><path class="spark" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z" fill="var(--cream)"/></g>
+</g>
+<g class="head"><g class="ear earL"><path d="M70 108 C54 82 58 52 76 40 C98 48 116 64 122 86 Z" fill="var(--fur-dark)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M79 97 C70 80 72 64 81 56 C93 62 103 73 107 86 Z" fill="var(--copihue)" opacity=".6"/>
+<path d="M84 92 C80 82 81 72 85 66" fill="none" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round" opacity=".45"/></g><g transform="translate(280 0) scale(-1 1)"><g class="ear earR"><path d="M70 108 C54 82 58 52 76 40 C98 48 116 64 122 86 Z" fill="var(--fur-dark)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M79 97 C70 80 72 64 81 56 C93 62 103 73 107 86 Z" fill="var(--copihue)" opacity=".6"/>
+<path d="M84 92 C80 82 81 72 85 66" fill="none" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round" opacity=".45"/></g></g>
+<path d="M140 68 C176 68 204 88 212 120 C222 128 234 140 240 152 C230 154 222 158 214 160 C222 166 228 174 230 184 C218 186 206 186 196 184 C182 198 160 204 140 204 C120 204 98 198 84 184 C74 186 62 186 50 184 C52 174 58 166 66 160 C58 158 50 154 40 152 C46 140 58 128 68 120 C76 88 104 68 140 68 Z" fill="var(--fur)" stroke="var(--fur)" stroke-width="5" stroke-linejoin="round"/>
+<path d="M96 92 C112 76 168 76 184 92 C168 84 112 84 96 92 Z" fill="var(--cream)" opacity=".22"/>
+<path d="M140 86 C133 104 133 126 136 146 L144 146 C147 126 147 104 140 86 Z" fill="var(--fur-dark)" opacity=".8"/>
+<path d="M134 134 C120 114 90 112 74 128 C64 138 54 148 44 152 C60 172 94 178 114 167 C127 160 134 148 134 134 Z" fill="var(--fur-dark)"/>
+<path d="M131 125 C116 100 82 100 66 123 C87 111 112 114 131 125 Z" fill="var(--cream)"/>
+<path d="M112 170 C94 180 72 180 52 184 C66 194 88 198 104 194 C110 188 113 180 112 170 Z" fill="var(--cream)" opacity=".28"/><g transform="translate(280 0) scale(-1 1)"><g><path d="M134 134 C120 114 90 112 74 128 C64 138 54 148 44 152 C60 172 94 178 114 167 C127 160 134 148 134 134 Z" fill="var(--fur-dark)"/>
+<path d="M131 125 C116 100 82 100 66 123 C87 111 112 114 131 125 Z" fill="var(--cream)"/>
+<path d="M112 170 C94 180 72 180 52 184 C66 194 88 198 104 194 C110 188 113 180 112 170 Z" fill="var(--cream)" opacity=".28"/></g></g>
+<path d="M140 146 C161 146 174 158 172 174 C170 190 155 198 140 198 C125 198 110 190 108 174 C106 158 119 146 140 146 Z" fill="var(--cream)"/>
+<path d="M112 184 C122 196 158 196 168 184 C160 200 120 200 112 184 Z" fill="var(--ink)" opacity=".1"/>
+<g class="eyes"><ellipse cx="106" cy="143" rx="12.5" ry="13.5" fill="var(--cream)"/><ellipse cx="174" cy="143" rx="12.5" ry="13.5" fill="var(--cream)"/><g id="ping-eyes"><circle cx="106" cy="144" r="9" fill="url(#iris)" stroke="#3f3219" stroke-width="1.2"/><circle cx="106" cy="144" r="5.6" fill="var(--ink)"/><circle cx="102.5" cy="140" r="3" fill="var(--cream)"/><circle cx="109" cy="148" r="1.3" fill="var(--cream)" opacity=".85"/><circle cx="174" cy="144" r="9" fill="url(#iris)" stroke="#3f3219" stroke-width="1.2"/><circle cx="174" cy="144" r="5.6" fill="var(--ink)"/><circle cx="170.5" cy="140" r="3" fill="var(--cream)"/><circle cx="177" cy="148" r="1.3" fill="var(--cream)" opacity=".85"/></g><path d="M93.5 141 Q106 124 118.5 141 Q106 132 93.5 141Z M161.5 141 Q174 124 186.5 141 Q174 132 161.5 141Z" fill="var(--ink)" opacity=".85"/></g>
+<g class="happy" fill="none" stroke="var(--cream)" stroke-width="5" stroke-linecap="round"><path d="M95 147 Q106 133 117 147"/><path d="M163 147 Q174 133 185 147"/></g>
+<path d="M128 153 Q140 145 152 153 Q150 164 140 166 Q130 164 128 153 Z" fill="var(--ink)"/>
+<ellipse cx="136" cy="153" rx="3.4" ry="1.7" fill="var(--cream)" opacity=".5"/>
+<path class="mouth" d="M140 166 V172 M140 172 Q133 180 125 175 M140 172 Q147 180 155 175" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+<path class="smile" d="M127 172 Q140 190 153 172 Z" fill="var(--ink)"/><path class="smile" d="M134 180 Q140 186 146 180 Q140 176 134 180Z" fill="var(--copihue)"/>
+<g fill="var(--fur-dark)" opacity=".45"><circle cx="120" cy="171" r="1.6"/><circle cx="116" cy="178" r="1.6"/><circle cx="124" cy="179" r="1.6"/><circle cx="160" cy="171" r="1.6"/><circle cx="164" cy="178" r="1.6"/><circle cx="156" cy="179" r="1.6"/></g>
+<g stroke="var(--cream)" stroke-width="1.7" stroke-linecap="round" opacity=".75"><path d="M106 172 L76 165 M106 177 L73 178 M107 182 L78 191"/><path d="M174 172 L204 165 M174 177 L207 178 M173 182 L202 191"/></g>
+<path d="M64 130 C56 40 224 40 216 130" fill="none" stroke="var(--copihue)" stroke-width="10" stroke-linecap="round"/>
+<path d="M86 80 C110 60 170 60 194 80" fill="none" stroke="var(--cream)" stroke-width="2.2" stroke-linecap="round" opacity=".45"/>
+<rect x="42" y="108" width="30" height="54" rx="15" fill="var(--copihue)"/>
+<rect x="42" y="108" width="14" height="54" rx="7" fill="var(--cream)" opacity=".16"/>
+<rect x="55" y="119" width="9" height="32" rx="4.5" fill="var(--ink)" opacity=".3"/>
+<circle class="led" cx="59.5" cy="135" r="3.2" fill="var(--frost)"/><g transform="translate(280 0) scale(-1 1)"><g><rect x="42" y="108" width="30" height="54" rx="15" fill="var(--copihue)"/>
+<rect x="42" y="108" width="14" height="54" rx="7" fill="var(--cream)" opacity=".16"/>
+<rect x="55" y="119" width="9" height="32" rx="4.5" fill="var(--ink)" opacity=".3"/>
+<circle class="led" cx="59.5" cy="135" r="3.2" fill="var(--frost)"/></g></g>
+<path d="M56 160 C54 192 86 206 110 195" fill="none" stroke="var(--copihue)" stroke-width="4.5" stroke-linecap="round"/>
+<ellipse cx="114" cy="194" rx="7.5" ry="5.5" fill="var(--ink)"/><ellipse cx="112" cy="192.5" rx="2.5" ry="1.4" fill="var(--cream)" opacity=".35"/></g>
+</g>
+</svg>
+        </button>
+        <p class="hint">Ping, el mapache del taller</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="stats">
+        <li><b>9</b>proyectos construidos</li>
+        <li><b>3</b>con el código público</li>
+        <li><b>7</b>certificados de Cisco e INACAP</li>
+        <li><b>6°</b>semestre de ingeniería</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="sec band" id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>En qué te puedo ayudar</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+        <p class="sub">Tres servicios que puedes contratar por separado o combinar.</p>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+          <span class="hand">para ordenar tu trabajo</span>
+          <h3>Apps y sitios web</h3>
+          <p>Sistemas a medida que funcionan en el celular y en el computador.</p>
+          <ul class="inc">
+            <li>Sistemas de gestión: inventario, catálogo, préstamos o clientes</li>
+            <li>Apps instalables que siguen funcionando con mala señal</li>
+            <li>Sitios web para presentar tu negocio</li>
+          </ul>
+          <ul class="chips"><li>JavaScript</li><li>PWA</li><li>Firebase</li><li>Next.js</li><li>AWS Lambda</li></ul>
+        </div>
+        <div class="skill">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5 6.6 17M12 11.5l5.4 5.5"/></svg></span>
+          <span class="hand">para que todo conecte</span>
+          <h3>Redes</h3>
+          <p>Diseño y configuración de la red de tu oficina o local.</p>
+          <ul class="inc">
+            <li>Wi-Fi estable y con buena cobertura</li>
+            <li>Redes separadas para equipos, invitados y cámaras</li>
+            <li>Diagnóstico de cortes, lentitud y latencia</li>
+          </ul>
+          <ul class="chips"><li>VLANs</li><li>OSPF</li><li>Redes inalámbricas</li><li>IoT</li></ul>
+        </div>
+        <div class="skill">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <span class="hand">para que no pierdas tiempo</span>
+          <h3>Soporte y automatización</h3>
+          <p>Computadores rápidos y tareas repetitivas resueltas con un clic.</p>
+          <ul class="inc">
+            <li>Diagnóstico y optimización de equipos con Windows</li>
+            <li>Limpieza, temperaturas y estabilidad</li>
+            <li>Scripts que hacen solos el trabajo repetitivo</li>
+          </ul>
+          <ul class="chips"><li>Windows</li><li>Python</li><li>Scripting</li><li>Hardware</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section class="sec" id="proyectos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Trabajos</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+        <p class="sub">Tres proyectos que puedes revisar hoy.</p>
+      </div>
+
+      <div class="grid" id="grid">
+
+        <article class="card">
+          <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="60" y="18" width="200" height="104" rx="10"/><circle class="c" cx="74" cy="31" r="3.5"/><circle class="k" cx="85" cy="31" r="3.5"/><circle class="m" cx="96" cy="31" r="3.5"/><path class="ln" d="M60 42H260"/><rect class="f" x="76" y="56" width="10" height="44" rx="2"/><rect class="c" x="90" y="62" width="12" height="38" rx="2"/><rect class="m" x="106" y="52" width="9" height="48" rx="2"/><rect class="k" x="119" y="60" width="13" height="40" rx="2"/><rect class="f" x="136" y="66" width="10" height="34" rx="2"/><rect class="c" x="150" y="54" width="9" height="46" rx="2"/><path class="ln" d="M72 102H166"/><rect class="k" x="190" y="54" width="52" height="52" rx="6"/><rect class="d" x="197" y="61" width="14" height="14"/><rect class="d" x="221" y="61" width="14" height="14"/><rect class="d" x="197" y="85" width="14" height="14"/><rect class="d" x="216" y="80" width="6" height="6"/><rect class="d" x="227" y="90" width="8" height="9"/></svg></div>
+          <div class="status"><span>App web</span><span class="state up">En línea</span></div>
+          <h3>BiblioNexo</h3>
+          <!-- TODO: reemplazar la ilustración .cover por una captura real y agregar un resultado con cifras -->
+          <dl class="case">
+            <dt>El problema</dt>
+            <dd>Una biblioteca municipal necesitaba llevar su catálogo, sus usuarios y sus préstamos en un solo lugar.</dd>
+            <dt>Lo que hice</dt>
+            <dd>Una app instalable con escaneo de códigos QR y de barras, que se sincroniza en tiempo real entre dispositivos.</dd>
+          </dl>
+          <ul class="chips"><li>PWA</li><li>Firebase</li><li>JavaScript</li></ul>
+          <div class="links">
+            <!-- Recomendado: reemplazar por un alias limpio de Vercel -->
+            <a href="https://biblio-nexo-fuckingkrio.vercel.app/" target="_blank" rel="noopener noreferrer">Ver demo</a>
+            <a href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Código</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="60" y="18" width="200" height="104" rx="10"/><circle class="c" cx="74" cy="31" r="3.5"/><circle class="k" cx="85" cy="31" r="3.5"/><circle class="m" cx="96" cy="31" r="3.5"/><path class="ln" d="M60 42H260"/><path class="ln" style="stroke-width:8" d="M82 100 A34 34 0 0 1 150 100"/><path class="sm" d="M82 100 A34 34 0 0 1 133 71"/><circle class="k" cx="116" cy="100" r="5"/><path class="sc" d="M116 100 L134 78"/><rect class="d" x="174" y="56" width="70" height="8" rx="4"/><rect class="f" x="174" y="56" width="52" height="8" rx="4"/><rect class="d" x="174" y="74" width="70" height="8" rx="4"/><rect class="m" x="174" y="74" width="34" height="8" rx="4"/><rect class="d" x="174" y="92" width="70" height="8" rx="4"/><rect class="c" x="174" y="92" width="60" height="8" rx="4"/></svg></div>
+          <div class="status"><span>App de escritorio</span><span class="state up">Publicado</span></div>
+          <h3>SysDiag</h3>
+          <!-- TODO: reemplazar la ilustración .cover por una captura real -->
+          <dl class="case">
+            <dt>El problema</dt>
+            <dd>Computadores lentos, con cortes de red o temperaturas altas, y nadie sabe por dónde empezar a revisar.</dd>
+            <dt>Lo que hice</dt>
+            <dd>Una app para Windows que diagnostica red, latencia, rendimiento y temperaturas, y aplica ajustes que se pueden deshacer.</dd>
+          </dl>
+          <ul class="chips"><li>Windows</li><li>WPF</li><li>Redes</li></ul>
+          <div class="links">
+            <a href="https://github.com/KryoDevs/SysDiag-App" target="_blank" rel="noopener noreferrer">Código</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="36" y="34" width="128" height="72" rx="8"/><path class="f" d="M90 56 L114 70 L90 84 Z"/><path class="ln" d="M48 96H152"/><path class="sf" style="stroke-width:3" d="M48 96H96"/><path class="sc" d="M174 70H190M184 63l7 7-7 7"/><rect class="win" x="200" y="22" width="26" height="46" rx="5"/><rect class="f" x="205" y="52" width="16" height="4" rx="2"/><rect class="win" x="234" y="38" width="26" height="46" rx="5"/><rect class="c" x="239" y="68" width="16" height="4" rx="2"/><rect class="win" x="268" y="54" width="26" height="46" rx="5"/><rect class="m" x="273" y="84" width="16" height="4" rx="2"/><circle class="k" cx="213" cy="38" r="6"/><circle class="k" cx="247" cy="54" r="6"/><circle class="k" cx="281" cy="70" r="6"/></svg></div>
+          <div class="status"><span>Automatización con IA</span><span class="state up">Publicado</span></div>
+          <h3>Gigaclip</h3>
+          <!-- TODO: reemplazar la ilustración .cover por una captura real -->
+          <dl class="case">
+            <dt>El problema</dt>
+            <dd>Cortar un video largo en clips para redes sociales toma horas, y las herramientas que lo hacen solas son de pago.</dd>
+            <dt>Lo que hice</dt>
+            <dd>Una herramienta gratuita que elige los mejores momentos, encuadra el rostro en vertical y agrega subtítulos.</dd>
+          </dl>
+          <ul class="chips"><li>Python</li><li>FFmpeg</li><li>IA local</li></ul>
+          <div class="links">
+            <a href="https://github.com/KryoDevs/Gigaclip" target="_blank" rel="noopener noreferrer">Código</a>
+          </div>
+        </article>
+
+      </div>
+      <p class="others"><strong>También he hecho:</strong> un sistema de bibliotecas que funciona sin internet, un buscador de películas y series con la API de TMDB, una mini app con contrato en Solidity, una API serverless en AWS y laboratorios de redes con VLANs y OSPF.</p>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="sec" id="proceso">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Cómo trabajo</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+        <p class="sub">Tres pasos, sin sorpresas en el camino.</p>
+      </div>
+      <ol class="steps">
+        <li><strong>Me cuentas el problema</strong>Qué necesitas, para cuándo y qué tienes hoy.</li>
+        <li><strong>Te envío una propuesta</strong>Con lo que incluye, el plazo y el precio.</li>
+        <li><strong>Lo entrego funcionando</strong>Y te enseño a usarlo.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="sec" id="sobre-mi">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Sobre mí</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+      </div>
+      <div class="about">
+        <div class="about-text">
+          <p>Soy de Valdivia y voy en 6° semestre de Ingeniería en Telecomunicaciones, Conectividad y Redes. Mi formación está en redes de acceso, redes inalámbricas, IoT, soporte de equipos y enrutamiento con OSPF, rutas estáticas y VLANs.</p>
+          <p>Lo que me distingue es que también programo. Hice BiblioNexo para una biblioteca municipal real, convertí mis scripts .bat en una app de diagnóstico para Windows y armé una herramienta que corta videos en clips con IA.</p>
+          <p>Trabajo de forma directa: entiendo el problema, propongo algo que se pueda mantener y lo entrego funcionando. Varias de mis herramientas nacieron así, resolviendo un problema que yo mismo tenía.</p>
+        </div>
+        <aside class="meet" aria-labelledby="meet-t">
+          <h3 id="meet-t"><svg aria-hidden="true"><use href="#ping-head"/></svg>Él es Ping, mi mascota</h3>
+          <dl>
+            <div><dt>Un mapache</dt><dd>Curioso, hábil con las manos y capaz de armar algo útil con lo que encuentra. Así trabajo yo.</dd></div>
+            <div><dt>Audífonos y polerón negro</dt><dd>Por las horas de juego, que es donde empezó mi interés por la tecnología.</dd></div>
+            <div><dt>Cable de red</dt><dd>Siempre trae uno en las manos. Las redes son mi carrera.</dd></div>
+            <div><dt>Su nombre</dt><dd>Ping es lo primero que uno envía para saber si algo responde.</dd></div>
+          </dl>
+          <ul class="swatches" aria-label="Paleta de la marca">
+            <li><i style="background:var(--bg)"></i>Noche de río</li>
+            <li><i style="background:var(--frost)"></i>Escarcha</li>
+            <li><i style="background:var(--copihue)"></i>Copihue</li>
+            <li><i style="background:var(--moss)"></i>Musgo</li>
+            <li><i style="background:var(--fur)"></i>Gris mapache</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICACIONES -->
+  <section class="sec" id="certificaciones">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Formación</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+        <p class="sub">Estudiante de Ingeniería en Telecomunicaciones, Conectividad y Redes, con siete certificados de Cisco Networking Academy e INACAP.</p>
+      </div>
+      <div class="certs">
+        <div>
+          <h3>Cisco Networking Academy</h3>
+          <ul>
+            <li><span>CCNA: Introducción a las redes<small>ITN · INACAP Sede Valdivia</small></span><span class="meta">08/2025</span></li>
+            <li><span>CCNA: Conmutación, Enrutamiento y Redes Inalámbricas<small>SRWE · INACAP Sede Valdivia</small></span><span class="meta">03/2026</span></li>
+            <li><span>Introduction to Cybersecurity<small>Cisco Networking Academy</small></span><span class="meta">08/2026</span></li>
+            <li><span>Conceptos básicos de redes<small>Networking Basics</small></span><span class="meta">08/2026</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>INACAP Sede Valdivia</h3>
+          <ul>
+            <li><span>Certificado en Soluciones de Acceso<small>Redes de Acceso + Redes Inalámbricas</small></span><span class="meta">162 h</span></li>
+            <li><span>Certificado en Soporte Equipo de Redes<small>Hardware y Software + Sistemas Operativos</small></span><span class="meta">144 h</span></li>
+            <li><span>Certificado en Gestión de Redes IoT<small>Programación Aplicada + Cloud Computing y Virtualización</small></span><span class="meta">126 h</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="sec band" id="contacto">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Cuéntame qué necesitas</h2>
+        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
+        <p class="sub">Escríbeme con una descripción breve de tu problema y te respondo con una propuesta.</p>
+      </div>
+      <div class="peek" aria-hidden="true"><svg><use href="#ping-head"/></svg></div>
+      <div class="contact">
+        <div class="cbox">
+          <span class="label">Correo</span>
+          <span class="value" id="correo">nicolasd.carrillo@gmail.com</span>
+          <button class="btn primary" type="button" id="copiar">Copiar correo</button>
+        </div>
+        <!-- TODO: agregar WhatsApp (https://wa.me/569XXXXXXXX) y LinkedIn cuando estén listos -->
+        <div class="cbox">
+          <span class="label">GitHub</span>
+          <a class="value" href="https://github.com/KryoDevs" target="_blank" rel="noopener noreferrer">github.com/KryoDevs</a>
+          <span class="pending">Mi código es público, puedes revisarlo.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg aria-hidden="true"><use href="#ping-head"/></svg>
+    <span>© <span id="anio">2026</span> Nicolás Esteban Díaz Carrillo · Kryo</span>
+    <span class="hand">Hecho en Valdivia, con Ping al lado</span>
+  </div>
+</footer>
+
+<!-- Ping acompañante -->
+<div class="buddy">
+  <p class="bubble" id="bubble" role="status" hidden></p>
+  <button type="button" id="buddy-btn" aria-label="Ping, la mascota: toca para escuchar un comentario">
+    <svg aria-hidden="true"><use href="#ping-head"/></svg>
+  </button>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/ping.js" defer></script>
+</body>
+</html>
