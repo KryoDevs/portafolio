@@ -29,12 +29,13 @@
     e.preventDefault(); abrir();
   });
 
-  var secciones = { servicios: 'servicios', diagnostico: 'diagnostico', trabajos: 'proyectos', cotizar: 'cotizador', proceso: 'proceso', sobre: 'sobre-mi', formacion: 'certificaciones', bitacora: 'bitacora', contacto: 'contacto' };
+  var secciones = { servicios: 'servicios', diagnostico: 'diagnostico', trabajos: 'proyectos', accesos: 'accesos', cotizar: 'cotizador', proceso: 'proceso', sobre: 'sobre-mi', formacion: 'certificaciones', bitacora: 'bitacora', contacto: 'contacto' };
   var comandos = {
     ayuda: function () {
       ['ping                mide tu conexión con este sitio',
        'servicios           lo que ofrece Kryo',
        'proyectos           trabajos publicados',
+       'accesos             índice de proyectos con demos',
        'contacto            cómo escribirle',
        'ir <sección>        ' + Object.keys(secciones).join(', '),
        'hora                la hora en Valdivia',
@@ -53,9 +54,21 @@
       linea('Escribe «ir cotizar» para armar tu pedido.', 'dim');
     },
     proyectos: function () {
-      linea('BiblioNexo   github.com/KryoDevs/Biblio-Nexo');
-      linea('SysDiag      github.com/KryoDevs/SysDiag-App');
-      linea('Gigaclip     github.com/KryoDevs/Gigaclip');
+      linea('Biblio-Nexo          github.com/KryoDevs/Biblio-Nexo');
+      linea('KryoFix              github.com/KryoDevs/KryoFix');
+      linea('SysDiag-App          github.com/KryoDevs/SysDiag-App');
+      linea('Gigaclip             github.com/KryoDevs/Gigaclip');
+      linea('Front-End-Checklist  github.com/KryoDevs/Front-End-Checklist');
+      linea('biblionexo-antiguo   github.com/KryoDevs/biblionexo-antiguo');
+      linea('portafolio           github.com/KryoDevs/portafolio');
+      linea('Escribe «accesos» para ver las demos en línea.', 'dim');
+    },
+    accesos: function () {
+      linea('Biblio-Nexo   https://biblio-nexo-fuckingkrio.vercel.app/');
+      linea('KryoFix       https://techfix-tracker-9a128.web.app/');
+      linea('Checklist     https://frontendchecklist.io');
+      linea('Archivo       https://biblio-nexo.vercel.app');
+      linea('GitHub        github.com/KryoDevs', 'dim');
     },
     contacto: function () {
       linea('Correo   ' + (C.correo || 'nicolasd.carrillo@gmail.com'));

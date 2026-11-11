@@ -1,17 +1,24 @@
-/* Identidad de Kryo: papel cálido, bosque profundo y acento copihue. */
+/* Identidad de Kryo — "Hielo, cobre y río".
+   Hielo (Kryo, el frío) + cobre (Chile, el cable de Kori) + río (Valdivia, el Calle-Calle).
+   Niebla glacial de base, pizarra nocturna de tinta, teal glacial de señal
+   y cobre vivo como acento. Tipografía: Bricolage Grotesque (display),
+   Instrument Sans (texto) y Space Mono (anotaciones técnicas). */
 :root{
   color-scheme:light;
-  --bg:#f6f2e7; --bg-2:#ede8d9; --surface:#fffcf4; --line:#ded6c2;
-  --fg:#20362b; --muted:#5a6859; --frost:#1e6b50; --moss:#379067; --copihue:#b03f29;
-  --fur:#c9d2b9; --fur-lo:#a3b199; --cream:#f6efdc; --ink:#1c2f26; --halo-op:1;
-  --display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --hand:"Caveat","Segoe Print",cursive; --radius:20px;
-  --term-bg:#12241c; --term-fg:#e8f0e6; --term-ok:#b3d69a; --term-dim:#9cac9d; --on-accent:#ffffff;
+  --bg:#e9edf1; --bg-2:#dbe2e9; --surface:#f7f9fb; --line:#b9c4cf;
+  --fg:#0f1f2e; --muted:#45586b; --frost:#0b6e7a; --moss:#146b5d; --copihue:#b42318;
+  --copper:#c24e1a; --copper-ink:#a53e12; --amber:#b45309;
+  --fur:#b9c9d4; --fur-lo:#8aa3b3; --cream:#f2f5f7; --ink:#0f1f2e; --halo-op:1;
+  --display:"Bricolage Grotesque","Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Space Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
+  --hand:"Caveat","Segoe Print",cursive; --radius:14px;
+  --term-bg:#0a1620; --term-fg:#d7e6ec; --term-ok:#7dd3c0; --term-dim:#8aa3b0; --on-accent:#ffffff;
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#101d17; --bg-2:#16271e; --surface:#1d3227; --line:#325040;
-  --fg:#f0f4e7; --muted:#a9bfa8; --frost:#9bd8ae; --moss:#7cc794; --copihue:#ff9d7a; --halo-op:.55;
-  --on-accent:#101d17;
+  --bg:#0a141d; --bg-2:#101f2c; --surface:#152a3a; --line:#2a4356;
+  --fg:#e8f0f4; --muted:#9db4c2; --frost:#7dd3d8; --moss:#5ec4a5; --copihue:#ff9d7a;
+  --copper:#ff8a4c; --copper-ink:#ff8a4c; --amber:#fbbf24; --halo-op:.55;
+  --on-accent:#0a141d;
 }

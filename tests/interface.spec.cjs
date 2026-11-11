@@ -118,6 +118,35 @@ test('reduced motion disables animation and failed form validation focuses messa
   await expect(page.locator('#f-nota')).toHaveText('Escribe primero qué necesitas.');
 });
 
+test('access index filters projects and links to real destinations', async ({ page }) => {
+  await page.goto('/');
+  const rows = page.locator('#accesos .acceso-row');
+  await expect(rows).toHaveCount(7);
+  // Todos los enlaces externos abren en pestaña nueva y son seguros.
+  const externos = page.locator('#accesos a[target="_blank"]');
+  const total = await externos.count();
+  expect(total).toBeGreaterThan(5);
+  for (let i = 0; i < total; i++) {
+    await expect(externos.nth(i)).toHaveAttribute('rel', /noopener/);
+    await expect(externos.nth(i)).toHaveAttribute('href', /^https:\/\//);
+  }
+  // Filtro «Código»: ningún proyecto queda fuera, todos tienen repositorio.
+  await page.locator('.accesos-filters button[data-filter="codigo"]').click();
+  await expect(page.locator('#accesos .acceso-row:visible')).toHaveCount(7);
+  // Filtro «En línea»: solo los que tienen demo publicada.
+  await page.locator('.accesos-filters button[data-filter="online"]').click();
+  await expect(page.locator('#accesos .acceso-row:visible')).toHaveCount(4);
+  await expect(page.locator('.accesos-filters button[data-filter="online"]')).toHaveAttribute('aria-pressed', 'true');
+  // Volver a todos restaura el índice completo.
+  await page.locator('.accesos-filters button[data-filter="todos"]').click();
+  await expect(page.locator('#accesos .acceso-row:visible')).toHaveCount(7);
+  // El ancla del menú lleva a la sección sin quedar tapada por el nav pegajoso.
+  await page.locator('.menu a[href="#accesos"]').click();
+  await page.waitForTimeout(600);
+  const nav = await page.locator('.nav').boundingBox();
+  const eyebrow = await page.locator('#accesos .eyebrow').boundingBox();
+  expect(eyebrow.y).toBeGreaterThan(nav.y + nav.height);
+});
 
 test('capture desktop, mobile and dark theme for visual review', async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
