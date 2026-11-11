@@ -1,6 +1,6 @@
 # Portafolio de Kryo
 
-Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Ping**, un mapache con audífonos y polerón negro.
+Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache con audífonos y polerón negro.
 
 Es un sitio estático: HTML, CSS y JavaScript, sin dependencias ni paso de compilación.
 
@@ -12,14 +12,14 @@ portafolio-kryo/
 ├── assets/
 │   ├── css/
 │   │   ├── tokens.css      Paleta, tipografías y modo claro/oscuro
-│   │   ├── ping.css        Dibujo y animaciones de la mascota
+│   │   ├── kori.css        Dibujo y animaciones de la mascota
 │   │   └── styles.css      Diseño de la página y de cada sección
 │   ├── js/
 │   │   ├── main.js         Copiar correo y menú activo
-│   │   └── ping.js         Comportamiento de Ping
+│   │   └── kori.js         Comportamiento de Kori
 │   └── img/
-│       ├── favicon.svg     Cabeza de Ping para la pestaña del navegador
-│       ├── ping.svg        Ping completo, para usar en redes o documentos
+│       ├── favicon.svg     Cabeza de Kori para la pestaña del navegador
+│       ├── kori.svg        Kori completo, para usar en redes o documentos
 │       ├── og-image.png    Vista previa al compartir el enlace
 │       └── proyectos/      Capturas de pantalla de cada trabajo
 ├── .nojekyll               Evita que GitHub Pages procese el sitio con Jekyll

@@ -19,7 +19,7 @@
     } else { seleccionar(); }
   });
 
-  /* Marca en el menú la sección visible y la deja disponible para Ping */
+  /* Marca en el menú la sección visible y la deja disponible para Kori */
   var links = document.querySelectorAll('.menu a');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
@@ -91,7 +91,7 @@
 
   /* Un saludo para quien abre la consola */
   try {
-    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Ping. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#84e1ee');
+    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#84e1ee');
   } catch (e) {}
 })();
 

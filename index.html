@@ -14,12 +14,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/ping.css">
+<link rel="stylesheet" href="assets/css/kori.css">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<!-- Símbolos reutilizables: cabeza de Ping y subrayado a mano -->
+<!-- Símbolos reutilizables: cabeza de Kori y subrayado a mano -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs><linearGradient id="furg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--fur-hi)"/><stop offset=".55" style="stop-color:var(--fur)"/><stop offset="1" style="stop-color:var(--fur-lo)"/></linearGradient>
 <linearGradient id="tailg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--fur-lo)"/><stop offset=".6" style="stop-color:var(--fur)"/><stop offset="1" style="stop-color:var(--fur-hi)"/></linearGradient>
@@ -105,8 +105,8 @@
       </div>
 
       <div class="stage">
-        <p class="say" id="ping-out" aria-live="polite">Soy Ping. Tócame y te respondo.</p>
-        <button class="ping-btn" id="ping-btn" type="button" aria-label="Enviar un ping a Ping, la mascota">
+        <p class="say" id="ping-out" aria-live="polite">Soy Kori. Tócame y te respondo.</p>
+        <button class="ping-btn" id="ping-btn" type="button" aria-label="Enviar un ping a Kori, la mascota">
           <svg class="ping" id="ping" viewBox="0 0 280 300" aria-hidden="true">
 <circle class="moon" cx="140" cy="150" r="126"/>
 <g class="stars" fill="var(--frost)"><path class="star s1" transform="translate(34 62)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s2" transform="translate(250 84) scale(.7)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s3" transform="translate(22 214) scale(.6)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/><path class="star s4" transform="translate(228 30) scale(.5)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/></g>
@@ -199,7 +199,7 @@
 </g>
 </svg>
         </button>
-        <p class="hint">Ping, el mapache del taller</p>
+        <p class="hint">Kori, el mapache del taller</p>
       </div>
     </div>
     <div class="wrap stats-wrap">
@@ -360,12 +360,12 @@
           <p>Trabajo de forma directa: entiendo el problema, propongo algo que se pueda mantener y lo entrego funcionando. Varias de mis herramientas nacieron así, resolviendo un problema que yo mismo tenía.</p>
         </div>
         <aside class="meet" aria-labelledby="meet-t">
-          <h3 id="meet-t"><svg aria-hidden="true"><use href="#ping-head"/></svg>Él es Ping, mi mascota</h3>
+          <h3 id="meet-t"><svg aria-hidden="true"><use href="#ping-head"/></svg>Él es Kori, mi mascota</h3>
           <dl>
             <div><dt>Un mapache</dt><dd>Curioso, hábil con las manos y capaz de armar algo útil con lo que encuentra. Así trabajo yo.</dd></div>
             <div><dt>Audífonos y polerón negro</dt><dd>Por las horas de juego, que es donde empezó mi interés por la tecnología.</dd></div>
             <div><dt>Cable de red</dt><dd>Siempre trae uno en las manos. Las redes son mi carrera.</dd></div>
-            <div><dt>Su nombre</dt><dd>Ping es lo primero que uno envía para saber si algo responde.</dd></div>
+            <div><dt>Su nombre</dt><dd>Kori significa "hielo" en japonés. Hace pareja con Kryo, que viene del frío.</dd></div>
           </dl>
           <ul class="swatches" aria-label="Paleta de la marca">
             <li><i style="background:#0b181b"></i>Noche de río</li>
@@ -440,19 +440,19 @@
   <div class="wrap">
     <svg aria-hidden="true"><use href="#ping-head"/></svg>
     <span>© <span id="anio">2026</span> Nicolás Esteban Díaz Carrillo · Kryo</span>
-    <span class="hand"><span class="port" aria-hidden="true"><i></i><i></i></span>Hecho en Valdivia, con Ping al lado</span>
+    <span class="hand"><span class="port" aria-hidden="true"><i></i><i></i></span>Hecho en Valdivia, con Kori al lado</span>
   </div>
 </footer>
 
-<!-- Ping acompañante -->
+<!-- Kori acompañante -->
 <div class="buddy">
   <p class="bubble" id="bubble" role="status" hidden></p>
-  <button type="button" id="buddy-btn" aria-label="Ping, la mascota: toca para escuchar un comentario">
+  <button type="button" id="buddy-btn" aria-label="Kori, la mascota: toca para escuchar un comentario">
     <svg aria-hidden="true"><use href="#ping-head"/></svg>
   </button>
 </div>
 
 <script src="assets/js/main.js" defer></script>
-<script src="assets/js/ping.js" defer></script>
+<script src="assets/js/kori.js" defer></script>
 </body>
 </html>
