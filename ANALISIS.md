@@ -26,6 +26,8 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 - Nuevo dibujo vectorial con silueta más simple, contornos claros, expresión amable y colores coherentes.
 - Se mantienen sus rasgos: mapache, audífonos, polerón oscuro, cola anillada y cable de red.
 - Se conservan la mirada, el ping, las celebraciones y los estados de sueño y lluvia.
+- Redibujo v3 con acabado de ilustración digital: degradados por material (pelaje, polerón, cobre), oclusión ambiental, luz de contorno, pelaje escalonado, cola con anillos recortados, audífonos con almohadillas y LED, RJ45 con pines, micrófono de boom, paraguas con paneles y sombras de contacto.
+- Se corrigen orígenes de transformación de animaciones (oreja derecha, bigotes, destello) y el halo de fondo ahora responde al tema claro/oscuro (`--halo-op`).
 - Nuevo escenario tipo ficha del taller, con fondo de puntos e indicadores decorativos.
 - Favicon, SVG completo, cuatro stickers PNG/SVG e imagen social actualizados.
 - Los PNG de stickers pasan de aproximadamente 105–113 KB a 44–49 KB por archivo; la imagen social pasa de aproximadamente 100 KB a 68 KB.
