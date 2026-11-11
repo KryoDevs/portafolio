@@ -128,7 +128,7 @@ párpado; pestañas gruesas con pestañeta exterior; sombreado *cel* de borde
 duro; brillos de cabello y de plástico en audífonos; rubor diagonal en las
 mejillas; y lineart fino y limpio. La paleta del sitio se renovó completa
 (papel cálido `#f6f2e7`, bosque profundo `#20362b`, verde `#1e6b50` y copihue
-`#c2472e`, con su equivalente nocturno) y todos los colores duros de CSS,
+`#b03f29`, con su equivalente nocturno) y todos los colores duros de CSS,
 tarjeta, vista social y sombras quedaron alineados a los tokens.
 
 #### Ilustración de Kori v3: acabado de artista digital

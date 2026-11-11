@@ -2,7 +2,7 @@
 :root{
   color-scheme:light;
   --bg:#f6f2e7; --bg-2:#ede8d9; --surface:#fffcf4; --line:#ded6c2;
-  --fg:#20362b; --muted:#5f6e5e; --frost:#1e6b50; --moss:#379067; --copihue:#c2472e;
+  --fg:#20362b; --muted:#5a6859; --frost:#1e6b50; --moss:#379067; --copihue:#b03f29;
   --fur:#c9d2b9; --fur-lo:#a3b199; --cream:#f6efdc; --ink:#1c2f26; --halo-op:1;
   --display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
