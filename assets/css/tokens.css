@@ -1,34 +1,18 @@
-/* Layout: el taller nocturno de un mapache. Una columna cálida de 1080px, títulos en serif
-   suave, notas escritas a mano por Kori y tarjetas redondeadas sobre la noche de río. */
+/* Identidad de Kryo: papel cálido, bosque y un toque de copihue. */
 :root{
-  color-scheme:dark;
-  --bg:#0b181b; --bg-2:#10242a; --surface:#152d33; --line:#2a4a52;
-  --fg:#edf3f0; --muted:#9db7b9;
-  --frost:#84e1ee; --moss:#8cd6a4; --copihue:#ff8389;
-  --fur:#a6b3b6; --fur-dark:#3d4e55; --cream:#f3eee4; --ink:#161d20; --hoodie:#24282b; --hoodie-dark:#131517; --hoodie-line:#4a5257; --fur-hi:#cdd6d7; --fur-lo:#77868b; --mask:#222c30;
-  --on-accent:#06252b;
-  --display:"Fraunces",Georgia,"Times New Roman",serif;
-  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
-  --radius:20px;
-  --term-bg:#0b1114; --term-fg:#dfe9ea; --term-ok:#8cd6a4; --term-dim:#8aa3a6;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    color-scheme:light;
-    --bg:#eaf1ef; --bg-2:#dde9e6; --surface:#f8fbfa; --line:#bfd3d1;
-    --fg:#11282d; --muted:#4a686c;
-    --frost:#0a7689; --moss:#1f7447; --copihue:#c22f3e;
-    --fur:#8f9ca0; --fur-dark:#34444b; --cream:#f6f1e8; --ink:#161d20; --hoodie:#24282b; --hoodie-dark:#131517; --hoodie-line:#4a5257; --fur-hi:#c3cdcf; --fur-lo:#66757a; --mask:#222c30;
-    --on-accent:#f2fbfb;
-  }
-}
-:root[data-theme="light"]{
   color-scheme:light;
-  --bg:#eaf1ef; --bg-2:#dde9e6; --surface:#f8fbfa; --line:#bfd3d1;
-  --fg:#11282d; --muted:#4a686c;
-  --frost:#0a7689; --moss:#1f7447; --copihue:#c22f3e;
-  --fur:#8f9ca0; --fur-dark:#34444b; --cream:#f6f1e8; --ink:#161d20; --hoodie:#24282b; --hoodie-dark:#131517; --hoodie-line:#4a5257; --fur-hi:#c3cdcf; --fur-lo:#66757a; --mask:#222c30;
-  --on-accent:#f2fbfb;
+  --bg:#f7f8f2; --bg-2:#eef1e8; --surface:#ffffff; --line:#dce2d7;
+  --fg:#203c32; --muted:#57695f; --frost:#285c48; --moss:#34734c; --copihue:#ab4430;
+  --fur:#a6b3b6; --fur-dark:#3d4e55; --cream:#f3eee4; --ink:#182b26;
+  --hoodie:#263e35; --hoodie-dark:#182b26; --hoodie-line:#4a6455;
+  --fur-hi:#d8ded5; --fur-lo:#84958a; --mask:#34483f; --on-accent:#ffffff;
+  --display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Segoe Print",cursive; --radius:20px;
+  --term-bg:#13231d; --term-fg:#e6eee6; --term-ok:#b3d69a; --term-dim:#9cac9d;
 }
-
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#14251f; --bg-2:#1b3027; --surface:#20372d; --line:#385044;
+  --fg:#f1f3e8; --muted:#b0bfb0; --frost:#b9d79f; --moss:#a3d3a6; --copihue:#f59b7e; --on-accent:#14251f;
+}

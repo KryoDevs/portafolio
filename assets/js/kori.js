@@ -8,6 +8,7 @@
   function mirar(x, y) { eyes.style.transform = 'translate(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px)'; }
 
   window.addEventListener('pointermove', function (e) {
+    if (reduce || e.pointerType === 'touch') return;
     var r = ping.getBoundingClientRect();
     if (!r.width) return;
     ultimo = Date.now();
@@ -29,6 +30,7 @@
   }
 
   var sinNumero = ['¡Pong! Aquí estoy.', '¡Pong! Sin paquetes perdidos.', '¡Aquí estoy! Te escucho.'];
+  var pingRequest = 0;
   var fin = null, turnoPing = -1, seguidos = 0, ultimoPing = 0;
 
   /* Mide de verdad cuánto tarda este sitio en responderle al visitante */
@@ -36,13 +38,18 @@
     if (!window.fetch || !window.performance || location.protocol === 'file:') return Promise.resolve(null);
     var url = location.href.split('#')[0].split('?')[0] + '?ping=' + Date.now();
     var t0 = performance.now();
-    return fetch(url, { method: 'HEAD', cache: 'no-store' })
-      .then(function () { return Math.max(1, Math.round(performance.now() - t0)); })
-      .catch(function () { return null; });
+    var controller = window.AbortController ? new AbortController() : null;
+    var timeout = controller ? setTimeout(function () { controller.abort(); }, 8000) : null;
+    var options = { method: 'HEAD', cache: 'no-store' };
+    if (controller) options.signal = controller.signal;
+    return fetch(url, options)
+      .then(function (response) { return response.ok ? Math.max(1, Math.round(performance.now() - t0)) : null; })
+      .catch(function () { return null; })
+      .then(function (ms) { clearTimeout(timeout); return ms; });
   }
   function frasePing(ms) {
     if (ms === null) { turnoPing = (turnoPing + 1) % sinNumero.length; return sinNumero[turnoPing]; }
-    return '¡Pong! ' + ms + ' ms entre tú y este sitio.' + (ms < 100 ? ' Vas rápido.' : ms < 300 ? ' Conexión normal.' : ' Va algo lenta.');
+    return '¡Pong! ' + ms + ' ms entre tú y este sitio.' + (ms < 100 ? ' Respuesta rápida.' : ms < 300 ? ' Tiempo de respuesta normal.' : ' La respuesta tardó un poco.');
   }
   var escenario = document.querySelector('.stage');
   var colores = ['var(--frost)', 'var(--copihue)', 'var(--moss)', 'var(--cream)'];
@@ -63,14 +70,15 @@
     }
   }
   document.getElementById('ping-btn').addEventListener('click', function () {
+    var request = ++pingRequest;
     var dormia = ping.classList.contains('is-asleep');
     if (dormia) despertar();
     seguidos = (Date.now() - ultimoPing < 1500) ? seguidos + 1 : 1;
     ultimoPing = Date.now();
     var racha = seguidos === 5;
     if (dormia) out.textContent = 'Mmm… ya desperté. Tócame otra vez para un ping.';
-    else if (racha) out.textContent = '¡Cinco pings seguidos y 0 % de pérdida!';
-    else { out.textContent = 'Midiendo…'; medir().then(function (ms) { out.textContent = frasePing(ms); }); }
+    else if (racha) out.textContent = '¡Cinco toques seguidos! Sigamos conectados.';
+    else { out.textContent = 'Midiendo…'; medir().then(function (ms) { if (request === pingRequest) out.textContent = frasePing(ms); }); }
     if (!reduce) chispas(racha ? 14 : 6);
     ping.classList.remove('is-pinging');
     void ping.getBoundingClientRect();
@@ -82,7 +90,7 @@
   /* Estados de Kori: duerme de noche en Valdivia y saca el paraguas si llueve */
   var C = window.KRYO || {};
   var hint = document.querySelector('.hint'), hintBase = hint.textContent;
-  function dormir() { ping.classList.add('is-asleep'); out.textContent = 'Zzz… En Valdivia es de noche. Tócame para despertarme.'; }
+  function dormir() { pingRequest++; ping.classList.add('is-asleep'); out.textContent = 'Zzz… En Valdivia es de noche. Tócame para despertarme.'; }
   function despertar() { ping.classList.remove('is-asleep'); }
   function lluvia(on, real) {
     ping.classList.toggle('is-rainy', !!on);
@@ -100,7 +108,7 @@
         if (c.precipitation > 0 || (k >= 51 && k <= 67) || (k >= 80 && k <= 82) || k >= 95) lluvia(true, true);
       }).catch(function () {});
   }
-  window.Kori = { medir: medir, dormir: dormir, despertar: function () { despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; }, lluvia: lluvia };
+  window.Kori = { medir: medir, dormir: dormir, despertar: function () { pingRequest++; despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; }, lluvia: lluvia };
 
   /* Kori de la esquina: comenta la sección que estás viendo cuando lo tocas */
   var frases = {

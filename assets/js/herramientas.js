@@ -24,6 +24,7 @@
   /* --- Formulario: arma el mensaje y lo deja listo para enviar --- */
   var form = $('form-contacto'), nombre = $('f-nombre'), servicio = $('f-servicio'), mensaje = $('f-mensaje'), nota = $('f-nota');
   var correo = C.correo || 'nicolasd.carrillo@gmail.com';
+  $('correo').textContent = correo;
   function texto() {
     var t = [nombre.value.trim() ? 'Hola Kryo, soy ' + nombre.value.trim() + '.' : 'Hola Kryo.'];
     if (servicio.value) t.push('Me interesa: ' + servicio.value + '.');
