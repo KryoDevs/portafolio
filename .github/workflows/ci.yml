@@ -1,0 +1,58 @@
+name: Pruebas del portafolio
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Estructura, interfaz y accesibilidad
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar herramientas de pruebas
+        run: npm ci
+
+      - name: Instalar Chromium y dependencias
+        run: npx playwright install --with-deps chromium
+
+      - name: Validar estructura, enlaces y SVG
+        run: npm test
+
+      - name: Probar interfaz, accesibilidad y generar capturas
+        run: npm run test:e2e
+
+      - name: Guardar reporte y capturas para revisión
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: revision-portafolio
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+          if-no-files-found: ignore

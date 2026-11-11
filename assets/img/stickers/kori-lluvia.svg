@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 300" role="img" aria-labelledby="title"><title id="title">Kori, el mapache de Kryo con audífonos y cable de red</title><style>.moon{fill:#e3e9d7}.happy,.smile,.spark,.sleep,.zzz,.umbrella,.rain{display:none}.umbrella,.rain{display:block}</style><circle class="moon" cx="140" cy="148" r="126"/>
+<ellipse class="shadow" cx="146" cy="283" rx="85" ry="8" fill="#263e35" opacity=".12"/>
+<g class="hop" stroke="#263e35" stroke-width="3" stroke-linejoin="round">
+<g class="tail"><path d="M185 262 Q244 284 252 237 Q262 194 241 180 Q226 175 226 196 Q229 234 194 234Z" fill="#b7c2af"/>
+<path d="M228 198l24 7m-25 11l25 8m-32 10l26 10m-39 3l25 14" stroke="#34483f" stroke-width="12"/></g>
+<g class="torso"><path d="M103 240 Q87 258 89 274 Q111 284 129 274 L139 248 M177 240 Q193 258 191 274 Q169 284 151 274 L141 248" fill="#aab8a6"/>
+<path d="M100 166 Q140 152 180 166 L191 242 Q140 264 89 242Z" fill="#263e35"/>
+<path d="M106 165 Q140 197 174 165" fill="none" stroke="#4a6455" stroke-width="10"/>
+<path d="M127 180v22m26-22v22" stroke="#f5f0dd" stroke-width="2" stroke-linecap="round"/>
+<path d="M121 226q19-8 38 0v16h-38Z" fill="#344e40" stroke="#4a6455" stroke-width="2"/>
+<path d="M101 180 Q78 207 110 219 M179 180 Q202 207 170 219" fill="none" stroke="#4a6455" stroke-width="23" stroke-linecap="round"/>
+<path d="M101 180 Q78 207 110 219 M179 180 Q202 207 170 219" fill="none" stroke="#263e35" stroke-width="19" stroke-linecap="round"/>
+<path d="M113 219 Q140 248 167 219" fill="none" stroke="#df876d" stroke-width="4"/>
+<ellipse cx="114" cy="217" rx="11" ry="8" fill="#bac5b4"/><ellipse cx="166" cy="217" rx="11" ry="8" fill="#bac5b4"/>
+<rect x="134" y="211" width="12" height="19" rx="3" fill="#f5f0dd" stroke-width="2"/><path d="M137 212v6m3-6v6m3-6v6" stroke="#df876d" stroke-width="1.5"/>
+<circle class="led" cx="140" cy="225" r="2" fill="#a5d892" stroke="none"/>
+<path class="spark" d="M140 191l2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#f5f0dd" stroke="none"/>
+</g><g class="head" stroke="#263e35" stroke-width="3" stroke-linejoin="round">
+<g class="ear earL"><path d="M84 91 Q66 39 100 49 L122 76" fill="#aab8a6"/><path d="M87 77 Q80 52 99 59 L109 76" fill="#e9b99d" stroke="none"/></g>
+<g class="ear earR"><path d="M158 76 L180 49 Q214 39 196 91" fill="#aab8a6"/><path d="M171 76 L181 59 Q200 52 193 77" fill="#e9b99d" stroke="none"/></g>
+<path d="M140 65 C107 65 87 82 82 106 L70 119 L82 123 L75 134 L94 135 Q104 160 140 163 Q176 160 186 135 L205 134 L198 123 L210 119 L198 106 C193 82 173 65 140 65Z" fill="#bac5b4"/>
+<path d="M140 69 L128 94 L140 105 L152 94Z" fill="#e7e9dc" stroke="none"/>
+<path d="M91 105 Q109 91 130 105 L134 121 Q113 137 91 123 Q84 117 91 105Z M189 105 Q171 91 150 105 L146 121 Q167 137 189 123 Q196 117 189 105Z" fill="#34483f" stroke="none"/>
+<path d="M118 130 Q140 108 162 130 Q172 151 140 158 Q108 151 118 130Z" fill="#f5f0dd" stroke="none"/>
+<g class="eyes" stroke="none"><g id="ping-eyes"><ellipse cx="112" cy="113" rx="5.5" ry="7" fill="#f5f0dd"/><ellipse cx="168" cy="113" rx="5.5" ry="7" fill="#f5f0dd"/><circle cx="114" cy="111" r="2" fill="#263e35"/><circle cx="170" cy="111" r="2" fill="#263e35"/></g></g>
+<g class="happy" fill="none" stroke="#f5f0dd" stroke-linecap="round"><path d="M106 116 Q112 105 118 116 M162 116 Q168 105 174 116"/></g>
+<g class="sleep" fill="none" stroke="#f5f0dd" stroke-linecap="round"><path d="M106 112 Q112 120 118 112 M162 112 Q168 120 174 112"/></g>
+<g class="nose"><path d="M132 131 Q140 126 148 131 Q145 140 140 140 Q135 140 132 131" fill="#263e35"/><path d="M136 131h4" stroke="#f5f0dd" stroke-width="1.5" stroke-linecap="round"/></g>
+<path class="mouth" d="M140 140v5q-6 7-12 0m12 0q6 7 12 0" fill="none" stroke-width="2" stroke-linecap="round"/>
+<path class="smile" d="M130 143 Q140 162 150 143Z" fill="#263e35"/>
+<g fill="#d8886c" stroke="none" opacity=".7"><ellipse cx="102" cy="132" rx="8" ry="3"/><ellipse cx="178" cy="132" rx="8" ry="3"/></g>
+<path d="M78 103 C65 39 215 39 202 103" fill="none" stroke="#df876d" stroke-width="8" stroke-linecap="round"/>
+<path d="M94 65 Q140 38 186 65" fill="none" stroke="#f7d6b2" stroke-width="3" stroke-linecap="round"/>
+<rect x="68" y="96" width="17" height="32" rx="8" fill="#df876d"/><rect x="195" y="96" width="17" height="32" rx="8" fill="#df876d"/>
+<path d="M74 103v16m132-16v16" stroke="#f7d6b2" stroke-width="2" stroke-linecap="round"/>
+<path d="M202 126 Q200 151 159 149" fill="none" stroke="#263e35" stroke-width="2.5"/><rect x="153" y="145" width="11" height="7" rx="3" fill="#263e35"/>
+</g><g class="zzz" fill="#285c48" stroke="none" font-family="monospace"><text x="209" y="72" font-size="17">z</text><text x="225" y="53" font-size="23">z</text></g>
+<g class="umbrella"><path d="M140 15v37" stroke="#263e35" stroke-width="3"/><path d="M54 38 Q140 -19 226 38 Q211 29 197 38 Q183 29 169 38 Q154 29 140 38 Q126 29 111 38 Q97 29 83 38 Q69 29 54 38Z" fill="#df876d" stroke="#263e35" stroke-width="2"/></g>
+<g class="rain" stroke="#66998a" stroke-width="2" stroke-linecap="round"><path class="drop" d="M30 80l-5 12m230-3l-5 12m-218 59l-5 12m238 10l-5 12"/></g></g></svg>

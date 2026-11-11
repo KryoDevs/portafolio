@@ -1,6 +1,6 @@
 # Portafolio de Kryo
 
-Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache con audífonos y polerón negro.
+Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache con audífonos y polerón oscuro.
 
 Es un sitio estático: HTML, CSS y JavaScript, sin paso de compilación.
 
@@ -103,3 +103,60 @@ git push -u origin main
 - [ ] Foto personal en la sección "Sobre mí"
 - [ ] Cambiar la URL de la demo de BiblioNexo por un alias limpio de Vercel
 - [ ] Completar la etiqueta `og:image` en `index.html` con la URL final del sitio
+
+
+## Rediseño del taller digital (noviembre de 2026)
+
+La interfaz usa papel cálido, verde bosque y acentos copihue, con modo oscuro
+seleccionable. La elección se guarda localmente en el navegador. El menú móvil
+funciona con teclado y se cierra al navegar, pulsar Escape o tocar fuera.
+Las fuentes variables se sirven desde `assets/fonts/` con sus licencias OFL;
+no se requieren Google Fonts ni un proceso de compilación.
+
+Kori se redibujó en SVG, conservando su cable de red, audífonos, ping y estados.
+Los stickers PNG y la vista previa social reflejan la nueva identidad. Los SVG
+de los stickers están en `assets/img/stickers/`. Para regenerar los PNG y
+`og-image.png` desde los SVG:
+
+```bash
+npm ci
+npm run assets
+```
+
+### Pruebas
+
+Las dependencias de Node son exclusivamente herramientas de desarrollo; no se
+publican ni son necesarias para ejecutar el sitio.
+
+```bash
+# Estructura HTML, enlaces/fragmentos locales, SVG y fuentes locales
+npm test
+# También funciona sin Node:
+python -m unittest discover -s tests -p 'test_*.py'
+
+# Interacciones, navegación, viewport y accesibilidad automatizada
+npm ci
+npx playwright install chromium
+npm run test:e2e
+```
+
+Playwright inicia un servidor estático en el puerto 8000 o reutiliza el existente.
+En entornos con Chromium ya instalado, se puede indicar
+`CHROMIUM_EXECUTABLE_PATH=/ruta/a/chromium`. Los reportes de pruebas no se
+incluyen en Git. La revisión automática de accesibilidad complementa, pero no
+sustituye, las pruebas manuales con lectores de pantalla.
+
+El diagnóstico general, las mejoras aplicadas y las prioridades pendientes están
+en [ANALISIS.md](ANALISIS.md). La imagen social está actualizada, pero aún hace
+falta configurar su URL absoluta cuando se confirme el dominio público.
+
+
+### Revisión automática de pull requests
+
+El workflow `.github/workflows/ci.yml` ejecuta las pruebas estáticas y de
+navegador en cada PR hacia `main` y en cada push a `main`. También se puede
+lanzar manualmente desde Actions. No usa secretos ni realiza despliegues.
+
+En la ejecución de Actions, el artefacto **revision-portafolio** contiene el
+reporte HTML y capturas de escritorio claro/oscuro, proyectos y móvil para
+revisión visual. Se conserva durante 14 días; las capturas no se añaden a Git.

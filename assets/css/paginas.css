@@ -34,3 +34,7 @@ footer a.hand{text-decoration:none}
 .qr-url{color:var(--muted);font-size:.9rem;margin-top:.8rem;overflow-wrap:anywhere}
 @media (max-width:520px){.bcard{grid-template-columns:minmax(0,1fr) auto}.bcard img{display:none}}
 @media print{.nav,footer,.acts,.crumb,.lead,.skip,.qr-url,.page h1{display:none!important}body{background:#fff}.bcard{border:0;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+:root{--card-bg:#203c32;--card-fg:#f7f8f2;--card-dim:#c4d1be;--card-accent:#efaa8d}
+.bcard{border-radius:14px;max-width:650px;padding:28px;gap:24px}
+.bcard .who b{font-size:1.15rem;letter-spacing:-.3px}
+@media(max-width:520px){.bcard{padding:20px;gap:16px}.bcard .who{font-size:.73rem}.qr{width:96px;height:96px}}

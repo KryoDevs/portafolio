@@ -1,0 +1,16 @@
+{
+  "name": "kryo-portafolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio estático de Kryo. Node se usa solo para pruebas y exportación de assets.",
+  "scripts": {
+    "test": "python -m unittest discover -s tests -p 'test_*.py'",
+    "test:e2e": "playwright test",
+    "assets": "node scripts/render-assets.cjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.0",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

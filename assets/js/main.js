@@ -27,7 +27,12 @@
         if (!en.isIntersecting) return;
         var id = en.target.id;
         document.documentElement.dataset.seccion = id;
-        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+        links.forEach(function (l) {
+          var active = l.getAttribute('href') === '#' + id;
+          l.classList.toggle('active', active);
+          if (active) l.setAttribute('aria-current', 'location');
+          else l.removeAttribute('aria-current');
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
