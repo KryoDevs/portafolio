@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cómo enrutar entre VLANs con subinterfaces en un router Cisco, con configuración completa y errores comunes.">
+<title>Router-on-a-stick · Bitácora de Kryo</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/paginas.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="nav">
+  <nav class="wrap" aria-label="Navegación principal">
+    <a class="brand" href="../index.html"><img src="../assets/img/favicon.svg" alt="" width="38" height="33">Kryo</a>
+    <div class="menu">
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../index.html#proyectos">Trabajos</a>
+      <a href="../bitacora/index.html">Bitácora</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="index.html">← Bitácora</a>
+  <h1>Router-on-a-stick: tres VLANs por un solo enlace</h1>
+  <p class="lead">Redes · Agosto 2026</p>
+  <div class="prose">
+    <p>Dos equipos en VLANs distintas no se ven entre sí, aunque estén conectados al mismo switch. Para que se comuniquen hace falta un router. Router-on-a-stick resuelve eso con un solo cable: el router recibe todas las VLANs por un enlace troncal y usa una subinterfaz por cada una.</p>
+    <h2>La topología</h2>
+    <p>Un router, un switch de distribución y dos switches de acceso. El router se conecta al switch de distribución por una sola interfaz, <code>Fa0/0</code>.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>VLAN</th><th>Red</th><th>Subinterfaz</th><th>Puerta de enlace</th></tr></thead>
+        <tbody>
+          <tr><td>10</td><td>192.168.10.0/24</td><td>Fa0/0.10</td><td>192.168.10.1</td></tr>
+          <tr><td>20</td><td>192.168.20.0/24</td><td>Fa0/0.20</td><td>192.168.20.1</td></tr>
+          <tr><td>55 (nativa)</td><td>192.168.55.0/24</td><td>Fa0/0.55</td><td>192.168.55.1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>Configuración del router</h2>
+    <pre><code>interface FastEthernet0/0
+ no shutdown
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+!
+interface FastEthernet0/0.55
+ encapsulation dot1Q 55 native
+ ip address 192.168.55.1 255.255.255.0</code></pre>
+    <h2>Configuración de los switches</h2>
+    <p>Las VLANs se crean en los tres switches. Los enlaces entre switches y el enlace hacia el router van como troncales, con la misma VLAN nativa en ambos extremos. Ajusta los números de puerto a tu topología.</p>
+    <pre><code>vlan 10
+vlan 20
+vlan 55
+!
+! Enlaces troncales (hacia el router y hacia los otros switches)
+interface range FastEthernet0/22 - 24
+ switchport mode trunk
+ switchport trunk native vlan 55
+!
+! Puerto de acceso para un equipo de la VLAN 10
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 10</code></pre>
+    <h2>Cómo comprobarlo</h2>
+    <ol>
+      <li><code>show vlan brief</code> en cada switch: las VLANs existen y los puertos están en la correcta.</li>
+      <li><code>show interfaces trunk</code>: los troncales están activos y la VLAN nativa es la 55.</li>
+      <li><code>show ip interface brief</code> en el router: las tres subinterfaces están <code>up/up</code>.</li>
+      <li>Un <code>ping</code> desde un equipo de la VLAN 10 a uno de la VLAN 20.</li>
+    </ol>
+    <h2>Tres errores que hacen perder tiempo</h2>
+    <ul>
+      <li><strong>Olvidar <code>no shutdown</code> en la interfaz física.</strong> Las subinterfaces no suben si la interfaz principal está apagada.</li>
+      <li><strong>VLAN nativa distinta en cada extremo.</strong> El switch avisa con un mensaje de <em>native VLAN mismatch</em> y el tráfico sin etiqueta termina en la VLAN equivocada.</li>
+      <li><strong>Puerta de enlace mal puesta en los equipos.</strong> Cada equipo debe apuntar a la dirección de la subinterfaz de su propia VLAN.</li>
+    </ul>
+  </div>
+  <div class="acts"><a class="btn" href="index.html">Más notas</a><a class="btn primary" href="../index.html#contacto">¿Necesitas ordenar tu red?</a></div>
+</main>
+<footer>
+  <div class="wrap">
+    <img src="../assets/img/favicon.svg" alt="" width="44" height="38">
+    <span>© 2026 Nicolás Esteban Díaz Carrillo · Kryo</span>
+    <a class="hand" href="../index.html">Volver al inicio</a>
+  </div>
+</footer>
+</body>
+</html>

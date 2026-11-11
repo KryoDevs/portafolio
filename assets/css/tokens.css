@@ -11,6 +11,7 @@
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
   --radius:20px;
+  --term-bg:#0b1114; --term-fg:#dfe9ea; --term-ok:#8cd6a4; --term-dim:#8aa3a6;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){

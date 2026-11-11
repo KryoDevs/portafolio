@@ -94,4 +94,3 @@
     console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#84e1ee');
   } catch (e) {}
 })();
-

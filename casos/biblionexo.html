@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Caso BiblioNexo: sistema de gestión para una biblioteca municipal, hecho por Kryo.">
+<title>BiblioNexo · Kryo</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/paginas.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="nav">
+  <nav class="wrap" aria-label="Navegación principal">
+    <a class="brand" href="../index.html"><img src="../assets/img/favicon.svg" alt="" width="38" height="33">Kryo</a>
+    <div class="menu">
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../index.html#proyectos">Trabajos</a>
+      <a href="../bitacora/index.html">Bitácora</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="../index.html#proyectos">← Trabajos</a>
+  <h1>BiblioNexo</h1>
+  <p class="lead">Un sistema web para llevar el catálogo, los lectores y los préstamos de una biblioteca municipal.</p>
+  <div class="facts">
+    <div><b>App web</b>Tipo de proyecto</div>
+    <div><b>Diseño y desarrollo</b>Mi rol</div>
+    <div><b>JavaScript · Supabase</b>Tecnologías</div>
+    <div><b>En desarrollo</b>Estado, con demo en línea</div>
+  </div>
+  <!-- TODO: reemplaza este recuadro por capturas reales: <img src="../assets/img/proyectos/biblionexo-1.png" alt="..."> -->
+  <p class="shot">Aquí van las capturas de pantalla del sistema.</p>
+  <div class="prose">
+    <h2>El problema</h2>
+    <p>En el mesón de una biblioteca se registran préstamos y devoluciones todo el día. Si el catálogo, los lectores y los préstamos viven en lugares distintos, es fácil perder el rastro de un libro o prestar un ejemplar que ya no está.</p>
+    <h2>Lo que construí</h2>
+    <ul>
+      <li>Catálogo de libros y registro de lectores.</li>
+      <li>Préstamos y devoluciones con control de stock.</li>
+      <li>Dos roles, administrador y librero, cada uno con su propio menú y panel.</li>
+      <li>Escaneo de códigos QR y de barras con la cámara o con una pistola lectora USB.</li>
+      <li>Panel con gráfico de libros prestados, devueltos, vencidos y en estante.</li>
+      <li>Un módulo para el bibliomóvil, con ruta de paradas en un mapa y préstamos que se guardan aunque no haya señal.</li>
+    </ul>
+    <h2>Decisiones técnicas</h2>
+    <ul>
+      <li><strong>JavaScript sin framework.</strong> El sitio no necesita compilarse y carga rápido en equipos modestos.</li>
+      <li><strong>Supabase como base de datos y autenticación.</strong> Los permisos se definen en el servidor con políticas por fila, no en el navegador.</li>
+      <li><strong>Stock solo por funciones atómicas.</strong> Prestar y devolver se ejecutan dentro de la base de datos, para que dos préstamos simultáneos del último ejemplar no dejen el stock en negativo.</li>
+      <li><strong>Librerías con carga diferida.</strong> El escáner y los gráficos se descargan solo cuando se abren.</li>
+      <li><strong>Pruebas propias.</strong> Suites que revisan la interfaz, el contraste y las funciones de la base de datos.</li>
+    </ul>
+    <h2>Lo que aprendí</h2>
+    <p>Una caché mal configurada puede dejar a los usuarios pegados en una versión vieja del sitio, aunque el código nuevo ya esté publicado. Aprendí a versionar la caché y a pedir primero a la red.</p>
+    <p>También aprendí que leer un dato y luego actualizarlo en dos pasos no es seguro cuando hay varias personas usando el sistema. Esa lógica tiene que vivir en una sola operación del lado del servidor.</p>
+  </div>
+  <div class="acts">
+    <!-- Recomendado: reemplazar por un alias limpio de Vercel -->
+    <a class="btn primary" href="https://biblio-nexo-fuckingkrio.vercel.app/" target="_blank" rel="noopener noreferrer">Ver demo</a>
+    <a class="btn" href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Ver código</a>
+    <a class="btn" href="../index.html#contacto">Quiero algo así</a>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <img src="../assets/img/favicon.svg" alt="" width="44" height="38">
+    <span>© 2026 Nicolás Esteban Díaz Carrillo · Kryo</span>
+    <a class="hand" href="../index.html">Volver al inicio</a>
+  </div>
+</footer>
+</body>
+</html>

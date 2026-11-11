@@ -28,8 +28,22 @@
     }, 2200);
   }
 
-  var respuestas = ['¡Pong! Respondí en {ms} ms.', '¡Aquí estoy! {ms} ms.', 'Conexión perfecta: {ms} ms.', '¡Pong! Sin paquetes perdidos.'];
+  var sinNumero = ['¡Pong! Aquí estoy.', '¡Pong! Sin paquetes perdidos.', '¡Aquí estoy! Te escucho.'];
   var fin = null, turnoPing = -1, seguidos = 0, ultimoPing = 0;
+
+  /* Mide de verdad cuánto tarda este sitio en responderle al visitante */
+  function medir() {
+    if (!window.fetch || !window.performance || location.protocol === 'file:') return Promise.resolve(null);
+    var url = location.href.split('#')[0].split('?')[0] + '?ping=' + Date.now();
+    var t0 = performance.now();
+    return fetch(url, { method: 'HEAD', cache: 'no-store' })
+      .then(function () { return Math.max(1, Math.round(performance.now() - t0)); })
+      .catch(function () { return null; });
+  }
+  function frasePing(ms) {
+    if (ms === null) { turnoPing = (turnoPing + 1) % sinNumero.length; return sinNumero[turnoPing]; }
+    return '¡Pong! ' + ms + ' ms entre tú y este sitio.' + (ms < 100 ? ' Vas rápido.' : ms < 300 ? ' Conexión normal.' : ' Va algo lenta.');
+  }
   var escenario = document.querySelector('.stage');
   var colores = ['var(--frost)', 'var(--copihue)', 'var(--moss)', 'var(--cream)'];
   /* Estrellitas que salen disparadas al tocar a Kori */
@@ -49,12 +63,15 @@
     }
   }
   document.getElementById('ping-btn').addEventListener('click', function () {
-    var ms = 3 + Math.floor(Math.random() * 28);
-    turnoPing = (turnoPing + 1) % respuestas.length;
+    var dormia = ping.classList.contains('is-asleep');
+    if (dormia) despertar();
     seguidos = (Date.now() - ultimoPing < 1500) ? seguidos + 1 : 1;
     ultimoPing = Date.now();
-    out.textContent = seguidos === 5 ? '¡Cinco pings seguidos y 0 % de pérdida!' : respuestas[turnoPing].replace('{ms}', ms);
-    if (!reduce) chispas(seguidos === 5 ? 14 : 6);
+    var racha = seguidos === 5;
+    if (dormia) out.textContent = 'Mmm… ya desperté. Tócame otra vez para un ping.';
+    else if (racha) out.textContent = '¡Cinco pings seguidos y 0 % de pérdida!';
+    else { out.textContent = 'Midiendo…'; medir().then(function (ms) { out.textContent = frasePing(ms); }); }
+    if (!reduce) chispas(racha ? 14 : 6);
     ping.classList.remove('is-pinging');
     void ping.getBoundingClientRect();
     ping.classList.add('is-pinging');
@@ -62,14 +79,40 @@
     fin = setTimeout(function () { ping.classList.remove('is-pinging'); }, 1300);
   });
 
+  /* Estados de Kori: duerme de noche en Valdivia y saca el paraguas si llueve */
+  var C = window.KRYO || {};
+  var hint = document.querySelector('.hint'), hintBase = hint.textContent;
+  function dormir() { ping.classList.add('is-asleep'); out.textContent = 'Zzz… En Valdivia es de noche. Tócame para despertarme.'; }
+  function despertar() { ping.classList.remove('is-asleep'); }
+  function lluvia(on, real) {
+    ping.classList.toggle('is-rainy', !!on);
+    hint.textContent = !on ? hintBase : real ? 'Llueve en Valdivia: Kori sacó el paraguas.' : 'Kori sacó el paraguas.';
+  }
+  var hv = -1;
+  try { hv = parseInt(new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Santiago', hour: '2-digit', hour12: false }).format(new Date()), 10) % 24; } catch (e) {}
+  if (hv >= 23 || (hv >= 0 && hv < 7)) dormir();
+  if (C.clima !== false && window.fetch && location.protocol !== 'file:') {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=-39.81&longitude=-73.25&current=precipitation,weather_code')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var c = d && d.current; if (!c) return;
+        var k = c.weather_code;
+        if (c.precipitation > 0 || (k >= 51 && k <= 67) || (k >= 80 && k <= 82) || k >= 95) lluvia(true, true);
+      }).catch(function () {});
+  }
+  window.Kori = { medir: medir, dormir: dormir, despertar: function () { despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; }, lluvia: lluvia };
+
   /* Kori de la esquina: comenta la sección que estás viendo cuando lo tocas */
   var frases = {
     'inicio': ['Hola, soy Kori, el mapache de Kryo.', 'Tócame arriba y te respondo el ping.'],
     'servicios': ['Apps, redes y soporte. Yo sujeto el cable.', 'Puedes combinar los tres servicios.'],
-    'proyectos': ['BiblioNexo se usa en una biblioteca de verdad.', 'Abre la demo y pruébala.'],
+    'diagnostico': ['Cuatro preguntas y te digo por dónde partir.', 'No hay respuestas malas.'],
+    'proyectos': ['BiblioNexo nació para una biblioteca municipal.', 'Abre la demo y pruébala.'],
     'proceso': ['Primero conversamos, después se construye.', 'Kryo te enseña a usar lo que entrega.'],
+    'cotizador': ['Marca lo que necesitas. Yo llevo la cuenta.', 'Lo que marques se suma a tu mensaje.'],
     'sobre-mi': ['Kryo y yo desarmamos todo para ver cómo funciona.', 'Este cable no lo suelto por nada.'],
     'certificaciones': ['Siete certificados. Yo solo tengo anillos en la cola.', 'Cisco e INACAP, todo al día.'],
+    'bitacora': ['Kryo anota lo que aprende. Yo reviso la ortografía.', 'Hay una nota sobre VLANs.'],
     'contacto': ['Escríbele. Tarda más que un ping, pero responde.', 'Dile que vienes de parte de Kori.']
   };
   var bubble = document.getElementById('bubble');
