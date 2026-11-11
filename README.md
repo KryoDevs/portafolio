@@ -33,9 +33,13 @@ portafolio-kryo/
 │       ├── favicon.svg           Cabeza de Kori para la pestaña del navegador
 │       ├── kori.svg              Kori completo, para redes o documentos
 │       ├── og-image.png          Vista previa al compartir el enlace
-│       ├── stickers/             Cuatro stickers de Kori en PNG
+│       ├── stickers/             Cuatro stickers de Kori en SVG y PNG
+│       ├── icons/                Iconos de app (svg, 180, 512 y maskable)
 │       └── proyectos/            Capturas de pantalla de cada trabajo
-├── robots.txt
+├── robots.txt                    Reglas de rastreo y ruta del sitemap
+├── sitemap.xml                   URLs públicas para buscadores
+├── manifest.webmanifest          Metadatos PWA (instalable)
+├── vercel.json                   Cabeceras de seguridad y caché si se despliega en Vercel
 ├── .nojekyll                     Evita que GitHub Pages procese el sitio con Jekyll
 ├── .gitignore
 └── README.md
@@ -102,7 +106,7 @@ git push -u origin main
 - [ ] Completar `whatsapp`, `linkedin`, `testimonio`, `desde` y `tarifas` en `config.js`
 - [ ] Foto personal en la sección "Sobre mí"
 - [ ] Cambiar la URL de la demo de BiblioNexo por un alias limpio de Vercel
-- [ ] Completar la etiqueta `og:image` en `index.html` con la URL final del sitio
+- [ ] Cambiar `og:url`, `sitemap.xml` y manifest si se confirma un dominio propio
 
 
 ## Rediseño del taller digital (noviembre de 2026)
@@ -114,7 +118,34 @@ Las fuentes variables se sirven desde `assets/fonts/` con sus licencias OFL;
 no se requieren Google Fonts ni un proceso de compilación.
 
 Kori se redibujó en SVG, conservando su cable de red, audífonos, ping y estados.
-Los stickers PNG y la vista previa social reflejan la nueva identidad. Los SVG
+Los stickers PNG y la vista previa social reflejan la nueva identidad.
+
+#### Kori v4: estilo anime y paleta renovada
+
+Sobre el redibujo v3, la mascota pasó a un lenguaje de ilustración anime:
+ojos grandes con iris degradado, anillo limbal, doble brillo y sombra de
+párpado; pestañas gruesas con pestañeta exterior; sombreado *cel* de borde
+duro; brillos de cabello y de plástico en audífonos; rubor diagonal en las
+mejillas; y lineart fino y limpio. La paleta del sitio se renovó completa
+(papel cálido `#f6f2e7`, bosque profundo `#20362b`, verde `#1e6b50` y copihue
+`#b03f29`, con su equivalente nocturno) y todos los colores duros de CSS,
+tarjeta, vista social y sombras quedaron alineados a los tokens.
+
+#### Ilustración de Kori v3: acabado de artista digital
+
+La mascota volvió a ilustrarse con técnicas de dibujo digital vectorial:
+degradados de pelaje, polerón y cobre; oclusión ambiental bajo la cabeza y los
+brazos; luz de contorno; mechones de pelaje escalonados en mejillas y cola;
+anillos de la cola recortados con clipPath; audífonos con almohadillas,
+especulares y LED; conector RJ45 con pines dorados sostenido entre las patas;
+micrófono de boom; paraguas con paneles y varillas; y sombras de contacto
+suaves sobre el suelo. Se conservan todos los ganchos de animación
+(`.hop`, `.head`, `.tail`, `.torso`, `.ear`, `.eyes`, `#ping-eyes`, `.happy`,
+`.sleep`, `.smile`, `.zzz`, `.umbrella`, `.rain`, `.led`, `.spark`) y se
+añadieron arcos de señal (`.arc`) que emiten desde el audífono durante el ping.
+El disco de fondo usa un degradado radial y su intensidad cambia con el tema
+mediante `--halo-op` en `tokens.css`. Los PNG de stickers y `og-image.png`
+se regeneran con `npm run assets`. Los SVG
 de los stickers están en `assets/img/stickers/`. Para regenerar los PNG y
 `og-image.png` desde los SVG:
 

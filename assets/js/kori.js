@@ -89,12 +89,12 @@
 
   /* Estados de Kori: duerme de noche en Valdivia y saca el paraguas si llueve */
   var C = window.KRYO || {};
-  var hint = document.querySelector('.hint'), hintBase = hint.textContent;
+  var hint = document.querySelector('.hint'), hintBase = hint ? hint.textContent : '';
   function dormir() { pingRequest++; ping.classList.add('is-asleep'); out.textContent = 'Zzz… En Valdivia es de noche. Tócame para despertarme.'; }
   function despertar() { ping.classList.remove('is-asleep'); }
   function lluvia(on, real) {
     ping.classList.toggle('is-rainy', !!on);
-    hint.textContent = !on ? hintBase : real ? 'Llueve en Valdivia: Kori sacó el paraguas.' : 'Kori sacó el paraguas.';
+    if (hint) hint.textContent = !on ? hintBase : real ? 'Llueve en Valdivia: Kori sacó el paraguas.' : 'Kori sacó el paraguas.';
   }
   var hv = -1;
   try { hv = parseInt(new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Santiago', hour: '2-digit', hour12: false }).format(new Date()), 10) % 24; } catch (e) {}

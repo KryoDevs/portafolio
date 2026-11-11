@@ -38,5 +38,7 @@
     if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') close(true);
   });
   document.addEventListener('click', function (e) { if (!e.target.closest('.nav')) close(false); });
-  window.matchMedia('(min-width: 761px)').addEventListener('change', function (e) { if (e.matches) close(false); });
+  var mq = window.matchMedia('(min-width: 761px)');
+  if (mq.addEventListener) mq.addEventListener('change', function (e) { if (e.matches) close(false); });
+  else if (mq.addListener) mq.addListener(function (e) { if (e.matches) close(false); });
 })();

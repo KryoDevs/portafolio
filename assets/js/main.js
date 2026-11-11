@@ -96,6 +96,6 @@
 
   /* Un saludo para quien abre la consola */
   try {
-    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#84e1ee');
+    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#9bd8ae');
   } catch (e) {}
 })();

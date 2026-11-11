@@ -26,6 +26,13 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 - Nuevo dibujo vectorial con silueta más simple, contornos claros, expresión amable y colores coherentes.
 - Se mantienen sus rasgos: mapache, audífonos, polerón oscuro, cola anillada y cable de red.
 - Se conservan la mirada, el ping, las celebraciones y los estados de sueño y lluvia.
+- Redibujo v3 con acabado de ilustración digital: degradados por material (pelaje, polerón, cobre), oclusión ambiental, luz de contorno, pelaje escalonado, cola con anillos recortados, audífonos con almohadillas y LED, RJ45 con pines, micrófono de boom, paraguas con paneles y sombras de contacto.
+- Se corrigen orígenes de transformación de animaciones (oreja derecha, bigotes, destello) y el halo de fondo ahora responde al tema claro/oscuro (`--halo-op`).
+- v4 anime: ojos grandes con iris degradado y brilles, pestañas con pestañeta, sombreado cel de borde duro, rubor diagonal, brillos de cabello/plástico y lineart fino.
+- Paleta del sitio renovada en `tokens.css` (papel cálido, bosque profundo, copihue vivo y modo oscuro acorde); se alinearon colores duros en `styles.css`, `paginas.css`, `kori.css`, la tarjeta y `og-image`.
+- Completitud: `og:image` real más tarjetas Twitter y `theme-color`, `manifest.webmanifest` con iconos generados por `npm run assets`, `sitemap.xml` citado en `robots.txt`, y `vercel.json` con cabeceras de seguridad y caché.
+- Robustez: guardia de `MediaQueryList` para navegadores antiguos en `interface.js` y `.hint` opcional en `kori.js`.
+- Limpieza: eliminados los archivos heredados `ping.css`, `ping.js` y `ping.svg` que ninguna página cargaba.
 - Nuevo escenario tipo ficha del taller, con fondo de puntos e indicadores decorativos.
 - Favicon, SVG completo, cuatro stickers PNG/SVG e imagen social actualizados.
 - Los PNG de stickers pasan de aproximadamente 105–113 KB a 44–49 KB por archivo; la imagen social pasa de aproximadamente 100 KB a 68 KB.
@@ -56,7 +63,7 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 | Media | Revisar contenido temporal | Confirmar semestre actual, fechas de certificación, disponibilidad, estado de los proyectos y borradores de la bitácora/caso. El rediseño no valida esos datos personales. |
 | Media | Pruebas manuales de accesibilidad | Probar lector de pantalla, zoom al 200–400 %, teclado, móvil real y diferentes navegadores. Una revisión automática no cubre todas las barreras. |
 | Media | Clima y privacidad | La consulta a Open-Meteo sale directamente desde el navegador. Evaluar si aporta valor suficiente; se puede desactivar con `clima: false`. Añadir caché y tiempo de espera si se conserva. |
-| Baja | Simplificar mantenimiento | Consolidar progresivamente reglas CSS base/rediseño; revisar `ping.js` y `ping.css`, que son archivos heredados no cargados por las páginas actuales. Evitar mantener versiones divergentes de la mascota. |
+| Baja | Simplificar mantenimiento | Consolidar progresivamente reglas CSS base/rediseño. Los heredados `ping.js`/`ping.css`/`ping.svg` ya se eliminaron; evitar mantener versiones divergentes de la mascota. |
 | Baja | Analítica mínima y rendimiento de producción | Medir conversiones, Core Web Vitals y errores con el hosting definitivo. Configurar caché, compresión y cabeceras de seguridad en ese entorno. |
 
 ## Validación realizada

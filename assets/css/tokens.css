@@ -1,18 +1,17 @@
-/* Identidad de Kryo: papel cálido, bosque y un toque de copihue. */
+/* Identidad de Kryo: papel cálido, bosque profundo y acento copihue. */
 :root{
   color-scheme:light;
-  --bg:#f7f8f2; --bg-2:#eef1e8; --surface:#ffffff; --line:#dce2d7;
-  --fg:#203c32; --muted:#57695f; --frost:#285c48; --moss:#34734c; --copihue:#ab4430;
-  --fur:#a6b3b6; --fur-dark:#3d4e55; --cream:#f3eee4; --ink:#182b26;
-  --hoodie:#263e35; --hoodie-dark:#182b26; --hoodie-line:#4a6455;
-  --fur-hi:#d8ded5; --fur-lo:#84958a; --mask:#34483f; --on-accent:#ffffff;
+  --bg:#f6f2e7; --bg-2:#ede8d9; --surface:#fffcf4; --line:#ded6c2;
+  --fg:#20362b; --muted:#5a6859; --frost:#1e6b50; --moss:#379067; --copihue:#b03f29;
+  --fur:#c9d2b9; --fur-lo:#a3b199; --cream:#f6efdc; --ink:#1c2f26; --halo-op:1;
   --display:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --hand:"Caveat","Segoe Print",cursive; --radius:20px;
-  --term-bg:#13231d; --term-fg:#e6eee6; --term-ok:#b3d69a; --term-dim:#9cac9d;
+  --term-bg:#12241c; --term-fg:#e8f0e6; --term-ok:#b3d69a; --term-dim:#9cac9d; --on-accent:#ffffff;
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#14251f; --bg-2:#1b3027; --surface:#20372d; --line:#385044;
-  --fg:#f1f3e8; --muted:#b0bfb0; --frost:#b9d79f; --moss:#a3d3a6; --copihue:#f59b7e; --on-accent:#14251f;
+  --bg:#101d17; --bg-2:#16271e; --surface:#1d3227; --line:#325040;
+  --fg:#f0f4e7; --muted:#a9bfa8; --frost:#9bd8ae; --moss:#7cc794; --copihue:#ff9d7a; --halo-op:.55;
+  --on-accent:#101d17;
 }
