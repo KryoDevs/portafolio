@@ -78,16 +78,16 @@
 
 
 /* Kori v2: a small, interactive character sheet. */
-.hero .stage{align-self:center;isolation:isolate;gap:0;min-height:430px;padding:54px 18px 26px;border:1px solid var(--line);border-radius:24px;background-color:var(--bg-2);background-image:radial-gradient(color-mix(in srgb,var(--fg) 12%,transparent) .7px,transparent .7px);background-size:18px 18px;box-shadow:0 14px 38px #203c3205}
+.hero .stage{align-self:center;isolation:isolate;gap:0;min-height:430px;padding:54px 18px 26px;border:1px solid var(--line);border-radius:24px;background-color:var(--bg-2);background-image:radial-gradient(color-mix(in srgb,var(--fg) 12%,transparent) .7px,transparent .7px);background-size:18px 18px;box-shadow:0 14px 38px #20362b05}
 .stage::before{content:"";position:absolute;width:300px;height:300px;max-width:90%;border:1px solid color-mix(in srgb,var(--frost) 12%,transparent);border-radius:50%;top:80px;z-index:-1}
 .stage-top{position:absolute;top:20px;left:22px;right:22px;display:flex;justify-content:space-between;font:500 .53rem/1.5 var(--body);letter-spacing:1.1px;color:var(--muted)}
 .stage-top i{display:inline-block;width:5px;height:5px;background:var(--moss);border-radius:50%;margin-right:5px;vertical-align:middle}
-.hero .say{font:500 .76rem/1.4 var(--body);padding:10px 16px;max-width:95%;min-height:0;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 8px #203c3205;z-index:2}
+.hero .say{font:500 .76rem/1.4 var(--body);padding:10px 16px;max-width:95%;min-height:0;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 8px #20362b05;z-index:2}
 .say::after{width:10px;height:10px;bottom:-6px;border-width:1px}
 .hero .ping-btn{width:280px;max-width:90%;margin-top:6px;position:relative;z-index:1}
 .ping .head{transform-origin:140px 153px}.ping .tail{transform-origin:194px 249px}
 .ping .torso{transform-origin:140px 270px}.ping .shadow{transform-origin:146px 283px}
-.orbit-label{position:absolute;display:grid;place-items:center;width:42px;height:42px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 12px #203c3208;color:var(--frost);z-index:3}
+.orbit-label{position:absolute;display:grid;place-items:center;width:42px;height:42px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 12px #20362b08;color:var(--frost);z-index:3}
 .orbit-code{top:136px;left:24px;font:600 .8rem/1 monospace;transform:rotate(-9deg)}
 .orbit-wifi{top:242px;right:22px;font:500 2.3rem/1 var(--body);color:var(--copihue);transform:rotate(9deg)}
 .mascot-signature{display:flex;align-items:center;gap:12px;margin-top:4px}

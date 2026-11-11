@@ -284,7 +284,7 @@ dialog.term::backdrop{background:rgb(0 0 0 / .6)}
 }
 
 /* === Kryo / Taller digital — shared interface === */
-::selection{background:#dce8b8;color:#203c32}
+::selection{background:#d9e6bd;color:#20362b}
 body{font-size:1rem;line-height:1.7}
 .wrap{max-width:1200px;padding-inline:max(28px,env(safe-area-inset-left))}
 .nav{background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line)}
@@ -390,7 +390,7 @@ h2 em{font-family:Georgia,serif;font-weight:400;color:var(--frost)}
 .form textarea{min-height:130px}.note{font-size:.75rem}
 .contact{gap:18px;margin-top:22px}.cbox{border-width:1px;border-radius:14px;padding:24px;background:transparent}.cbox .label{font-size:.68rem;text-transform:uppercase;letter-spacing:1px}.cbox .value{font-size:.94rem;overflow-wrap:anywhere}.cbox .btn{margin-top:12px}.pending{font-size:.76rem}
 footer{border-top:1px solid var(--line);font-size:.78rem}.map-wrap{padding-block:32px}.netmap{max-width:260px}.map-wrap>.hand{font-family:var(--body);font-size:.75rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
-.buddy button{border:1px solid var(--line);background:var(--surface);box-shadow:0 6px 24px #203c3215}
+.buddy button{border:1px solid var(--line);background:var(--surface);box-shadow:0 6px 24px #20362b15}
 .bubble{font:500 .85rem/1.6 var(--body);border-width:1px;padding:14px 18px}
 symbol .happy,symbol .sleep,symbol .smile{display:none}
 .page{padding-top:56px}.page h1{letter-spacing:-1.6px}.page h2{font-weight:700}.page .lead{font-size:1rem}.prose{line-height:1.9}.shot{border-width:1px;background:var(--bg-2)}
@@ -398,7 +398,7 @@ symbol .happy,symbol .sleep,symbol .smile{display:none}
 @media(max-width:1000px){.hero .wrap{gap:28px}.hero h1{font-size:2.7rem;letter-spacing:-2px}.menu{gap:18px}.nav .wrap{gap:18px}.tool{grid-template-columns:1fr;gap:8px}.tool-top{margin-bottom:16px}.quote{gap:28px}}
 @media(max-width:760px){
  .wrap{padding-inline:22px}.nav .wrap{min-height:72px;gap:12px}.brand{font-size:1.7rem}.brand svg,.brand img{width:34px;height:34px}.theme-toggle{margin-left:auto;width:38px;height:38px}.menu-toggle{display:grid;width:38px;height:38px}
- .nav .menu{display:none;position:absolute;left:0;right:0;top:100%;margin:0;padding:18px 22px 24px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 18px 25px #203c3210;mask-image:none;-webkit-mask-image:none}
+ .nav .menu{display:none;position:absolute;left:0;right:0;top:100%;margin:0;padding:18px 22px 24px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 18px 25px #20362b10;mask-image:none;-webkit-mask-image:none}
  .nav .menu.is-open{display:flex;flex-direction:column;align-items:stretch;gap:4px}.menu a{padding:12px}.menu a.active::after{display:none}.menu .nav-contact{margin-top:8px;text-align:center}
  .hero .wrap{grid-template-columns:1fr;padding-block:38px 36px;gap:36px}.hero h1{font-size:clamp(2.2rem,6.5vw,3.6rem);letter-spacing:-1.7px}.hero .lead{max-width:52ch;font-size:.92rem}.hero .eyebrow{font-size:.57rem;letter-spacing:1.4px}.avail{margin-bottom:22px}
  .hero .btns{gap:10px}.btn{font-size:.78rem;padding:14px 16px;gap:12px}.hero .stage{width:100%;max-width:480px;justify-self:center}.hero .wrap.stats-wrap{padding-bottom:0}.stats{grid-template-columns:repeat(2,1fr);row-gap:24px;padding-block:26px}.stats li{padding-inline:14px!important;font-size:.7rem}.stats li:nth-child(2){border-right:0}.stats b{font-size:1.85rem}
