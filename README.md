@@ -102,6 +102,7 @@ git push -u origin main
 ## Pendientes
 
 - [ ] Revisar los textos del caso BiblioNexo y de la nota de la bitácora: son borradores
+- [ ] Sumar proyectos nuevos a la sección Accesos (`index.html`) y a `KRYO.proyectos` en `config.js`
 - [ ] Capturas de pantalla en `assets/img/proyectos/` (busca `TODO` en `index.html` y `casos/biblionexo.html`)
 - [ ] Completar `whatsapp`, `linkedin`, `testimonio`, `desde` y `tarifas` en `config.js`
 - [ ] Foto personal en la sección "Sobre mí"
@@ -109,10 +110,27 @@ git push -u origin main
 - [ ] Cambiar `og:url`, `sitemap.xml` y manifest si se confirma un dominio propio
 
 
-## Rediseño del taller digital (noviembre de 2026)
+## Identidad «Hielo, cobre y río» (noviembre de 2026)
 
-La interfaz usa papel cálido, verde bosque y acentos copihue, con modo oscuro
-seleccionable. La elección se guarda localmente en el navegador. El menú móvil
+La interfaz abandonó el papel cálido y el verde bosque por una identidad propia
+sacada de Valdivia: **niebla glacial** (`#e9edf1`), **pizarra nocturna**
+(`#0f1f2e`), **teal glacial** (`#0b6e7a`) como señal y **cobre vivo**
+(`#c24e1a`) como acento, con **copihue** (`#b42318`) para lo urgente y su
+equivalente nocturno (`#0a141d`, `#7dd3d8`, `#ff8a4c`). Todos los pares de
+texto/fondo cumplen WCAG AA en claro y oscuro.
+
+La tipografía también es propia: **Bricolage Grotesque** (display variable,
+peso 200–800 y ancho 75–100 %, servida en un solo archivo `woff2` de 91 KB),
+**Instrument Sans** (texto) y **Space Mono** (etiquetas técnicas, numeración y
+coordenadas). Caveat se queda para las notas a mano y Fraunces itálica para el
+acento serif. Todo se sirve desde `assets/fonts/` con sus licencias OFL; sin
+Google Fonts y sin compilación.
+
+La estructura también cambió: una cinta de servicios en movimiento, un
+**índice de accesos** con filtros (todos, en línea, código, herramientas) y
+enlaces directos a demos y repositorios, y la mascota Kori como hilo conductor.
+
+Con modo oscuro seleccionable. La elección se guarda localmente en el navegador. El menú móvil
 funciona con teclado y se cierra al navegar, pulsar Escape o tocar fuera.
 Las fuentes variables se sirven desde `assets/fonts/` con sus licencias OFL;
 no se requieren Google Fonts ni un proceso de compilación.

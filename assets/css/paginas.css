@@ -1,5 +1,5 @@
 /* Páginas interiores: caso, bitácora y tarjeta */
-:root{--card-bg:#12241c;--card-fg:#f0f4e7;--card-dim:#a9bfa8;--card-accent:#ff9d7a;--qr-bg:#fffdf4;--qr-fg:#12241c}
+:root{--card-bg:#0a1620;--card-fg:#e8f0f4;--card-dim:#9db4c2;--card-accent:#ff9d7a;--qr-bg:#ffffff;--qr-fg:#0a1620}
 .brand img{width:38px;height:33px}
 footer img{width:44px;height:38px;flex:none}
 footer a.hand{text-decoration:none}
@@ -34,7 +34,13 @@ footer a.hand{text-decoration:none}
 .qr-url{color:var(--muted);font-size:.9rem;margin-top:.8rem;overflow-wrap:anywhere}
 @media (max-width:520px){.bcard{grid-template-columns:minmax(0,1fr) auto}.bcard img{display:none}}
 @media print{.nav,footer,.acts,.crumb,.lead,.skip,.qr-url,.page h1{display:none!important}body{background:#fff}.bcard{border:0;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-:root{--card-bg:#20362b;--card-fg:#f6f2e7;--card-dim:#c9d2b9;--card-accent:#e69070}
+:root{--card-bg:#0f1f2e;--card-fg:#e9edf1;--card-dim:#b9c9d4;--card-accent:#e69070}
 .bcard{border-radius:14px;max-width:650px;padding:28px;gap:24px}
 .bcard .who b{font-size:1.15rem;letter-spacing:-.3px}
 @media(max-width:520px){.bcard{padding:20px;gap:16px}.bcard .who{font-size:.73rem}.qr{width:96px;height:96px}}
+
+/* Identidad "Hielo, cobre y río": páginas interiores */
+.page h1,.page h2{font-family:var(--display)}
+.page .crumb{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.facts b{font-family:var(--display)}
+.prose code,.prose pre{font-family:var(--mono)}

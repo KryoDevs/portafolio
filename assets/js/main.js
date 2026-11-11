@@ -45,7 +45,9 @@
   function progreso() {
     pendiente = false;
     var h = document.documentElement.scrollHeight - window.innerHeight;
-    barra.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    var avance = h > 0 ? Math.min(1, window.scrollY / h) : 0;
+    barra.style.transform = 'scaleX(' + avance + ')';
+    barra.style.opacity = avance > 0.005 ? '1' : '0';
   }
   window.addEventListener('scroll', function () {
     if (!pendiente) { pendiente = true; requestAnimationFrame(progreso); }
@@ -96,6 +98,6 @@
 
   /* Un saludo para quien abre la consola */
   try {
-    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#9bd8ae');
+    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#7dd3d8');
   } catch (e) {}
 })();

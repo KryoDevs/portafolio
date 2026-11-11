@@ -13,7 +13,10 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 
 ### 1. Identidad e interfaz
 
-- Paleta de papel cálido, verde bosque y acentos copihue.
+- Identidad «Hielo, cobre y río»: niebla glacial, pizarra nocturna, teal glacial y cobre vivo, con contraste AA verificado en claro y oscuro.
+- Tipografía propia: Bricolage Grotesque variable (display), Instrument Sans (texto) y Space Mono (etiquetas técnicas); Caveat y Fraunces quedan como acentos.
+- Sección **Accesos**: índice de proyectos con filtros y enlaces directos a demos, repositorios y casos. Reemplaza la dispersión anterior de enlaces. Los forks se identifican como tales y no se presentan como propios.
+- La estructura dejó de ser genérica: cinta de servicios, numeración técnica, anillos topográficos del río, barra de progreso de lectura y macro-etiquetas en Space Mono.
 - Portada centrada en la propuesta de valor, presentación breve y dos acciones principales.
 - Jerarquía consistente de títulos, introducciones, numeración de secciones y espacios.
 - Rediseño de servicios, proyectos, proceso, diagnóstico, cotizador, formación, contacto y pie de página.
