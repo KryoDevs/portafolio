@@ -23,12 +23,13 @@
     { k: ['precio', 'cuanto', 'cuesta', 'valor', 'cobra', 'tarifa', 'cotiza', 'presupuesto', 'plata'], r: precios, a: [['Armar cotización', 'cotizador']] },
     { k: ['trabajo', 'proyecto', 'portafolio', 'ejemplo', 'biblionexo', 'biblio', 'kryofix', 'sysdiag', 'gigaclip', 'demo', 'codigo', 'repositorio'], r: proyectos, a: [['Ver proyectos', 'proyectos'], ['Ir a accesos', 'accesos']] },
     { k: ['proceso', 'como trabaja', 'pasos', 'plazo', 'demora', 'tiempo', 'entrega'], r: 'Son tres pasos: le cuentas el problema, te envía una propuesta con lo que incluye, el plazo y el precio, y lo entrega funcionando y te enseña a usarlo.', a: [['Ver cómo trabaja', 'proceso']] },
-    { k: ['contact', 'correo', 'mail', 'escrib', 'hablar', 'whatsapp', 'telefono', 'numero', 'linkedin', 'github', 'llamar'], r: function () { return (C.whatsapp ? 'Lo más rápido es WhatsApp: el botón está en Contacto. También puedes escribirle a ' : 'Escríbele a ') + correo + '. Su código está en ' + github + '.'; }, a: [['Ir a contacto', 'contacto']] },
+    { k: ['contact', 'correo', 'mail', 'escrib', 'hablar', 'whatsapp', 'telefono', 'numero', 'linkedin', 'github', 'llamar'], r: function () { return (C.whatsapp ? 'Lo más rápido es WhatsApp o el envío directo en Contacto. También puedes escribirle a ' : 'Escríbele a ') + correo + '. Su código está en ' + github + '.'; }, a: [['Ir a contacto', 'contacto']] },
     { k: ['quien es', 'kryo', 'nicolas', 'estudi', 'experiencia', 'certific', 'cisco', 'inacap', 'titulo', 'formacion'], r: 'Kryo es Nicolás Díaz, de Valdivia. Estudia Ingeniería en Telecomunicaciones, Conectividad y Redes en INACAP y tiene siete certificados de Cisco e INACAP.', a: [['Sobre Kryo', 'sobre-mi'], ['Ver formación', 'certificaciones']] },
     { k: ['donde', 'valdivia', 'ubicacion', 'ciudad', 'remoto', 'domicilio', 'region'], r: 'Kryo trabaja desde Valdivia, Chile. Si estás en otra ciudad, pregúntale directo si puede ayudarte.', a: [['Ir a contacto', 'contacto']] },
     { k: ['no se', 'necesito', 'recomienda', 'por donde', 'problema', 'cual me'], r: 'Si no tienes claro qué pedir, el diagnóstico te orienta con cuatro preguntas.', a: [['Abrir el diagnóstico', 'diagnostico']] },
     { k: ['kori', 'mapache', 'quien eres', 'eres', 'robot', 'humano', 'persona', 'bot', 'ia'], r: 'Soy Kori, el mapache de Kryo. Soy un asistente automático con respuestas preparadas, no una persona. Lo que no sé, se lo dejo a él.' },
-    { k: ['bitacora', 'blog', 'nota', 'articulo', 'aprend'], r: 'En la bitácora Kryo anota lo que va aprendiendo. Hay una nota sobre router-on-a-stick.', a: [['Ver bitácora', 'bitacora']] }
+    { k: ['bitacora', 'blog', 'nota', 'articulo', 'aprend'], r: 'En la bitácora Kryo anota lo que va aprendiendo. Hay una nota sobre router-on-a-stick con un generador rápido de subinterfaces.', a: [['Ver bitácora', 'bitacora']] },
+    { k: ['subdominio', 'monitoreo', 'panel', 'control', 'cuenta'], r: 'El monitoreo de subdominios es un panel privado solo para Kryo. Si eres un cliente buscando algo específico, escríbeme en Contacto.', a: [['Ir a contacto', 'contacto']] }
   ];
   function proyectos() {
     var lista = C.proyectos || [], enLinea = lista.filter(function (p) { return p.demo; });
@@ -117,6 +118,12 @@
       conIA(txt).catch(function () { estado('error', 600); preparada(txt); }).then(function () { espera.remove(); });
     }, reduce ? 0 : 550);
   }
+  function saludoContextual() {
+    var est = K.estado ? K.estado() : {};
+    var extra = est.lluvia ? ' Hoy llueve en Valdivia, así que ando con paraguas.'
+      : est.dormido ? ' Es tarde en Valdivia y estaba cabeceando, pero aquí estoy.' : '';
+    return 'Hola, soy Kori. Soy un asistente automático: respondo con lo que sé de este sitio y, si no sé algo, te llevo con Kryo.' + extra;
+  }
   function abrir() {
     if (dlg.open) return;
     origen = document.activeElement;
@@ -124,7 +131,7 @@
     dlg.showModal();
     if (!saludado) {
       saludado = true;
-      burbuja('kori', 'Hola, soy Kori. Soy un asistente automático: respondo con lo que sé de este sitio y, si no sé algo, te llevo con Kryo.');
+      burbuja('kori', saludoContextual());
     }
     if (K.comentario) burbuja('kori', K.comentario());
     estado('feliz', 500);

@@ -101,3 +101,13 @@ El clima se simula durante las pruebas para no depender del estado de una API ex
 ## Publicación
 
 Los cambios están en la rama de trabajo. Se dispone de una vista previa local; **no se ha realizado un despliegue en producción** ni se ha modificado una base de datos. El sitio sigue funcionando sin instalar dependencias: las herramientas de Node son solo para pruebas y exportación de imágenes.
+
+## Actualización posterior (14 de noviembre de 2026)
+
+Sobre la auditoría del 11 de noviembre, se aplicaron además las siguientes mejoras:
+
+- **Paleta y diseño consolidado:** transición a «Lino mineral, carbón y ojos ámbar» en `tokens.css`, consolidación de sobrescrituras en `styles.css`, actualización de `404.html`, `manifest.webmanifest`, `og-image.png`, iconos PWA y stickers.
+- **Limpieza de código muerto y dependencias:** retiro de `figtree`, `og-mono.ttf`, `kori.svg`, `icons/icon.svg` y `@resvg/resvg-js`.
+- **Proyectos y utilidades:** nuevo caso `casos/kryofix.html`, URL definitiva `https://biblionexo.cl/`, descarga de contacto `.vcf` en `tarjeta.html`, copia rápida y generador dot1Q en `bitacora/router-on-a-stick.html`, precarga/enlace compartible en cotizador y diagnóstico.
+- **Envío real y monitoreo privado:** funciones `/api/contacto` y `/api/monitor`, portal privado `control.html` (`noindex, nofollow`) respaldado por **Supabase (`kryo-control`)** con RLS estricto y variables de entorno configuradas en **Vercel**.
+

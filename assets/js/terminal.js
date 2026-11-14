@@ -29,6 +29,7 @@
     e.preventDefault(); abrir();
   });
 
+  var listaProyectos = C.proyectos || [];
   var secciones = { servicios: 'servicios', diagnostico: 'diagnostico', trabajos: 'proyectos', accesos: 'accesos', cotizar: 'cotizador', proceso: 'proceso', sobre: 'sobre-mi', formacion: 'certificaciones', bitacora: 'bitacora', contacto: 'contacto' };
   var comandos = {
     ayuda: function () {
@@ -37,6 +38,7 @@
        'proyectos           trabajos publicados',
        'accesos             índice de proyectos con demos',
        'contacto            cómo escribirle',
+       'control             abrir el panel privado de monitoreo',
        'ir <sección>        ' + Object.keys(secciones).join(', '),
        'hora                la hora en Valdivia',
        'kori dormir|despertar|lluvia|sol',
@@ -54,26 +56,27 @@
       linea('Escribe «ir cotizar» para armar tu pedido.', 'dim');
     },
     proyectos: function () {
-      linea('Biblio-Nexo          github.com/KryoDevs/Biblio-Nexo');
-      linea('KryoFix              github.com/KryoDevs/KryoFix');
-      linea('SysDiag-App          github.com/KryoDevs/SysDiag-App');
-      linea('Gigaclip             github.com/KryoDevs/Gigaclip');
-      linea('Front-End-Checklist  github.com/KryoDevs/Front-End-Checklist');
-      linea('biblionexo-antiguo   github.com/KryoDevs/biblionexo-antiguo');
-      linea('portafolio           github.com/KryoDevs/portafolio');
+      if (!listaProyectos.length) { linea('Sin proyectos configurados.'); return; }
+      listaProyectos.forEach(function (p) {
+        var repo = (p.codigo || '').replace(/^https?:\/\//, '');
+        linea(p.nombre.padEnd(21, ' ') + repo);
+      });
       linea('Escribe «accesos» para ver las demos en línea.', 'dim');
     },
     accesos: function () {
-      linea('Biblio-Nexo   https://biblio-nexo-fuckingkrio.vercel.app/');
-      linea('KryoFix       https://techfix-tracker-9a128.web.app/');
-      linea('Checklist     https://frontendchecklist.io');
-      linea('Archivo       https://biblio-nexo.vercel.app');
-      linea('GitHub        github.com/KryoDevs', 'dim');
+      listaProyectos.filter(function (p) { return p.demo; }).forEach(function (p) {
+        linea(p.nombre.padEnd(21, ' ') + p.demo);
+      });
+      linea('GitHub'.padEnd(21, ' ') + (C.github || 'https://github.com/KryoDevs').replace(/^https?:\/\//, ''), 'dim');
     },
     contacto: function () {
       linea('Correo   ' + (C.correo || 'nicolasd.carrillo@gmail.com'));
-      linea('GitHub   github.com/KryoDevs');
+      linea('GitHub   ' + (C.github || 'https://github.com/KryoDevs').replace(/^https?:\/\//, ''));
       if (C.whatsapp) linea('WhatsApp +' + C.whatsapp);
+    },
+    control: function () {
+      linea('Abriendo Kryo Control…', 'dim');
+      location.href = 'control.html';
     },
     hora: function () {
       try { linea('En Valdivia son las ' + new Intl.DateTimeFormat('es-CL', { timeZone: 'America/Santiago', hour: '2-digit', minute: '2-digit' }).format(new Date()).replace(/\.\s*$/, '') + '.'); }

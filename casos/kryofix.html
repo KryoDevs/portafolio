@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Caso KryoFix: PWA para recepción, diagnóstico y seguimiento en servicio técnico.">
+<title>KryoFix · Kryo</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<script src="../assets/js/interface.js" defer></script>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/paginas.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="nav">
+  <nav class="wrap" aria-label="Navegación principal">
+    <a class="brand" href="../index.html"><img src="../assets/img/kori-cabeza.webp" alt="" width="40" height="40">kryo<span class="brand-dot">.</span></a>
+    <div class="menu" id="menu">
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../index.html#proyectos" class="active">Proyectos</a>
+      <a href="../index.html#accesos">Accesos</a>
+      <a href="../index.html#sobre-mi">Sobre mí</a>
+      <a href="../bitacora/index.html">Bitácora</a>
+      <a class="nav-contact" href="../index.html#contacto">Hablemos</a>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+    <button class="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false"><span></span><span></span></button>
+  </nav>
+</header>
+<main id="main" class="wrap page">
+  <a class="crumb" href="../index.html#accesos">← Accesos</a>
+  <h1>KryoFix</h1>
+  <p class="lead">Aplicación web progresiva (PWA) para administrar órdenes de servicio técnico: recepción de equipos, diagnóstico, repuestos y entrega al cliente.</p>
+  <div class="facts">
+    <div><b>PWA · Gestión</b>Tipo de proyecto</div>
+    <div><b>Diseño y desarrollo</b>Mi rol</div>
+    <div><b>JavaScript · Firebase</b>Tecnologías</div>
+    <div><b>En línea</b>Demo alojada en Firebase</div>
+  </div>
+  <div class="shot">
+    <strong>Arquitectura enfocada en taller:</strong> pensada para registrar fallas rápidamente desde el mesón o desde el celular, consultar el historial del equipo por orden y mantener al cliente informado sin perder notas en papel.
+  </div>
+  <div class="prose">
+    <h2>El problema</h2>
+    <p>En un servicio técnico pequeño es habitual anotar reparaciones en cuadernos o mensajes sueltos. Cuando el cliente llama preguntando por su computador o llegan varios equipos similares el mismo día, reconstruir qué se revisó y qué falta toma tiempo.</p>
+    <h2>Lo que construí</h2>
+    <ul>
+      <li>Ficha de ingreso con cliente, equipo, número de serie, síntomas y accesorios recibidos.</li>
+      <li>Estados de avance claros: ingreso, en revisión, esperando repuesto, listo para entrega y entregado.</li>
+      <li>Notas técnicas internas separadas del resumen para el cliente.</li>
+      <li>Interfaz instalable como PWA para usar en computador o celular.</li>
+    </ul>
+    <h2>Decisiones técnicas</h2>
+    <ul>
+      <li><strong>Sincronización en tiempo real con Firebase.</strong> Permite actualizar el estado de una orden desde el taller y verlo reflejado de inmediato.</li>
+      <li><strong>Flujo directo de búsqueda y filtros.</strong> Encontrar un equipo por nombre de cliente o estado toma pocos toques sin navegar menús profundos.</li>
+    </ul>
+  </div>
+  <div class="acts">
+    <a class="btn primary" href="https://techfix-tracker-9a128.web.app/" target="_blank" rel="noopener noreferrer">Abrir demo ↗</a>
+    <a class="btn" href="https://github.com/KryoDevs/KryoFix" target="_blank" rel="noopener noreferrer">Ver código</a>
+    <a class="btn" href="../index.html#contacto">Quiero un sistema así</a>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <img src="../assets/img/kori-cabeza.webp" alt="" width="42" height="42">
+    <span>© 2026 Nicolás Esteban Díaz Carrillo · Kryo</span>
+    <a class="hand" href="../index.html">Volver al inicio</a>
+  </div>
+</footer>
+</body>
+</html>

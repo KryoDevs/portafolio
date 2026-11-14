@@ -37,7 +37,7 @@ El dibujo es una imagen, no un SVG por partes. El original con fondo transparent
 
 El botón **Boceto 3D** de la portada permite ver una segunda ilustración renderizada (`assets/img/kori-3d.webp`). Conserva los rasgos de Kori y sirve como estudio visual; es una imagen estática, no un modelo 3D que se pueda girar.
 
-El botón **Cambiar polerón** alterna entre el clásico negro, uno azul petróleo con cierre, uno gris oversized y uno universitario azul con crema. El nombre `Kryodev` se dibuja como un parche SVG para mantener la escritura exacta en todos los looks.
+El botón **Cambiar polerón** alterna entre el clásico negro, uno azul petróleo con cierre, uno gris oversized y uno universitario azul con crema. El nombre `Kryodev` se dibuja como un parche SVG con coordenadas ajustadas por polerón para mantener la escritura exacta en todos los looks.
 
 ## Lo que Kori nunca lleva
 
@@ -46,13 +46,14 @@ El botón **Cambiar polerón** alterna entre el clásico negro, uno azul petról
 
 ## Paleta
 
-Los colores de Kori vienen de la ilustración y no cambian con el tema. Las capas que se dibujan encima usan estos valores fijos:
+Los colores de Kori vienen de la ilustración y se armonizan con la paleta «Lino mineral, carbón y ojos ámbar». Las capas que se dibujan encima usan estos valores:
 
 | Uso | Color |
 |---|---|
 | Párpados (color del antifaz) | `#3b2d29` |
 | Línea de ojos cerrados | `#d9c3a8` |
-| Paraguas | cobre del sitio |
+| Paraguas | cobre (`#a63e11` – `#f5aa76`) |
+| Parche Kryodev | carbón `#1e1a18`, borde cobre `#c5521b`, texto crema `#f0d8be` |
 
 ## Estados
 
@@ -77,7 +78,7 @@ Como el dibujo es una sola imagen, no puede mover un brazo, la cola ni la boca p
 
 ## Cómo está armado
 
-En `index.html`, el `<svg id="ping">` contiene la imagen (`assets/img/kori.webp`, conmutada por `kori.js`) y, encima, las capas: `.lid` (parpadeo), `.sleep` y `.happy` (ojos cerrados), `.umbrella`, `.rain` y `.zzz`. Las clases `.hop`, `.torso`, `.head` y `.shadow` reciben las animaciones.
+En `index.html`, el `<svg id="ping">` contiene la imagen (`assets/img/kori.webp`, conmutada por `kori.js`) y, encima, las capas: `.lid` (parpadeo), `.sleep` y `.happy` (ojos cerrados), `.umbrella`, `.rain`, `.zzz` y `.kryo-patch`. Las clases `.hop`, `.torso`, `.head` y `.shadow` reciben las animaciones.
 
 Si cambia la ilustración, hay que recolocar los párpados: sus coordenadas están calculadas para esta imagen.
 
@@ -85,10 +86,9 @@ Si cambia la ilustración, hay que recolocar los párpados: sus coordenadas est�
 
 | Archivo | Uso |
 |---|---|
-| `assets/img/kori.webp` | Portada |
+| `assets/img/kori.webp` | Portada y página 404 |
 | `assets/img/kori-3d.webp` | Boceto 3D alternativo de la portada |
 | `assets/img/kori-poleron-*.webp` | Tres variantes de polerón para la portada |
 | `assets/img/kori-cabeza.webp` | Avatar: menú, botón de soporte, pie (`#ping-head`) |
-| `assets/img/favicon.svg` | Pestaña del navegador y marca en las páginas interiores |
-| `assets/img/kori.svg` | Página 404 |
+| `assets/img/favicon.svg` | Pestaña del navegador, manifest PWA y marca en las páginas interiores |
 | `assets/img/stickers/*.png`, `og-image.png`, `icons/` | Se regeneran con `npm run assets` |

@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /control.html
 Sitemap: https://portafolio-six-mu-88.vercel.app/sitemap.xml
