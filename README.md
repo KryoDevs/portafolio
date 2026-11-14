@@ -25,7 +25,7 @@ portafolio-kryo/
 │   ├── js/
 │   │   ├── config.js             LO QUE EDITAS TÚ: contacto, precios, disponibilidad
 │   │   ├── main.js               Menú, barra de progreso, reloj y detalles
-│   │   ├── kori.js               Comportamiento de Kori (ping real, sueño, clima)
+│   │   ├── kori.js               Comportamiento de Kori (ping, polerones, sueño, clima)
 │   │   ├── soporte.js            Conversación de soporte con Kori (respuestas preparadas, IA opcional)
 │   │   ├── herramientas.js       Formulario, diagnóstico y cotizador
 │   │   ├── terminal.js           Consola oculta (tecla T)
@@ -33,6 +33,10 @@ portafolio-kryo/
 │   └── img/
 │       ├── kori.png              Ilustración original de Kori, con fondo transparente
 │       ├── kori.webp             La misma, optimizada para la portada
+│       ├── kori-3d.webp          Boceto 3D alternativo para la portada
+│       ├── kori-poleron-cierre.webp         Variante azul petróleo con cierre
+│       ├── kori-poleron-oversize.webp       Variante gris oversized
+│       ├── kori-poleron-universitario.webp  Variante universitaria azul y crema
 │       ├── kori-cabeza.webp      Cabeza de Kori para el avatar
 │       ├── favicon.svg           Cabeza de Kori para la pestaña del navegador
 │       ├── kori.svg              Kori completo, para la página 404

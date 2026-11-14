@@ -28,7 +28,11 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 
 - Nuevo dibujo vectorial con silueta más simple, contornos claros, expresión amable y colores coherentes.
 - Se mantienen sus rasgos: mapache, audífonos, polerón oscuro, cola anillada y cable de red.
-- Se conservan la mirada, el ping, las celebraciones y los estados de sueño y lluvia.
+- Se conservan la expresión, el ping, las celebraciones y los estados de sueño y lluvia.
+- Se afinan la respiración y el ladeo de la figura, con inclinación 3D al pasar o enfocar y un salto al tocarla; `prefers-reduced-motion` desactiva el movimiento.
+- Se añade un boceto 3D alternativo en WebP (92 KB), accesible desde un selector; es una ilustración estática, no un modelo rotatorio.
+- La tarjeta de Kori queda como panel semántico, elimina la ubicación y las instrucciones duplicadas y reúne los controles en una fila compacta.
+- El botón de vestuario alterna con una transición suave entre cuatro polerones; cada uno lleva el nombre `Kryodev` como parche SVG de texto exacto.
 - Redibujo v3 con acabado de ilustración digital: degradados por material (pelaje, polerón, cobre), oclusión ambiental, luz de contorno, pelaje escalonado, cola con anillos recortados, audífonos con almohadillas y LED, RJ45 con pines, micrófono de boom, paraguas con paneles y sombras de contacto.
 - Se corrigen orígenes de transformación de animaciones (oreja derecha, bigotes, destello) y el halo de fondo ahora responde al tema claro/oscuro (`--halo-op`).
 - v4 anime: ojos grandes con iris degradado y brilles, pestañas con pestañeta, sombreado cel de borde duro, rubor diagonal, brillos de cabello/plástico y lineart fino.
@@ -47,7 +51,7 @@ No hace falta migrar a un framework ni agregar una base de datos para resolver e
 - Se evita que una respuesta antigua sobrescriba un ping más reciente.
 - Se elimina la afirmación de «0 % de pérdida» después de cinco clics: no era una medición real de pérdida de paquetes.
 - El ping representa el tiempo de una petición HTTP, **no** la velocidad de descarga ni un ping ICMP.
-- La mirada de Kori no sigue el puntero si está activada la reducción de movimiento.
+- La imagen de Kori no sigue el cursor con los ojos; para animar ojos, cola o brazos por separado habría que separar la ilustración en capas.
 - El correo visible se sincroniza con `config.js`.
 - Se aclara que el formulario prepara mensajes y no los envía automáticamente.
 - Se incorpora `aria-current` en el enlace de la sección activa.

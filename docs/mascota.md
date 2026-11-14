@@ -10,7 +10,7 @@ Kori es un mapache, compañero de Kryo. Representa a alguien curioso y hábil co
 
 | Rasgo | Cómo se nota en el movimiento |
 |---|---|
-| Curioso | Ladea la cabeza cuando el visitante escribe; sigue el cursor con los ojos |
+| Curioso | Ladea la cabeza al pasar el puntero o enfocar a Kori con el teclado |
 | Tranquilo | Respiración lenta, gestos cortos, nada brusco |
 | Servicial | Asiente al responder; baja las orejas cuando algo falla |
 
@@ -34,6 +34,10 @@ Kori es un mapache, compañero de Kryo. Representa a alguien curioso y hábil co
 - Expresión serena, con una sonrisa leve.
 
 El dibujo es una imagen, no un SVG por partes. El original con fondo transparente es `assets/img/kori.png`.
+
+El botón **Boceto 3D** de la portada permite ver una segunda ilustración renderizada (`assets/img/kori-3d.webp`). Conserva los rasgos de Kori y sirve como estudio visual; es una imagen estática, no un modelo 3D que se pueda girar.
+
+El botón **Cambiar polerón** alterna entre el clásico negro, uno azul petróleo con cierre, uno gris oversized y uno universitario azul con crema. El nombre `Kryodev` se dibuja como un parche SVG para mantener la escritura exacta en todos los looks.
 
 ## Lo que Kori nunca lleva
 
@@ -63,7 +67,7 @@ Los colores de Kori vienen de la ilustración y no cambian con el tema. Las capa
 | Hablando | Llega la respuesta | Asiente dos veces | Soporte |
 | Error | Falla la función de IA | Cabeza caída, más tenue | Soporte |
 
-Como el dibujo es una sola imagen, no puede mover un brazo, la cola ni la boca por separado, ni seguir el cursor con los ojos. Para eso habría que separar la ilustración en capas.
+Como el dibujo es una sola imagen, no puede mover un brazo, la cola ni la boca por separado, ni seguir el cursor con los ojos. Los movimientos actuales actúan sobre la figura completa; animar esas partes requiere separar la ilustración en capas.
 
 ## Reglas de animación
 
@@ -73,7 +77,7 @@ Como el dibujo es una sola imagen, no puede mover un brazo, la cola ni la boca p
 
 ## Cómo está armado
 
-En `index.html`, el `<svg id="ping">` contiene la imagen (`assets/img/kori.webp`) y, encima, las capas: `.lid` (párpados), `.sleep` y `.happy` (ojos cerrados), `.umbrella`, `.rain` y `.zzz`. Las clases `.hop`, `.torso`, `.head` y `.shadow` reciben las animaciones.
+En `index.html`, el `<svg id="ping">` contiene la imagen (`assets/img/kori.webp`, conmutada por `kori.js`) y, encima, las capas: `.lid` (parpadeo), `.sleep` y `.happy` (ojos cerrados), `.umbrella`, `.rain` y `.zzz`. Las clases `.hop`, `.torso`, `.head` y `.shadow` reciben las animaciones.
 
 Si cambia la ilustración, hay que recolocar los párpados: sus coordenadas están calculadas para esta imagen.
 
@@ -82,6 +86,8 @@ Si cambia la ilustración, hay que recolocar los párpados: sus coordenadas est�
 | Archivo | Uso |
 |---|---|
 | `assets/img/kori.webp` | Portada |
+| `assets/img/kori-3d.webp` | Boceto 3D alternativo de la portada |
+| `assets/img/kori-poleron-*.webp` | Tres variantes de polerón para la portada |
 | `assets/img/kori-cabeza.webp` | Avatar: menú, botón de soporte, pie (`#ping-head`) |
 | `assets/img/favicon.svg` | Pestaña del navegador y marca en las páginas interiores |
 | `assets/img/kori.svg` | Página 404 |

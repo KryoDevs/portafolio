@@ -36,6 +36,20 @@ test('mobile menu opens, closes on navigation and supports Escape', async ({ pag
   await expect(page.locator('.menu')).not.toBeVisible();
 });
 
+test('Kori outfit and 3D controls stay clear of the floating support icon on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto('/');
+  await page.locator('#kori-outfit').click();
+  await expect(page.locator('#kori-portrait')).toHaveAttribute('href', 'assets/img/kori-poleron-cierre.webp');
+  await page.locator('#kori-3d').click();
+  await expect(page.locator('#kori-portrait')).toHaveAttribute('href', 'assets/img/kori-3d.webp');
+  await expect(page.locator('.buddy')).toBeHidden();
+  await page.locator('#servicios').scrollIntoViewIfNeeded();
+  await expect(page.locator('.buddy')).toBeVisible();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.locator('.buddy')).toBeVisible();
+});
+
 test('diagnostic and quote feed the contact message', async ({ page }) => {
   await page.goto('/');
   for (let step = 0; step < 4; step++) await page.locator('#diag-body .opt').first().click();

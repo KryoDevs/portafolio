@@ -72,9 +72,10 @@
         <p class="place"><span class="location-dot" aria-hidden="true"></span> Valdivia, Chile <span class="coordinates">· 39°48′ S, 73°14′ O</span><span class="hora" id="hora" hidden></span></p>
       </div>
 
-      <div class="stage">
-        <div class="stage-top"><span><i></i> Valdivia, Chile</span><span>Mascota de Kryo</span></div>
-        <p class="say" id="ping-out" aria-live="polite">¡Hola! Soy Kori. ¿Hacemos ping?</p>
+      <aside class="stage" id="kori-panel" aria-labelledby="kori-title">
+        <div class="stage-top"><h2 id="kori-title">Kori</h2><span>Mascota de Kryodev</span></div>
+        <p class="say" id="ping-out" aria-live="polite">Toca a Kori para medir la respuesta del sitio.</p>
+        <div class="kori-controls" role="group" aria-label="Personalizar a Kori"><button class="kori-outfit" id="kori-outfit" type="button" aria-label="Cambiar polerón de Kori. Actual: clásico negro">Polerón · clásico</button><button class="kori-view-toggle" id="kori-3d" type="button" aria-pressed="false" aria-label="Alternar el boceto 3D de Kori">Boceto 3D</button></div>
         <button class="ping-btn" id="ping-btn" type="button" aria-label="Enviar un ping a Kori, la mascota">
           <svg class="ping" id="ping" viewBox="0 0 280 300" aria-hidden="true"><defs>
 <radialGradient id="kh-halo" cx=".5" cy=".47" r=".55"><stop offset="0" stop-color="#eef3f6"/><stop offset=".6" stop-color="#dde7ee"/><stop offset=".88" stop-color="#c8d6e0" stop-opacity=".6"/><stop offset="1" stop-color="#b9c9d6" stop-opacity="0"/></radialGradient><radialGradient id="kh-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#12202e" stop-opacity=".3"/><stop offset=".6" stop-color="#12202e" stop-opacity=".14"/><stop offset="1" stop-color="#12202e" stop-opacity="0"/></radialGradient><linearGradient id="kh-copper" x1=".15" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#f8b294"/><stop offset=".45" stop-color="#e69070"/><stop offset="1" stop-color="#c66f4f"/></linearGradient>
@@ -84,11 +85,11 @@
 <g class="hop">
 <g class="torso"><g class="head">
 <!-- Kori v5: ilustración. Los párpados son capas pintadas con el color del antifaz de la imagen. -->
-<image href="assets/img/kori.webp" x="33.6" y="10" width="212.8" height="276"/>
+<image id="kori-portrait" href="assets/img/kori.webp" x="33.6" y="10" width="212.8" height="276"/>
+<g class="kryo-patch" aria-hidden="true"><rect x="123" y="128" width="48" height="12" rx="3" fill="#17222a" fill-opacity=".86" stroke="#c24e1a" stroke-width=".7"/><text x="147" y="136.5" text-anchor="middle" fill="#f2b090" font-family="Instrument Sans,sans-serif" font-size="6.5" font-weight="700" letter-spacing=".2">Kryodev</text></g>
 <g class="lid" fill="#3b2d29"><ellipse cx="169.2" cy="59.4" rx="5.7" ry="4.7"/><ellipse cx="197.5" cy="56.5" rx="4.4" ry="4.8"/></g>
 <g class="sleep" fill="none" stroke="#d9c3a8" stroke-width="1.3" stroke-linecap="round"><path d="M164 59.4 Q169.2 63.4 174.4 59.4 M193.6 56.6 Q197.5 60.4 201.4 56.6"/></g>
 <g class="happy" fill="none" stroke="#d9c3a8" stroke-width="1.4" stroke-linecap="round"><path d="M164 60.8 Q169.2 55.4 174.4 60.8 M193.6 58 Q197.5 52.6 201.4 58"/></g>
-<g id="ping-eyes"></g>
 </g></g>
 <g class="umbrella-wrap" transform="translate(34 -8)" stroke="#243e50" stroke-width="2.6" stroke-linejoin="round"><g class="umbrella">
 <path d="M140 6V42" fill="none" stroke="#243e50" stroke-width="3.2" stroke-linecap="round"/>
@@ -103,8 +104,7 @@
 <g class="rain" stroke="#5a9db0" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path class="drop" d="M30 80l-5 12m230-3l-5 12m-218 59l-5 12m238 10l-5 12"/><path class="drop" style="animation-delay:.55s" d="M56 58l-5 12m182 22l-5 12m-184 44l-5 12m206 8l-5 12"/></g>
 </svg>
         </button>
-        <div class="mascot-signature"><strong>Kori<span aria-hidden="true">*</span></strong><span>Tu compañero de conexión</span></div><p class="hint">Toca al mapache para probar tu conexión</p>
-      </div>
+      </aside>
     </div>
     <div class="wrap stats-wrap">
       <ul class="stats">

@@ -2,32 +2,34 @@
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ping = document.getElementById('ping');
-  var eyes = document.getElementById('ping-eyes');
   var out = document.getElementById('ping-out');
-  var ultimo = 0;
-  function mirar(x, y) { eyes.style.transform = 'translate(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px)'; }
-
-  window.addEventListener('pointermove', function (e) {
-    if (reduce || e.pointerType === 'touch') return;
-    var r = ping.getBoundingClientRect();
-    if (!r.width) return;
-    ultimo = Date.now();
-    var dx = e.clientX - (r.left + r.width / 2);
-    var dy = e.clientY - (r.top + r.height * 0.48);
-    var d = Math.hypot(dx, dy) || 1;
-    var k = Math.min(1.9, d / 60);
-    mirar(dx / d * k, dy / d * k);
-  }, { passive: true });
-
-  /* Si nadie mueve el cursor (o es un teléfono), Kori mira a los lados por su cuenta */
-  if (!reduce) {
-    var miradas = [[0, 0], [-1.7, 0], [1.7, -0.5], [0, 0], [1.2, 1.2], [-1.2, -1.2]], paso = 0;
-    setInterval(function () {
-      if (Date.now() - ultimo < 3000) return;
-      paso = (paso + 1) % miradas.length;
-      mirar(miradas[paso][0], miradas[paso][1]);
-    }, 2200);
+  var portrait = document.getElementById('kori-portrait');
+  var view3d = document.getElementById('kori-3d');
+  var outfitButton = document.getElementById('kori-outfit');
+  var outfits = [
+    { src: 'assets/img/kori.webp', name: 'clásico negro', label: 'Polerón · clásico' },
+    { src: 'assets/img/kori-poleron-cierre.webp', name: 'azul petróleo con cierre', label: 'Polerón · petróleo' },
+    { src: 'assets/img/kori-poleron-oversize.webp', name: 'gris oversized', label: 'Polerón · oversized' },
+    { src: 'assets/img/kori-poleron-universitario.webp', name: 'universitario azul y crema', label: 'Polerón · universitario' }
+  ];
+  var outfitIndex = 0, vista3d = false;
+  if (portrait) portrait.addEventListener('load', function () { portrait.style.opacity = '1'; });
+  function mostrarRetrato(src) {
+    portrait.style.opacity = '0';
+    portrait.setAttribute('href', src);
   }
+  if (outfitButton && portrait) outfitButton.addEventListener('click', function () {
+    outfitIndex = (outfitIndex + 1) % outfits.length;
+    this.textContent = outfits[outfitIndex].label;
+    this.setAttribute('aria-label', 'Cambiar polerón de Kori. Actual: ' + outfits[outfitIndex].name);
+    if (!vista3d) mostrarRetrato(outfits[outfitIndex].src);
+  });
+  if (view3d && portrait) view3d.addEventListener('click', function () {
+    vista3d = !vista3d;
+    this.setAttribute('aria-pressed', String(vista3d));
+    outfitButton.disabled = vista3d;
+    mostrarRetrato(vista3d ? 'assets/img/kori-3d.webp' : outfits[outfitIndex].src);
+  });
 
   var sinNumero = ['¡Pong! Aquí estoy.', '¡Pong! Sin paquetes perdidos.', '¡Aquí estoy! Te escucho.'];
   var pingRequest = 0;
@@ -125,6 +127,17 @@
   };
   var bubble = document.getElementById('bubble');
   var buddyBtn = document.getElementById('buddy-btn');
+  var stage = document.querySelector('.hero .stage'), buddy = document.querySelector('.buddy');
+  if (stage && buddy) {
+    function syncBuddy() {
+      var rect = stage.getBoundingClientRect();
+      buddy.hidden = window.innerWidth <= 760 && rect.top < window.innerHeight && rect.bottom > 0 && !buddy.contains(document.activeElement);
+    }
+    window.addEventListener('scroll', syncBuddy, { passive: true });
+    window.addEventListener('resize', syncBuddy);
+    buddy.addEventListener('focusout', syncBuddy);
+    syncBuddy();
+  }
   var anterior = '', turno = -1, timer = null;
   function comentario() {
     var id = document.documentElement.dataset.seccion || 'inicio';
