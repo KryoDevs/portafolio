@@ -50,6 +50,8 @@ test('diagnostic and quote feed the contact message', async ({ page }) => {
   await expect(page.locator('#f-correo')).toHaveAttribute('href', /mailto:.*body=/);
   await expect(page.locator('#f-whatsapp')).toHaveAttribute('href', /^https:\/\/wa\.me\/\d+\?text=.*Hice/);
   await expect(page.locator('#whatsapp a')).toHaveAttribute('href', /^https:\/\/wa\.me\/\d+$/);
+  await expect(page.locator('#linkedin a')).toHaveAttribute('href', /^https:\/\/www\.linkedin\.com\/in\//);
+  await expect(page.locator('#linkedin a')).toHaveText(/^linkedin\.com\/in\/[^%]+$/);
 });
 
 test('mascot responds, respects server failures, and terminal controls states', async ({ page }) => {

@@ -106,7 +106,7 @@ git push -u origin main
 - [ ] Revisar los textos del caso BiblioNexo y de la nota de la bitácora: son borradores
 - [ ] Sumar proyectos nuevos a la sección Accesos (`index.html`) y a `KRYO.proyectos` en `config.js`
 - [ ] Capturas de pantalla en `assets/img/proyectos/` (busca `TODO` en `index.html` y `casos/biblionexo.html`)
-- [ ] Completar `linkedin`, `testimonio`, `desde` y `tarifas` en `config.js` (`whatsapp` ya está)
+- [ ] Completar `testimonio`, `desde` y `tarifas` en `config.js` (`whatsapp` y `linkedin` ya están)
 - [ ] Foto personal en la sección "Sobre mí"
 - [ ] Cambiar la URL de la demo de BiblioNexo por un alias limpio de Vercel
 - [ ] Cambiar `og:url`, `sitemap.xml` y manifest si se confirma un dominio propio

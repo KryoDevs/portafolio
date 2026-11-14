@@ -6,7 +6,7 @@ window.KRYO = {
   /* Tu número con código de país y sin signos, por ejemplo '56912345678'. Activa el botón de WhatsApp. */
   whatsapp: '56965853144',
   /* Dirección completa de tu perfil. Activa la tarjeta de LinkedIn. */
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/nicolas-d%C3%ADaz-b7320a31b/',
   /* Una frase real de alguien que usó tu trabajo. Aparece bajo los trabajos. */
   testimonio: { texto: '', autor: '' },
   /* Precio "desde" de cada servicio, en pesos. null lo oculta. */

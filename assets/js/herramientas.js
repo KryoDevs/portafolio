@@ -17,7 +17,9 @@
   }
   if (C.linkedin) {
     var li = $('linkedin').querySelector('a');
-    li.href = C.linkedin; li.textContent = C.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    var liTexto = C.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    try { liTexto = decodeURIComponent(liTexto); } catch (e) {}
+    li.href = C.linkedin; li.textContent = liTexto;
     $('linkedin').hidden = false;
   }
 
