@@ -1,6 +1,6 @@
 # Portafolio de Kryo
 
-Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache con audífonos y polerón oscuro.
+Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache de polerón negro con un cable de red en las manos.
 
 Es un sitio estático: HTML, CSS y JavaScript, sin paso de compilación.
 
@@ -31,10 +31,13 @@ portafolio-kryo/
 │   │   ├── terminal.js           Consola oculta (tecla T)
 │   │   └── vendor/qrcode.js      Generador de códigos QR (licencia MIT, Kazuhiko Arase)
 │   └── img/
+│       ├── kori.png              Ilustración original de Kori, con fondo transparente
+│       ├── kori.webp             La misma, optimizada para la portada
+│       ├── kori-cabeza.webp      Cabeza de Kori para el avatar
 │       ├── favicon.svg           Cabeza de Kori para la pestaña del navegador
-│       ├── kori.svg              Kori completo, para redes o documentos
+│       ├── kori.svg              Kori completo, para la página 404
 │       ├── og-image.png          Vista previa al compartir el enlace
-│       ├── stickers/             Cuatro stickers de Kori en SVG y PNG
+│       ├── stickers/             Cuatro stickers de Kori en PNG
 │       ├── icons/                Iconos de app (svg, 180, 512 y maskable)
 │       └── proyectos/            Capturas de pantalla de cada trabajo
 ├── api/
@@ -140,6 +143,8 @@ git push -u origin main
 
 
 ## Identidad «Hielo, cobre y río» (noviembre de 2026)
+
+> **Kori v5 (vigente).** La mascota es ahora una ilustración naturalista elegida por Kryo: mapache de polerón negro con un cable de red. Reemplaza al dibujo vectorial de las versiones 3 y 4, cuyas notas se conservan más abajo como historial. Parpadeo, ojos cerrados, paraguas y «zzz» son capas dibujadas sobre la imagen. `npm run assets` regenera stickers, vista previa e iconos con Chromium de Playwright; ver `docs/mascota.md`.
 
 > **Ajuste posterior: sin estética futurista.** Las etiquetas dejaron de ir en Space Mono y mayúsculas: ahora usan Instrument Sans en minúsculas, sin numeración «01 /». Se quitaron las luces que parpadean, el brillo que seguía al cursor en las tarjetas, el desenfoque de la barra, los arcos de señal y la chispa de Kori, y los paquetes animados del mapa de red. Al tocar a Kori saltan huellas. Space Mono queda solo para código y la terminal oculta.
 

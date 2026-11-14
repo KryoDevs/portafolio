@@ -114,3 +114,12 @@ dialog.sop::backdrop{background:rgb(0 0 0 / .25)}
 .sop-in input:focus-visible{outline:3px solid var(--copihue);outline-offset:2px}
 .sop-in .btn{padding:.7rem 1rem}
 .sop-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Kori v5: ilustración. La figura completa respira y se mece; párpados, paraguas y «zzz» son capas encima. */
+.ping .head{transform-origin:140px 286px}
+.ping .torso{transform-origin:140px 286px}
+.ping .shadow{transform-origin:140px 285px}
+.ping-btn:hover .head{rotate:-2deg}
+.ping .lid{opacity:0;animation:lid 6s infinite}
+.ping.is-asleep .lid,.ping.is-pinging .lid{opacity:1;animation:none}
+@keyframes lid{0%,46.5%,49.5%,100%{opacity:0}47%,49%{opacity:1}}

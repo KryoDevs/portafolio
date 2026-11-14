@@ -24,18 +24,16 @@ Kori es un mapache, compañero de Kryo. Representa a alguien curioso y hábil co
 
 ## Apariencia
 
-**Estado actual (versión 4).** Estilo anime: ojos grandes, rubor en las mejillas, sombreado de borde duro, audífonos cobre, polerón oscuro, cable de red en las manos.
+**Versión 5 (vigente).** Ilustración naturalista elegida por Kryo:
 
-**Dirección del rediseño (pendiente de elegir boceto).** Ilustración naturalista:
+- Mapache de proporciones reales, sentado, en tres cuartos.
+- Pelaje café y crema con mechones; antifaz oscuro, cejas claras y cola anillada.
+- Ojos ámbar de tamaño natural, con un solo brillo.
+- Polerón negro con capucha y cordones, liso.
+- Cable de red naranjo con conector RJ45 en las manos.
+- Expresión serena, con una sonrisa leve.
 
-- Proporciones de mapache real: cabeza más pequeña respecto del cuerpo, hocico marcado, antifaz y cola anillada bien definidos.
-- Pelaje con volumen y mechones en el borde de la silueta, sin contorno grueso.
-- Ojos de tamaño natural, color pardo (café con verde), con un solo brillo.
-- Polerón negro con capucha, liso.
-- Cable de red con su conector en las manos, dibujado como objeto real.
-- Expresión base serena y atenta.
-
-Los tres bocetos de cabeza para elegir están en `docs/bocetos-kori.html`.
+El dibujo es una imagen, no un SVG por partes. El original con fondo transparente es `assets/img/kori.png`.
 
 ## Lo que Kori nunca lleva
 
@@ -44,20 +42,19 @@ Los tres bocetos de cabeza para elegir están en `docs/bocetos-kori.html`.
 
 ## Paleta
 
-Kori usa solo los colores de `assets/css/tokens.css`. Un color nuevo para el pelaje o la ropa se agrega ahí, en tema claro y oscuro.
+Los colores de Kori vienen de la ilustración y no cambian con el tema. Las capas que se dibujan encima usan estos valores fijos:
 
-| Uso | Token |
+| Uso | Color |
 |---|---|
-| Pelaje base y sombra | `--fur`, `--fur-lo` |
-| Hocico y detalles claros | `--cream` |
-| Antifaz, nariz y contornos | `--ink` |
-| Acento del cable | `--copper` |
+| Párpados (color del antifaz) | `#3b2d29` |
+| Línea de ojos cerrados | `#d9c3a8` |
+| Paraguas | cobre del sitio |
 
 ## Estados
 
 | Estado | Cuándo | Movimiento | Dónde |
 |---|---|---|---|
-| Reposo | Por defecto | Respiración, parpadeo, cola que se mece, bigotes | Portada |
+| Reposo | Por defecto | La figura respira y se mece; parpadea | Portada |
 | Feliz | Al tocarlo, al copiar el correo | Salto corto, ojos sonrientes, huellas | Portada (`is-pinging`) |
 | Dormido | De 23:00 a 7:00 en Valdivia | Ojos cerrados, «zzz» | Portada (`is-asleep`) |
 | Lluvia | Llueve en Valdivia | Paraguas | Portada (`is-rainy`) |
@@ -66,7 +63,7 @@ Kori usa solo los colores de `assets/css/tokens.css`. Un color nuevo para el pel
 | Hablando | Llega la respuesta | Asiente dos veces | Soporte |
 | Error | Falla la función de IA | Cabeza caída, más tenue | Soporte |
 
-Pendientes del rediseño: un brazo que salude al abrir el soporte y una boca que se mueva al hablar.
+Como el dibujo es una sola imagen, no puede mover un brazo, la cola ni la boca por separado, ni seguir el cursor con los ojos. Para eso habría que separar la ilustración en capas.
 
 ## Reglas de animación
 
@@ -74,10 +71,18 @@ Pendientes del rediseño: un brazo que salude al abrir el soporte y una boca que
 - Microgestos de 150 a 250 ms, gestos de 400 a 750 ms, ciclos de reposo de 3 a 9 s.
 - Con `prefers-reduced-motion` no hay movimiento continuo.
 
-## Clases que el dibujo debe conservar
+## Cómo está armado
 
-`.hop`, `.head`, `.tail`, `.torso`, `.ear`, `.earR`, `.eyes`, `#ping-eyes`, `.happy`, `.sleep`, `.smile`, `.mouth`, `.zzz`, `.umbrella`, `.rain`, `.whisk`, `.nose`, `.shadow`, y el símbolo `#ping-head` para el avatar.
+En `index.html`, el `<svg id="ping">` contiene la imagen (`assets/img/kori.webp`) y, encima, las capas: `.lid` (párpados), `.sleep` y `.happy` (ojos cerrados), `.umbrella`, `.rain` y `.zzz`. Las clases `.hop`, `.torso`, `.head` y `.shadow` reciben las animaciones.
+
+Si cambia la ilustración, hay que recolocar los párpados: sus coordenadas están calculadas para esta imagen.
 
 ## Dónde aparece
 
-Portada (`#ping`), botón de soporte y marca del menú (`#ping-head`), `assets/img/kori.svg`, `assets/img/favicon.svg`, los cuatro stickers y `og-image.png`. Los PNG se regeneran con `npm run assets`.
+| Archivo | Uso |
+|---|---|
+| `assets/img/kori.webp` | Portada |
+| `assets/img/kori-cabeza.webp` | Avatar: menú, botón de soporte, pie (`#ping-head`) |
+| `assets/img/favicon.svg` | Pestaña del navegador y marca en las páginas interiores |
+| `assets/img/kori.svg` | Página 404 |
+| `assets/img/stickers/*.png`, `og-image.png`, `icons/` | Se regeneran con `npm run assets` |
