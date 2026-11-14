@@ -21,6 +21,17 @@
     $('linkedin').hidden = false;
   }
 
+  /* Con WhatsApp configurado pasa a ser la vía principal: tarjeta propia y botón destacado en el formulario */
+  function telefono(n) { return /^569\d{8}$/.test(n) ? '+56 9 ' + n.slice(3, 7) + ' ' + n.slice(7) : '+' + n; }
+  if (C.whatsapp) {
+    var wa = $('whatsapp').querySelector('a');
+    wa.href = 'https://wa.me/' + C.whatsapp; wa.textContent = telefono(C.whatsapp);
+    $('whatsapp').hidden = false;
+    $('f-whatsapp').classList.add('primary');
+    $('f-copiar').classList.remove('primary');
+    $('f-nota').textContent = 'Envíalo por WhatsApp, o cópialo y ábrelo en tu correo.';
+  }
+
   /* --- Formulario: arma el mensaje y lo deja listo para enviar --- */
   var form = $('form-contacto'), nombre = $('f-nombre'), servicio = $('f-servicio'), mensaje = $('f-mensaje'), nota = $('f-nota');
   var correo = C.correo || 'nicolasd.carrillo@gmail.com';

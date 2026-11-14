@@ -4,7 +4,7 @@ window.KRYO = {
   /* Texto de la etiqueta verde de la portada. Déjalo vacío ('') para ocultarla. */
   disponibilidad: 'Disponible para proyectos nuevos',
   /* Tu número con código de país y sin signos, por ejemplo '56912345678'. Activa el botón de WhatsApp. */
-  whatsapp: '',
+  whatsapp: '56965853144',
   /* Dirección completa de tu perfil. Activa la tarjeta de LinkedIn. */
   linkedin: '',
   /* Una frase real de alguien que usó tu trabajo. Aparece bajo los trabajos. */

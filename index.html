@@ -748,9 +748,9 @@
         </div>
         <label for="f-mensaje">Cuéntame qué necesitas<textarea id="f-mensaje" placeholder="Ejemplo: tengo una ferretería y llevo el inventario en un cuaderno."></textarea></label>
         <div class="acts">
+          <a class="btn" id="f-whatsapp" href="#contacto" target="_blank" rel="noopener noreferrer" hidden>Enviar por WhatsApp</a>
           <button class="btn primary" type="submit" id="f-copiar">Copiar mensaje</button>
           <a class="btn" id="f-correo" href="mailto:nicolasd.carrillo@gmail.com">Abrir en mi correo</a>
-          <a class="btn" id="f-whatsapp" href="#contacto" target="_blank" rel="noopener noreferrer" hidden>Enviar por WhatsApp</a>
         </div>
         <p class="note" id="f-nota" role="status">Este formulario no envía datos: prepara tu mensaje para copiarlo o abrirlo en tu correo.</p>
       </form>
@@ -759,6 +759,11 @@
           <span class="label">Correo</span>
           <span class="value" id="correo">nicolasd.carrillo@gmail.com</span>
           <button class="btn primary" type="button" id="copiar">Copiar correo</button>
+        </div>
+        <div class="cbox" id="whatsapp" hidden>
+          <span class="label">WhatsApp</span>
+          <a class="value" href="#contacto" target="_blank" rel="noopener noreferrer"></a>
+          <span class="pending">Abre el chat directo.</span>
         </div>
         <div class="cbox" id="linkedin" hidden>
           <span class="label">LinkedIn</span>

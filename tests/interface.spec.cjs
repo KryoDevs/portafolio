@@ -48,6 +48,8 @@ test('diagnostic and quote feed the contact message', async ({ page }) => {
   await page.locator('#q-add').click();
   await expect(page.locator('#f-mensaje')).toHaveValue(/Sitio web para presentar mi negocio/);
   await expect(page.locator('#f-correo')).toHaveAttribute('href', /mailto:.*body=/);
+  await expect(page.locator('#f-whatsapp')).toHaveAttribute('href', /^https:\/\/wa\.me\/\d+\?text=.*Hice/);
+  await expect(page.locator('#whatsapp a')).toHaveAttribute('href', /^https:\/\/wa\.me\/\d+$/);
 });
 
 test('mascot responds, respects server failures, and terminal controls states', async ({ page }) => {

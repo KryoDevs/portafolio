@@ -53,7 +53,7 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 | Clave | Qué hace |
 |---|---|
 | `disponibilidad` | Texto de la etiqueta verde de la portada. Vacío la oculta. |
-| `whatsapp` | Tu número con código de país, sin signos. Activa el botón de WhatsApp. |
+| `whatsapp` | Tu número con código de país, sin signos. Activa la tarjeta de WhatsApp y lo deja como botón principal del formulario. |
 | `linkedin` | Dirección de tu perfil. Activa la tarjeta de LinkedIn. |
 | `testimonio` | Frase y autor. Aparece bajo los trabajos cuando tiene texto. |
 | `desde` | Precio "desde" de cada servicio, en pesos. |
@@ -67,7 +67,7 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 - **Sueño.** Entre las 23:00 y las 7:00 de Valdivia, Kori duerme hasta que lo tocan.
 - **Terminal.** Se abre con la tecla `T` o con el botón del pie de página. Escribe `ayuda` para ver los comandos. Con `kori lluvia` y `kori dormir` puedes ver esos estados a cualquier hora.
 - **Soporte con Kori.** El mapache de la esquina abre una conversación. Responde con respuestas preparadas (no usa un modelo de IA ni envía datos a ningún servidor), lo dice en su primer mensaje y, cuando no sabe algo, deriva a Contacto. Sus respuestas están en la lista `base` de `assets/js/soporte.js`; los precios y proyectos los toma de `config.js`.
-- **Formulario.** No envía nada por sí solo: arma el mensaje para copiarlo, abrirlo en el correo o enviarlo por WhatsApp.
+- **Formulario.** No envía nada por sí solo: arma el mensaje para enviarlo por WhatsApp (se abre el chat con el texto escrito), copiarlo o abrirlo en el correo.
 
 ## Agregar una nota a la bitácora
 
@@ -106,7 +106,7 @@ git push -u origin main
 - [ ] Revisar los textos del caso BiblioNexo y de la nota de la bitácora: son borradores
 - [ ] Sumar proyectos nuevos a la sección Accesos (`index.html`) y a `KRYO.proyectos` en `config.js`
 - [ ] Capturas de pantalla en `assets/img/proyectos/` (busca `TODO` en `index.html` y `casos/biblionexo.html`)
-- [ ] Completar `whatsapp`, `linkedin`, `testimonio`, `desde` y `tarifas` en `config.js`
+- [ ] Completar `linkedin`, `testimonio`, `desde` y `tarifas` en `config.js` (`whatsapp` ya está)
 - [ ] Foto personal en la sección "Sobre mí"
 - [ ] Cambiar la URL de la demo de BiblioNexo por un alias limpio de Vercel
 - [ ] Cambiar `og:url`, `sitemap.xml` y manifest si se confirma un dominio propio
