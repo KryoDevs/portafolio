@@ -5,16 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Paquete perdido · Kryo</title>
-<!-- Root-relative links are resolved below for GitHub Pages project paths. -->
 <style>
-:root{color-scheme:light;--bg:#e9edf1;--fg:#0f1f2e;--muted:#45586b;--frost:#0b6e7a;--copihue:#c24e1a}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--fg);font:400 1rem/1.8 system-ui,sans-serif;padding:32px 22px;text-align:center}main{max-width:520px}img{width:210px;height:225px;display:block;margin:0 auto}h1{font-size:clamp(2rem,8vw,3rem);line-height:1.1;letter-spacing:-1.5px;margin:16px 0}p{color:var(--muted)}.code{font:600 .75rem/1 monospace;color:var(--copihue);letter-spacing:2px}a{display:inline-block;margin-top:16px;padding:12px 22px;border-radius:9px;background:var(--frost);color:#fff;font-weight:600;text-decoration:none}a:focus-visible{outline:3px solid var(--copihue);outline-offset:4px}.detail{font:.75rem/1.5 monospace}
+:root{color-scheme:light;--bg:#f3efe9;--fg:#1e1a18;--muted:#5d524a;--frost:#0f5b67;--copihue:#a63e11;--on:#fbf9f6}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#141210;--fg:#f2ece4;--muted:#b8aba0;--frost:#6ec2cb;--copihue:#f08643;--on:#141210}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--fg);font:400 1rem/1.8 system-ui,-apple-system,"Segoe UI",sans-serif;padding:32px 22px;text-align:center}
+main{max-width:520px}
+img{width:200px;height:auto;display:block;margin:0 auto}
+h1{font-size:clamp(2rem,8vw,3rem);line-height:1.1;letter-spacing:-1.5px;margin:16px 0}
+p{color:var(--muted)}
+.code{font:600 .78rem/1 ui-monospace,"Cascadia Code",Consolas,monospace;color:var(--copihue);letter-spacing:2px}
+a{display:inline-block;margin-top:16px;padding:12px 22px;border-radius:9px;background:var(--frost);color:var(--on);font-weight:600;text-decoration:none}
+a:focus-visible{outline:3px solid var(--copihue);outline-offset:4px}
+.detail{font:.78rem/1.5 ui-monospace,"Cascadia Code",Consolas,monospace}
 </style>
 </head>
 <body>
 <main>
-<img id="kori" alt="Kori, el mapache del taller" width="280" height="300">
-<p class="code">ERROR 404 / SIN CONEXIÓN</p>
+<img id="kori" alt="Kori, el mapache del taller" width="213" height="276">
+<p class="code">ERROR 404 / PAQUETE PERDIDO</p>
 <h1>Un paquete perdido.<br>No una idea perdida.</h1>
 <p>Kori no encontró esta página. Puede que el enlace haya cambiado o que la dirección no esté bien escrita.</p>
 <p class="detail">Destino no encontrado. Volvamos al taller.</p>
@@ -22,10 +31,14 @@
 </main>
 <script>
 (function () {
+  var saved;
+  try { saved = localStorage.getItem('kryo-theme'); } catch (e) {}
+  var dark = saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (dark) document.documentElement.dataset.theme = 'dark';
   var p = location.pathname.split('/');
   var base = /\.github\.io$/.test(location.hostname) && p[1] ? '/' + p[1] + '/' : '/';
   document.getElementById('inicio').href = base;
-  document.getElementById('kori').src = base + 'assets/img/kori.svg';
+  document.getElementById('kori').src = base + 'assets/img/kori.webp';
 })();
 </script>
 </body>

@@ -31,11 +31,12 @@
     $('whatsapp').hidden = false;
     $('f-whatsapp').classList.add('primary');
     $('f-copiar').classList.remove('primary');
-    $('f-nota').textContent = 'Envíalo por WhatsApp, o cópialo y ábrelo en tu correo.';
+    $('f-nota').textContent = 'Envíalo directo aquí, por WhatsApp, o cópialo y ábrelo en tu correo.';
   }
 
-  /* --- Formulario: arma el mensaje y lo deja listo para enviar --- */
+  /* --- Formulario: arma el mensaje y permite enviar directo o copiar/abrir --- */
   var form = $('form-contacto'), nombre = $('f-nombre'), servicio = $('f-servicio'), mensaje = $('f-mensaje'), nota = $('f-nota');
+  var enviarBtn = $('f-enviar'), honeypot = $('f-empresa');
   var correo = C.correo || 'nicolasd.carrillo@gmail.com';
   $('correo').textContent = correo;
   function texto() {
@@ -51,6 +52,7 @@
   }
   form.addEventListener('input', actualizar);
   actualizar();
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!mensaje.value.trim()) { nota.textContent = 'Escribe primero qué necesitas.'; mensaje.focus(); return; }
@@ -65,11 +67,51 @@
       }).catch(manual);
     } else { manual(); }
   });
+
+  if (enviarBtn) {
+    if (C.control && C.control.contactoApi && location.protocol !== 'file:') {
+      enviarBtn.hidden = false;
+    }
+    enviarBtn.addEventListener('click', function () {
+      var msg = mensaje.value.trim();
+      if (!msg) { nota.textContent = 'Escribe primero qué necesitas.'; mensaje.focus(); return; }
+      if (msg.length < 5) { nota.textContent = 'Cuéntame un poco más (mínimo 5 caracteres).'; mensaje.focus(); return; }
+      enviarBtn.disabled = true;
+      var textoOriginal = enviarBtn.textContent;
+      enviarBtn.textContent = 'Enviando…';
+      fetch(C.control.contactoApi, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre: nombre.value.trim(),
+          servicio: servicio.value,
+          mensaje: msg,
+          empresa: honeypot ? honeypot.value : ''
+        })
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.d && res.d.error || 'No se pudo enviar');
+          nota.textContent = '¡Mensaje recibido! Kryo lo verá en su panel privado. Si prefieres respuesta rápida, también tienes WhatsApp.';
+          document.dispatchEvent(new CustomEvent('kryo:copiado'));
+        })
+        .catch(function (err) {
+          nota.textContent = (err && err.message && err.message !== 'No se pudo enviar')
+            ? err.message
+            : 'No pude enviarlo directo desde este entorno. Cópialo o usa WhatsApp / correo.';
+        })
+        .then(function () {
+          enviarBtn.disabled = false;
+          enviarBtn.textContent = textoOriginal;
+        });
+    });
+  }
+
   function agregar(t, serv) {
     mensaje.value = (mensaje.value.trim() ? mensaje.value.trim() + '\n\n' : '') + t;
     if (serv) servicio.value = serv;
     actualizar();
-    nota.textContent = 'Agregado a tu mensaje. Revísalo y cópialo.';
+    nota.textContent = 'Agregado a tu mensaje. Revísalo y envíalo o cópialo.';
     $('contacto').scrollIntoView();
     mensaje.focus({ preventScroll: true });
   }
@@ -87,11 +129,11 @@
     { q: '¿Para cuándo lo necesitas?', o: [['Lo antes posible', 'lo antes posible'], ['Durante este mes', 'durante este mes'], ['Sin apuro', 'sin apuro']] }
   ];
   var recetas = {
-    redes: { serv: 'Redes', t: 'Parte por un diagnóstico de tu red', d: 'Reviso la cobertura, los equipos y la configuración, y te digo qué cambiar para que deje de cortarse.', m: 'tengo problemas con internet o el Wi-Fi' },
-    apps: { serv: 'Apps y sitios web', t: 'Te conviene un sistema de gestión a medida', d: 'Paso tus planillas a una app donde registras, buscas y exportas todo desde el celular o el computador.', m: 'llevo mis datos en papel o planillas y quiero ordenarlos en un sistema' },
-    soporte: { serv: 'Soporte y automatización', t: 'Parte por una revisión de tus equipos', d: 'Diagnostico rendimiento, temperaturas y estabilidad, limpio lo que sobra y te dejo anotado lo que cambié.', m: 'tengo computadores lentos o con fallas' },
-    auto: { serv: 'Soporte y automatización', t: 'Te conviene automatizar esa tarea', d: 'Veo cómo la haces hoy y escribo una herramienta que la haga sola.', m: 'repito a mano una tarea y quiero automatizarla' },
-    web: { serv: 'Apps y sitios web', t: 'Te conviene un sitio web de presentación', d: 'Una página clara con lo que ofreces y cómo contactarte, que se vea bien en el celular.', m: 'quiero una página web para mi negocio' }
+    redes: { serv: 'Redes', items: ['diagnostico', 'wifi'], t: 'Parte por un diagnóstico de tu red', d: 'Reviso la cobertura, los equipos y la configuración, y te digo qué cambiar para que deje de cortarse.', m: 'tengo problemas con internet o el Wi-Fi' },
+    apps: { serv: 'Apps y sitios web', items: ['sistema'], t: 'Te conviene un sistema de gestión a medida', d: 'Paso tus planillas a una app donde registras, buscas y exportas todo desde el celular o el computador.', m: 'llevo mis datos en papel o planillas y quiero ordenarlos en un sistema' },
+    soporte: { serv: 'Soporte y automatización', items: ['equipo'], t: 'Parte por una revisión de tus equipos', d: 'Diagnostico rendimiento, temperaturas y estabilidad, limpio lo que sobra y te dejo anotado lo que cambié.', m: 'tengo computadores lentos o con fallas' },
+    auto: { serv: 'Soporte y automatización', items: ['automatizar'], t: 'Te conviene automatizar esa tarea', d: 'Veo cómo la haces hoy y escribo una herramienta que la haga sola.', m: 'repito a mano una tarea y quiero automatizarla' },
+    web: { serv: 'Apps y sitios web', items: ['sitio'], t: 'Te conviene un sitio web de presentación', d: 'Una página clara con lo que ofreces y cómo contactarte, que se vea bien en el celular.', m: 'quiero una página web para mi negocio' }
   };
   var cuerpo = $('diag-body'), puntos = $('diag-dots').children, pasoTxt = $('diag-paso'), atras = $('diag-atras');
   var idx = 0, resp = [];
@@ -124,7 +166,13 @@
       var acts = el('div', 'acts');
       var usar = el('button', 'btn primary', 'Usar este mensaje'); usar.type = 'button';
       usar.addEventListener('click', function () { agregar(msg, r.serv); });
-      acts.appendChild(usar); caja.appendChild(acts);
+      var precargar = el('button', 'btn', 'Precargar en cotizador'); precargar.type = 'button';
+      precargar.addEventListener('click', function () {
+        if (servicio) servicio.value = r.serv;
+        cargarItems(r.items, true);
+        $('cotizador').scrollIntoView();
+      });
+      acts.appendChild(usar); acts.appendChild(precargar); caja.appendChild(acts);
       cuerpo.appendChild(caja);
     }
     if (enfocar && h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
@@ -135,29 +183,69 @@
   });
   pintar(false);
 
-  /* --- Cotizador: suma lo marcado y, si hay tarifas en config.js, muestra un rango --- */
+  /* --- Cotizador: suma lo marcado, persiste borrador y permite compartir enlace --- */
   var casillas = document.querySelectorAll('#quote-form input[type="checkbox"]');
-  var tam = $('q-tam'), det = $('q-det'), gauge = $('q-gauge'), add = $('q-add');
+  var tam = $('q-tam'), det = $('q-det'), gauge = $('q-gauge'), add = $('q-add'), shareBtn = $('q-share');
   function marcadas() { return Array.prototype.filter.call(casillas, function (c) { return c.checked; }); }
+  function cargarItems(items, limpiarPrimero) {
+    if (!Array.isArray(items)) return;
+    Array.prototype.forEach.call(casillas, function (c) {
+      if (limpiarPrimero) c.checked = false;
+      if (items.indexOf(c.dataset.item) !== -1) c.checked = true;
+    });
+    sumar();
+  }
+  function guardarBorrador(items) {
+    try {
+      if (items.length) sessionStorage.setItem('kryo-cotizacion', items.join(','));
+      else sessionStorage.removeItem('kryo-cotizacion');
+    } catch (e) {}
+  }
   function sumar() {
     var m = marcadas(), peso = 0, min = 0, max = 0, conPrecio = true;
+    var items = [];
     m.forEach(function (c) {
+      items.push(c.dataset.item);
       peso += parseInt(c.dataset.peso, 10);
       var t = C.tarifas && C.tarifas[c.dataset.item];
       if (t && t.length === 2) { min += t[0]; max += t[1]; } else { conPrecio = false; }
     });
+    guardarBorrador(items);
     add.disabled = m.length === 0;
+    if (shareBtn) shareBtn.hidden = m.length === 0;
     gauge.style.width = Math.min(100, peso / 9 * 100) + '%';
     if (!m.length) { tam.textContent = 'Nada marcado aún'; det.textContent = 'Marca una o más opciones.'; return; }
     tam.textContent = conPrecio ? clp(min) + ' a ' + clp(max) : 'Proyecto ' + (peso <= 2 ? 'pequeño' : peso <= 5 ? 'mediano' : 'grande');
     det.textContent = m.length + (m.length === 1 ? ' opción marcada. ' : ' opciones marcadas. ') +
       (conPrecio ? 'Es un rango aproximado. El valor final va en la propuesta.' : 'El precio va en la propuesta, según el detalle.');
   }
+  try {
+    var params = new URLSearchParams(location.search);
+    var urlItems = params.get('cotizar');
+    var draft = !urlItems && sessionStorage.getItem('kryo-cotizacion');
+    var inicial = urlItems || draft;
+    if (inicial) cargarItems(inicial.split(','), false);
+  } catch (e) {}
   $('quote-form').addEventListener('change', sumar);
   $('quote-form').addEventListener('submit', function (e) { e.preventDefault(); });
   add.addEventListener('click', function () {
     var lineas = marcadas().map(function (c) { return '- ' + c.parentNode.textContent.trim(); });
     agregar('Necesito:\n' + lineas.join('\n'));
   });
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function () {
+      var items = marcadas().map(function (c) { return c.dataset.item; });
+      if (!items.length) return;
+      var u = new URL(location.href);
+      u.searchParams.set('cotizar', items.join(','));
+      u.hash = 'cotizador';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(u.href).then(function () {
+          shareBtn.textContent = 'Enlace copiado';
+          setTimeout(function () { shareBtn.textContent = 'Copiar enlace'; }, 1800);
+        }).catch(function () {});
+      }
+    });
+  }
   sumar();
 })();

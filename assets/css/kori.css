@@ -1,19 +1,34 @@
-/* Kori: mascota de la portada */
-.stage{display:flex;flex-direction:column;align-items:center;gap:.4rem;min-width:0}
-.say{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:.55rem 1rem;font:700 1.3rem/1.2 var(--hand);color:var(--fg);text-align:center;max-width:100%;min-height:2.6rem}
-.say::after{content:"";position:absolute;left:50%;bottom:-8px;width:14px;height:14px;background:var(--surface);border-right:1.5px solid var(--line);border-bottom:1.5px solid var(--line);transform:translateX(-50%) rotate(45deg)}
-.ping-btn{background:none;border:0;padding:0;cursor:pointer;width:min(100%,370px);display:block;perspective:900px}
+/* Kori: mascota de la portada y soporte en esquina */
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:.45rem;width:100%;min-width:0;align-self:center;isolation:isolate;padding:22px 20px 18px;border:1.5px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 18px 40px color-mix(in srgb,var(--ink) 10%,transparent)}
+.stage::before{content:"";position:absolute;width:300px;height:300px;max-width:90%;border:1px solid color-mix(in srgb,var(--frost) 12%,transparent);border-radius:50%;top:110px;z-index:-1}
+.stage-top{display:flex;align-items:baseline;justify-content:space-between;width:100%;padding:0 2px .55rem;border-bottom:1px solid color-mix(in srgb,var(--line) 72%,transparent);color:var(--muted);font-family:var(--body);font-size:.74rem;font-weight:600}
+.stage-top h2{margin:0;color:var(--fg);font:700 1.15rem/1.2 var(--display);letter-spacing:-.4px}
+.stage-top span{font-size:.68rem}
+
+.say{position:relative;z-index:2;max-width:100%;margin:0;padding:.4rem .8rem;border-radius:999px;background:color-mix(in srgb,var(--frost) 8%,var(--surface));color:var(--muted);font:500 .74rem/1.4 var(--body);text-align:center}
+.kori-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;width:100%;margin:0}
+.kori-controls button{min-height:40px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);padding:.45rem .8rem;font:600 .72rem/1.2 var(--body);cursor:pointer;transition:color .2s,border-color .2s,background-color .2s}
+.kori-controls button:hover,.kori-controls button:focus-visible,.kori-controls button[aria-pressed="true"]{color:var(--fg);border-color:var(--copper);background:color-mix(in srgb,var(--copper) 10%,transparent)}
+.kori-controls button:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.kori-controls button:disabled{opacity:.55;cursor:not-allowed}
+.kori-outfit{flex:1 1 auto}
+
+.ping-btn{background:none;border:0;padding:0;cursor:pointer;width:min(100%,300px);max-width:94%;display:block;perspective:900px;position:relative;z-index:1}
 .ping{display:block;width:100%;height:auto;overflow:visible;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .ping .moon{opacity:var(--halo-op,1)}
-.ping .hop{transform-origin:140px 290px}
-.ping .shadow{transform-origin:146px 292px}
-.stage{position:relative}
-.particle{position:absolute;left:50%;top:52%;width:16px;height:16px;margin:-8px;pointer-events:none;color:var(--fur-lo)}
-.particle svg{display:block;width:100%;height:100%;fill:currentColor}
-.ping .torso{transform-origin:140px 288px;animation:breathe 4.2s ease-in-out infinite}
-.ping .head{transform-origin:140px 286px;animation:bob 4.8s ease-in-out infinite;transition:rotate .35s ease}
+.ping .hop,.ping .torso,.ping .head{transform-origin:140px 286px}
+.ping .shadow{transform-origin:140px 285px}
+.ping .torso{animation:breathe 4.2s ease-in-out infinite}
+.ping .head{animation:bob 4.8s ease-in-out infinite;transition:rotate .35s ease}
 .ping-btn:is(:hover,:focus-visible) .ping{transform:rotateY(-3deg) rotateX(1.5deg)}
 .ping-btn:is(:hover,:focus-visible) .head{rotate:-2deg}
+#kori-portrait{transition:opacity .16s ease}
+.kryo-patch{transition:transform .22s ease,opacity .22s ease}
+
+.particle{position:absolute;left:50%;top:52%;width:16px;height:16px;margin:-8px;pointer-events:none;color:var(--fur-lo)}
+.particle svg{display:block;width:100%;height:100%;fill:currentColor}
+
+/* Capas de estado sobre la ilustración v5 */
 .ping .happy,.ping .smile{opacity:0}
 .ping .umbrella,.ping .rain,.ping .sleep,.ping .zzz{display:none}
 .ping.is-rainy .umbrella,.ping.is-rainy .rain{display:block}
@@ -21,58 +36,48 @@
 .ping.is-asleep .zzz text{animation:zzz 3s ease-in-out infinite}
 .ping.is-asleep .zzz text:nth-child(2){animation-delay:.5s}
 .ping.is-asleep .zzz text:nth-child(3){animation-delay:1s}
+.ping .zzz{fill:var(--frost)}
+.ping .rain{stroke:color-mix(in srgb,var(--frost) 72%,var(--cream))}
 .ping .drop{animation:drop 1.1s linear infinite}
-@keyframes zzz{0%,100%{opacity:.25}50%{opacity:1}}
-@keyframes drop{from{transform:translate(0,-20px);opacity:0}20%{opacity:.85}to{transform:translate(-18px,110px);opacity:0}}
+.ping .lid{opacity:0;animation:lid 6s infinite}
+.ping.is-asleep .lid,.ping.is-pinging .lid{opacity:1;animation:none}
 .ping.is-pinging .hop{animation:hop .75s cubic-bezier(.3,.7,.3,1)}
 .ping.is-pinging .shadow{animation:shadow .75s ease}
 .ping.is-pinging .happy,.ping.is-pinging .smile{opacity:1}
+
+@keyframes zzz{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes drop{from{transform:translate(0,-20px);opacity:0}20%{opacity:.85}to{transform:translate(-18px,110px);opacity:0}}
 @keyframes breathe{50%{transform:scale(1.015,1.03)}}
 @keyframes bob{50%{transform:translateY(-2px) rotate(1.5deg)}}
 @keyframes hop{18%{transform:translateY(5px) scale(1.06,.92)}48%{transform:translateY(-20px) scale(.96,1.06)}78%{transform:translateY(0) scale(1.04,.96)}}
 @keyframes shadow{48%{transform:scaleX(.68);opacity:.14}}
-.hint{color:var(--muted);font-size:.85rem}
+@keyframes lid{0%,46.5%,49.5%,100%{opacity:0}47%,49%{opacity:1}}
 
+@media(max-width:760px){
+  .hero .stage{min-height:0;padding:18px 14px 16px}
+  .hero .ping-btn{width:min(100%,240px)}
+  .stage::before{width:270px;height:270px;top:100px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ping-btn:is(:hover,:focus-visible) .ping{transform:none}
+  .ping-btn:is(:hover,:focus-visible) .head{rotate:0deg}
+}
 
-/* Kori acompañante */
+/* Kori acompañante en la esquina */
 .buddy{position:fixed;z-index:25;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:flex-end;gap:.5rem;pointer-events:none}
 .buddy[hidden]{display:none}
 .buddy > *{pointer-events:auto}
-.bubble{max-width:min(250px,calc(100vw - 112px));background:var(--surface);border:1.5px solid var(--line);border-radius:16px 16px 4px 16px;padding:.55rem .85rem;font:700 1.2rem/1.2 var(--hand);box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 35%,transparent);margin-bottom:14px}
-.buddy button{width:62px;height:62px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg-2);padding:5px;cursor:pointer;flex:none;box-shadow:0 6px 18px color-mix(in srgb,var(--ink) 35%,transparent)}
+.bubble{max-width:min(250px,calc(100vw - 112px));background:var(--surface);border:1px solid var(--line);border-radius:16px 16px 4px 16px;padding:14px 18px;font:500 .85rem/1.6 var(--body);box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 20%,transparent);margin-bottom:14px}
+.buddy button{width:62px;height:62px;border-radius:50%;border:1px solid var(--line);background:var(--surface);padding:5px;cursor:pointer;flex:none;box-shadow:0 6px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
 .buddy button:hover{border-color:var(--frost)}
 .buddy button.bump{animation:bump .4s ease}
 .buddy svg{display:block;width:100%;height:100%}
 @keyframes bump{40%{transform:translateY(-7px) rotate(-6deg)}}
 
-
-/* Kori v2: a small, interactive character sheet. */
-.hero .stage{align-self:center;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:.45rem;width:100%;min-height:0;padding:22px 20px 18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 18px 40px color-mix(in srgb,var(--ink) 10%,transparent)}
-.stage::before{content:"";position:absolute;width:300px;height:300px;max-width:90%;border:1px solid color-mix(in srgb,var(--frost) 12%,transparent);border-radius:50%;top:110px;z-index:-1}
-.stage-top{position:static;display:flex;align-items:baseline;justify-content:space-between;width:100%;padding:0 2px .55rem;border-bottom:1px solid color-mix(in srgb,var(--line) 72%,transparent);color:var(--muted)}
-.stage-top h2{margin:0;color:var(--fg);font:700 1.15rem/1.2 var(--display);letter-spacing:-.4px}
-.stage-top span{font-size:.68rem}
-.hero .say{z-index:2;max-width:100%;min-height:0;margin:0;padding:.4rem .75rem;border:0;border-radius:999px;background:color-mix(in srgb,var(--frost) 7%,var(--surface));box-shadow:none;color:var(--muted);font:500 .7rem/1.4 var(--body);text-align:center}
-.say::after{display:none}
-.hero .ping-btn{width:min(100%,300px);max-width:94%;margin:0;position:relative;z-index:1}
-.ping .head{transform-origin:140px 286px}
-.ping .torso{transform-origin:140px 270px}.ping .shadow{transform-origin:146px 283px}
-.kori-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;width:100%;margin:0}
-.kori-controls button{min-height:40px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);padding:.45rem .8rem;font:600 .72rem/1.2 var(--body);cursor:pointer;transition:color .2s,border-color .2s,background-color .2s}
-.kori-controls button:hover,.kori-controls button:focus-visible,.kori-controls button[aria-pressed="true"]{color:var(--fg);border-color:var(--copper);background:color-mix(in srgb,var(--copper) 8%,transparent)}
-.kori-controls button:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
-.kori-controls button:disabled{opacity:.55;cursor:not-allowed}
-.kori-outfit{flex:1 1 auto}
-#kori-portrait{transition:opacity .16s ease}
-@media(max-width:760px){.hero .stage{min-height:0;padding:18px 14px 16px}.hero .ping-btn{width:min(100%,240px)}.stage::before{width:270px;height:270px;top:100px}}
-
-/* Identidad "Hielo, cobre y río" */
-.hero .stage{border-radius:18px}
-
 /* Soporte: conversación con Kori */
-dialog.sop{position:fixed;inset:auto calc(14px + env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) auto;margin:0;padding:0;width:min(370px,calc(100vw - 28px));max-height:min(580px,calc(100dvh - 28px));border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--fg);box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 22%,transparent);overflow:hidden;flex-direction:column}
+dialog.sop{position:fixed;inset:auto calc(14px + env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) auto;margin:0;padding:0;width:min(370px,calc(100vw - 28px));max-height:min(580px,calc(100dvh - 28px));border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--fg);box-shadow:0 12px 32px color-mix(in srgb,var(--ink) 22%,transparent);overflow:hidden;flex-direction:column}
 dialog.sop[open]{display:flex;animation:sop-in .22s cubic-bezier(.2,.8,.2,1)}
-dialog.sop::backdrop{background:rgb(0 0 0 / .25)}
+dialog.sop::backdrop{background:rgb(0 0 0 / .28)}
 @keyframes sop-in{from{opacity:0;transform:translateY(10px)}}
 .sop-top{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:var(--bg-2)}
 .sop-av{width:46px;height:46px;flex:none;transition:rotate .25s ease}
@@ -101,13 +106,3 @@ dialog.sop::backdrop{background:rgb(0 0 0 / .25)}
 .sop-in input:focus-visible{outline:3px solid var(--copihue);outline-offset:2px}
 .sop-in .btn{padding:.7rem 1rem}
 .sop-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-
-/* Kori v5: ilustración. La figura completa respira y se mece; párpados, paraguas y «zzz» son capas encima. */
-.ping .head{transform-origin:140px 286px}
-.ping .torso{transform-origin:140px 286px}
-.ping .shadow{transform-origin:140px 285px}
-.ping-btn:hover .head{rotate:-2deg}
-.ping .lid{opacity:0;animation:lid 6s infinite}
-.ping.is-asleep .lid,.ping.is-pinging .lid{opacity:1;animation:none}
-@keyframes lid{0%,46.5%,49.5%,100%{opacity:0}47%,49%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.ping-btn:is(:hover,:focus-visible) .ping{transform:none}.ping-btn:is(:hover,:focus-visible) .head{rotate:0deg}}

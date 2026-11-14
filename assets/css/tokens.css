@@ -1,24 +1,27 @@
-/* Identidad de Kryo — "Hielo, cobre y río".
-   Hielo (Kryo, el frío) + cobre (Chile, el cable de Kori) + río (Valdivia, el Calle-Calle).
-   Niebla glacial de base, pizarra nocturna de tinta, teal glacial de señal
-   y cobre vivo como acento. Tipografía: Bricolage Grotesque (display),
-   Instrument Sans (texto) y Space Mono (anotaciones técnicas). */
+/* Identidad de Kryo — "Lino mineral, carbón y ojos ámbar".
+   Armonizada con Kori v5: lino mineral de fondo, tinta carbón del polerón,
+   petróleo de señal, cobre del cable RJ-45 y ojos ámbar.
+   Tipografía: Bricolage Grotesque (display), Instrument Sans (texto),
+   Space Mono (terminal y código), Caveat (notas) y Fraunces (acento). */
 :root{
   color-scheme:light;
-  --bg:#e9edf1; --bg-2:#dbe2e9; --surface:#f7f9fb; --line:#b9c4cf;
-  --fg:#0f1f2e; --muted:#45586b; --frost:#0b6e7a; --moss:#146b5d; --copihue:#b42318;
-  --copper:#c24e1a; --copper-ink:#a53e12; --amber:#b45309;
-  --fur:#b9c9d4; --fur-lo:#8aa3b3; --cream:#f2f5f7; --ink:#0f1f2e; --halo-op:1;
+  --bg:#f3efe9; --bg-2:#e8e1d7; --surface:#fbf9f6; --line:#cec3b4;
+  --fg:#1e1a18; --muted:#5d524a; --frost:#0f5b67; --moss:#256453;
+  --copper:#c5521b; --copper-ink:#a63e11; --copihue:#a63e11; --amber:#8f530a;
+  --fur:#c6b39d; --fur-lo:#8d7461; --cream:#efe1ce; --ink:#1e1a18;
+  --halo-1:#fbf9f6; --halo-2:#ede6dc; --halo-3:#dfd5c7; --halo-op:1;
   --display:"Bricolage Grotesque","Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"Space Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
   --hand:"Caveat","Segoe Print",cursive; --radius:14px;
-  --term-bg:#0a1620; --term-fg:#d7e6ec; --term-ok:#7dd3c0; --term-dim:#8aa3b0; --on-accent:#ffffff;
+  --term-bg:#12100f; --term-fg:#ede7df; --term-ok:#6ec2cb; --term-dim:#9e9287;
+  --on-accent:#fbf9f6;
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0a141d; --bg-2:#101f2c; --surface:#152a3a; --line:#2a4356;
-  --fg:#e8f0f4; --muted:#9db4c2; --frost:#7dd3d8; --moss:#5ec4a5; --copihue:#ff9d7a;
-  --copper:#ff8a4c; --copper-ink:#ff8a4c; --amber:#fbbf24; --halo-op:.55;
-  --on-accent:#0a141d;
+  --bg:#141210; --bg-2:#1d1917; --surface:#25201d; --line:#3d352f;
+  --fg:#f2ece4; --muted:#b8aba0; --frost:#6ec2cb; --moss:#65c2a3;
+  --copper:#f08643; --copper-ink:#f08643; --copihue:#f08643; --amber:#e6a23c;
+  --halo-1:#342c27; --halo-2:#28221e; --halo-3:#25201d; --halo-op:.85;
+  --on-accent:#141210;
 }

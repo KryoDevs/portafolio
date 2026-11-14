@@ -23,9 +23,10 @@ SERVICIOS
 Se pueden contratar por separado o combinados.
 
 PROYECTOS
-- Biblio-Nexo: app web para el catálogo, los lectores y los préstamos de una biblioteca municipal
+- BiblioNexo (biblionexo.cl): app web para el catálogo, lectores y préstamos de una biblioteca municipal
   (JavaScript y Supabase). Tiene demo en línea y caso escrito en el sitio.
-- KryoFix: seguimiento de servicio técnico (JavaScript y Firebase), con demo en línea.
+- KryoFix (techfix-tracker-9a128.web.app): seguimiento de servicio técnico (JavaScript y Firebase), con
+  demo en línea y caso técnico en el sitio.
 - SysDiag-App: app de escritorio para Windows que diagnostica red, rendimiento y temperaturas (C# y WPF).
 - Gigaclip: herramienta que corta videos largos en clips verticales con subtítulos (Python y FFmpeg).
 Los enlaces a demos y código están en la sección Accesos.
@@ -41,5 +42,5 @@ Cisco Networking Academy e INACAP. Trabaja desde Valdivia.
 HERRAMIENTAS DEL SITIO
 - Diagnóstico: cuatro preguntas que orientan a quien no sabe qué pedir.
 - Cotizador: se marca lo que se necesita y queda sumado al mensaje de contacto.
-- Contacto: formulario que se envía por WhatsApp o correo.
+- Contacto: formulario para enviar la consulta directo, por WhatsApp, correo o copiar el texto.
 `.trim();

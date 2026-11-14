@@ -4,32 +4,87 @@
   var ping = document.getElementById('ping');
   var out = document.getElementById('ping-out');
   var portrait = document.getElementById('kori-portrait');
+  var patch = document.querySelector('#ping .kryo-patch');
+  var patchRect = patch ? patch.querySelector('rect') : null;
+  var patchText = patch ? patch.querySelector('text') : null;
   var view3d = document.getElementById('kori-3d');
   var outfitButton = document.getElementById('kori-outfit');
+
   var outfits = [
-    { src: 'assets/img/kori.webp', name: 'clásico negro', label: 'Polerón · clásico' },
-    { src: 'assets/img/kori-poleron-cierre.webp', name: 'azul petróleo con cierre', label: 'Polerón · petróleo' },
-    { src: 'assets/img/kori-poleron-oversize.webp', name: 'gris oversized', label: 'Polerón · oversized' },
-    { src: 'assets/img/kori-poleron-universitario.webp', name: 'universitario azul y crema', label: 'Polerón · universitario' }
+    {
+      src: 'assets/img/kori.webp',
+      name: 'clásico negro',
+      label: 'Polerón · clásico',
+      patch: { x: 0, y: 0, fill: '#1e1a18', stroke: '#c5521b', text: '#f0d8be' }
+    },
+    {
+      src: 'assets/img/kori-poleron-cierre.webp',
+      name: 'azul petróleo con cierre',
+      label: 'Polerón · petróleo',
+      patch: { x: -27, y: -4, fill: '#16232a', stroke: '#c5521b', text: '#f0d8be' }
+    },
+    {
+      src: 'assets/img/kori-poleron-oversize.webp',
+      name: 'gris oversized',
+      label: 'Polerón · oversized',
+      patch: { x: 0, y: 8, fill: '#2b2724', stroke: '#0f5b67', text: '#f2ece4' }
+    },
+    {
+      src: 'assets/img/kori-poleron-universitario.webp',
+      name: 'universitario azul y crema',
+      label: 'Polerón · universitario',
+      patch: { x: -25, y: -3, fill: '#182032', stroke: '#d9924c', text: '#f7ebd9' }
+    }
   ];
-  var outfitIndex = 0, vista3d = false;
+  var patch3d = { x: 0, y: 0, fill: '#1e1a18', stroke: '#c5521b', text: '#f0d8be' };
+  var outfitIndex = 0, vista3d = false, precargado = false;
+
+  function precargar() {
+    if (precargado || !window.Image) return;
+    precargado = true;
+    outfits.slice(1).forEach(function (o) { var img = new Image(); img.src = o.src; });
+    var img3d = new Image(); img3d.src = 'assets/img/kori-3d.webp';
+  }
+  function aplicarParche(cfg) {
+    if (!patch || !cfg) return;
+    patch.setAttribute('transform', 'translate(' + cfg.x + ' ' + cfg.y + ')');
+    if (patchRect) {
+      patchRect.setAttribute('fill', cfg.fill);
+      patchRect.setAttribute('stroke', cfg.stroke);
+    }
+    if (patchText) patchText.setAttribute('fill', cfg.text);
+  }
   if (portrait) portrait.addEventListener('load', function () { portrait.style.opacity = '1'; });
-  function mostrarRetrato(src) {
+  function mostrarRetrato(src, patchCfg) {
     portrait.style.opacity = '0';
     portrait.setAttribute('href', src);
+    aplicarParche(patchCfg);
   }
-  if (outfitButton && portrait) outfitButton.addEventListener('click', function () {
-    outfitIndex = (outfitIndex + 1) % outfits.length;
-    this.textContent = outfits[outfitIndex].label;
-    this.setAttribute('aria-label', 'Cambiar polerón de Kori. Actual: ' + outfits[outfitIndex].name);
-    if (!vista3d) mostrarRetrato(outfits[outfitIndex].src);
-  });
-  if (view3d && portrait) view3d.addEventListener('click', function () {
-    vista3d = !vista3d;
-    this.setAttribute('aria-pressed', String(vista3d));
-    outfitButton.disabled = vista3d;
-    mostrarRetrato(vista3d ? 'assets/img/kori-3d.webp' : outfits[outfitIndex].src);
-  });
+  if (outfitButton && portrait) {
+    outfitButton.addEventListener('pointerenter', precargar, { once: true });
+    outfitButton.addEventListener('focus', precargar, { once: true });
+    outfitButton.addEventListener('click', function () {
+      precargar();
+      outfitIndex = (outfitIndex + 1) % outfits.length;
+      var actual = outfits[outfitIndex];
+      this.textContent = actual.label;
+      this.setAttribute('aria-label', 'Cambiar polerón de Kori. Actual: ' + actual.name);
+      if (!vista3d) mostrarRetrato(actual.src, actual.patch);
+    });
+  }
+  if (view3d && portrait) {
+    view3d.addEventListener('pointerenter', precargar, { once: true });
+    view3d.addEventListener('focus', precargar, { once: true });
+    view3d.addEventListener('click', function () {
+      precargar();
+      vista3d = !vista3d;
+      this.setAttribute('aria-pressed', String(vista3d));
+      if (outfitButton) outfitButton.disabled = vista3d;
+      var actual = outfits[outfitIndex];
+      mostrarRetrato(vista3d ? 'assets/img/kori-3d.webp' : actual.src, vista3d ? patch3d : actual.patch);
+    });
+  }
+  aplicarParche(outfits[0].patch);
 
   var sinNumero = ['¡Pong! Aquí estoy.', '¡Pong! Sin paquetes perdidos.', '¡Aquí estoy! Te escucho.'];
   var pingRequest = 0;
@@ -91,12 +146,15 @@
 
   /* Estados de Kori: duerme de noche en Valdivia y saca el paraguas si llueve */
   var C = window.KRYO || {};
-  var hint = document.querySelector('.hint'), hintBase = hint ? hint.textContent : '';
   function dormir() { pingRequest++; ping.classList.add('is-asleep'); out.textContent = 'Zzz… En Valdivia es de noche. Tócame para despertarme.'; }
   function despertar() { ping.classList.remove('is-asleep'); }
   function lluvia(on, real) {
     ping.classList.toggle('is-rainy', !!on);
-    if (hint) hint.textContent = !on ? hintBase : real ? 'Llueve en Valdivia: Kori sacó el paraguas.' : 'Kori sacó el paraguas.';
+    if (on && !ping.classList.contains('is-asleep')) {
+      out.textContent = real ? 'Llueve en Valdivia: Kori sacó el paraguas.' : 'Kori sacó el paraguas.';
+    } else if (!on && !ping.classList.contains('is-asleep')) {
+      out.textContent = 'Toca a Kori para medir la respuesta del sitio.';
+    }
   }
   var hv = -1;
   try { hv = parseInt(new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Santiago', hour: '2-digit', hour12: false }).format(new Date()), 10) % 24; } catch (e) {}
@@ -110,20 +168,29 @@
         if (c.precipitation > 0 || (k >= 51 && k <= 67) || (k >= 80 && k <= 82) || k >= 95) lluvia(true, true);
       }).catch(function () {});
   }
-  window.Kori = { medir: medir, dormir: dormir, despertar: function () { pingRequest++; despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; }, lluvia: lluvia };
+  window.Kori = {
+    medir: medir,
+    dormir: dormir,
+    despertar: function () { pingRequest++; despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; },
+    lluvia: lluvia,
+    estado: function () {
+      return { dormido: ping.classList.contains('is-asleep'), lluvia: ping.classList.contains('is-rainy') };
+    }
+  };
 
   /* Kori de la esquina: sus comentarios por sección abren la conversación de soporte (soporte.js) */
   var frases = {
     'inicio': ['Hola, soy Kori, el mapache de Kryo.', 'Tócame arriba y te respondo el ping.'],
     'servicios': ['Apps, redes y soporte. Yo sujeto el cable.', 'Puedes combinar los tres servicios.'],
     'diagnostico': ['Cuatro preguntas y te digo por dónde partir.', 'No hay respuestas malas.'],
-    'proyectos': ['BiblioNexo nació para una biblioteca municipal.', 'Abre la demo y pruébala.'],
+    'proyectos': ['BiblioNexo nació para una biblioteca municipal.', 'Abre la demo en biblionexo.cl y pruébala.'],
+    'accesos': ['Aquí están todos los demos y repositorios ordenados.', 'Puedes filtrar por proyectos en línea o código.'],
     'proceso': ['Primero conversamos, después se construye.', 'Kryo te enseña a usar lo que entrega.'],
-    'cotizador': ['Marca lo que necesitas. Yo llevo la cuenta.', 'Lo que marques se suma a tu mensaje.'],
+    'cotizador': ['Marca lo que necesitas. Yo llevo la cuenta.', 'Puedes compartir el enlace de tu cotización.'],
     'sobre-mi': ['Kryo y yo desarmamos todo para ver cómo funciona.', 'Este cable no lo suelto por nada.'],
     'certificaciones': ['Siete certificados. Yo solo tengo anillos en la cola.', 'Cisco e INACAP, todo al día.'],
-    'bitacora': ['Kryo anota lo que aprende. Yo reviso la ortografía.', 'Hay una nota sobre VLANs.'],
-    'contacto': ['Escríbele. Tarda más que un ping, pero responde.', 'Dile que vienes de parte de Kori.']
+    'bitacora': ['Kryo anota lo que aprende. Yo reviso la ortografía.', 'Hay una nota sobre VLANs con generador de comandos.'],
+    'contacto': ['Escríbele directo, por WhatsApp o correo.', 'Dile que vienes de parte de Kori.']
   };
   var bubble = document.getElementById('bubble');
   var buddyBtn = document.getElementById('buddy-btn');

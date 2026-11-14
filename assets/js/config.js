@@ -25,12 +25,20 @@ window.KRYO = {
   soporteIA: '',
   /* Perfil de GitHub. Se usa en la sección Accesos y en la terminal. */
   github: 'https://github.com/KryoDevs',
-  /* Índice de proyectos de la sección Accesos (#accesos).
+  /* Panel privado de control y envío directo (Supabase kryo-control + funciones Vercel).
+     Solo usa la clave pública publishable; la seguridad real vive en Postgres RLS. */
+  control: {
+    supabaseUrl: 'https://ydymohvqpibwsujoxlcz.supabase.co',
+    supabaseKey: 'sb_publishable_6gBjkZaJYKLJjqUHRSY_xw_aT4DZ80l',
+    monitorApi: '/api/monitor',
+    contactoApi: '/api/contacto'
+  },
+  /* Índice de proyectos de la sección Accesos (#accesos) y terminal.
      Para agregar uno nuevo: duplica una fila en index.html (sección Accesos)
      y agrega su entrada aquí. demo/codigo pueden ser null si no existen. */
   proyectos: [
     { nombre: 'Biblio-Nexo', tipo: 'App web', stack: 'JavaScript · Supabase', estado: 'online',
-      demo: 'https://biblio-nexo-fuckingkrio.vercel.app/', codigo: 'https://github.com/KryoDevs/Biblio-Nexo' },
+      demo: 'https://biblionexo.cl/', codigo: 'https://github.com/KryoDevs/Biblio-Nexo' },
     { nombre: 'KryoFix', tipo: 'Servicio técnico', stack: 'JavaScript · Firebase', estado: 'online',
       demo: 'https://techfix-tracker-9a128.web.app/', codigo: 'https://github.com/KryoDevs/KryoFix' },
     { nombre: 'SysDiag-App', tipo: 'App de escritorio', stack: 'C# · WPF', estado: 'publicado',

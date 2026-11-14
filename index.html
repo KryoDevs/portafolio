@@ -15,8 +15,8 @@
 <link rel="canonical" href="https://portafolio-six-mu-88.vercel.app/">
 <meta property="og:locale" content="es_CL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#e9edf1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0a141d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3efe9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141210" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icons/icon-180.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Nicolás Esteban Díaz Carrillo", "alternateName": "Kryo", "jobTitle": "Desarrollador web y técnico en redes", "description": "Apps web, redes y soporte técnico para negocios y organizaciones de Valdivia.", "address": {"@type": "PostalAddress", "addressLocality": "Valdivia", "addressRegion": "Los Ríos", "addressCountry": "CL"}, "sameAs": ["https://github.com/KryoDevs", "https://www.linkedin.com/in/nicolas-d%C3%ADaz-b7320a31b/"], "knowsAbout": ["Desarrollo web", "Redes de computadores", "Soporte técnico", "Automatización"]}</script>
@@ -29,13 +29,10 @@
 </head>
 <body>
 
-<!-- Símbolos reutilizables: cabeza de Kori y subrayado a mano -->
+<!-- Símbolos reutilizables: cabeza de Kori y huella -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="ping-head" viewBox="0 0 100 100"><image href="assets/img/kori-cabeza.webp" width="100" height="100"/></symbol>
   <symbol id="paw" viewBox="0 0 24 24"><ellipse cx="12" cy="15.5" rx="5.2" ry="4.4"/><ellipse cx="5.2" cy="10" rx="2.1" ry="2.8" transform="rotate(-22 5.2 10)"/><ellipse cx="9.6" cy="6.4" rx="2.1" ry="3"/><ellipse cx="14.4" cy="6.4" rx="2.1" ry="3"/><ellipse cx="18.8" cy="10" rx="2.1" ry="2.8" transform="rotate(22 18.8 10)"/></symbol>
-  <symbol id="squig" viewBox="0 0 120 12">
-    <path d="M3 7 Q13 0 23 6 T43 6 T63 6 T83 6 T103 6 T117 5"/>
-  </symbol>
 </svg>
 
 <a class="skip" href="#main">Saltar al contenido</a>
@@ -52,7 +49,9 @@
       <a href="bitacora/index.html">Bitácora <svg class="inline-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="nav-contact" href="#contacto">Hablemos <svg class="inline-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
-  <button class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button><button class="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false"><span></span><span></span></button></nav>
+    <button class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+    <button class="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false"><span></span><span></span></button>
+  </nav>
 </header>
 
 <main id="main">
@@ -62,7 +61,7 @@
     <div class="wrap">
       <div class="hero-copy">
         <p class="avail" id="disponible" hidden></p>
-        <p class="eyebrow">Hielo, cobre y río · Valdivia, Chile</p>
+        <p class="eyebrow">Lino, carbón y cobre · Valdivia, Chile</p>
         <h1>Tecnología que<br><span>conecta.</span> Soluciones<br>que funcionan<span class="heading-dot">.</span></h1>
         <p class="lead">Hola, soy <strong>Nicolás, pero dime Kryo.</strong> Creo apps, conecto redes y resuelvo problemas tecnológicos. Desde Valdivia, con curiosidad y un buen café.</p>
         <div class="btns">
@@ -78,7 +77,7 @@
         <div class="kori-controls" role="group" aria-label="Personalizar a Kori"><button class="kori-outfit" id="kori-outfit" type="button" aria-label="Cambiar polerón de Kori. Actual: clásico negro">Polerón · clásico</button><button class="kori-view-toggle" id="kori-3d" type="button" aria-pressed="false" aria-label="Alternar el boceto 3D de Kori">Boceto 3D</button></div>
         <button class="ping-btn" id="ping-btn" type="button" aria-label="Enviar un ping a Kori, la mascota">
           <svg class="ping" id="ping" viewBox="0 0 280 300" aria-hidden="true"><defs>
-<radialGradient id="kh-halo" cx=".5" cy=".47" r=".55"><stop offset="0" stop-color="#eef3f6"/><stop offset=".6" stop-color="#dde7ee"/><stop offset=".88" stop-color="#c8d6e0" stop-opacity=".6"/><stop offset="1" stop-color="#b9c9d6" stop-opacity="0"/></radialGradient><radialGradient id="kh-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#12202e" stop-opacity=".3"/><stop offset=".6" stop-color="#12202e" stop-opacity=".14"/><stop offset="1" stop-color="#12202e" stop-opacity="0"/></radialGradient><linearGradient id="kh-copper" x1=".15" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#f8b294"/><stop offset=".45" stop-color="#e69070"/><stop offset="1" stop-color="#c66f4f"/></linearGradient>
+<radialGradient id="kh-halo" cx=".5" cy=".47" r=".55"><stop offset="0" stop-color="var(--halo-1)"/><stop offset=".6" stop-color="var(--halo-2)"/><stop offset=".88" stop-color="var(--halo-3)" stop-opacity=".6"/><stop offset="1" stop-color="var(--halo-3)" stop-opacity="0"/></radialGradient><radialGradient id="kh-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#1e1a18" stop-opacity=".28"/><stop offset=".6" stop-color="#1e1a18" stop-opacity=".12"/><stop offset="1" stop-color="#1e1a18" stop-opacity="0"/></radialGradient><linearGradient id="kh-copper" x1=".15" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#f5aa76"/><stop offset=".45" stop-color="#d97236"/><stop offset="1" stop-color="#a63e11"/></linearGradient>
 </defs>
 <circle class="moon" cx="140" cy="148" r="126" fill="url(#kh-halo)"/>
 <ellipse class="shadow" cx="140" cy="285" rx="92" ry="8" fill="url(#kh-shadow)"/>
@@ -86,22 +85,22 @@
 <g class="torso"><g class="head">
 <!-- Kori v5: ilustración. Los párpados son capas pintadas con el color del antifaz de la imagen. -->
 <image id="kori-portrait" href="assets/img/kori.webp" x="33.6" y="10" width="212.8" height="276"/>
-<g class="kryo-patch" aria-hidden="true"><rect x="123" y="128" width="48" height="12" rx="3" fill="#17222a" fill-opacity=".86" stroke="#c24e1a" stroke-width=".7"/><text x="147" y="136.5" text-anchor="middle" fill="#f2b090" font-family="Instrument Sans,sans-serif" font-size="6.5" font-weight="700" letter-spacing=".2">Kryodev</text></g>
+<g class="kryo-patch" aria-hidden="true"><rect x="123" y="128" width="48" height="12" rx="3" fill="#1e1a18" fill-opacity=".9" stroke="#c5521b" stroke-width=".75"/><text x="147" y="136.5" text-anchor="middle" fill="#f0d8be" font-family="Instrument Sans,sans-serif" font-size="6.5" font-weight="700" letter-spacing=".2">Kryodev</text></g>
 <g class="lid" fill="#3b2d29"><ellipse cx="169.2" cy="59.4" rx="5.7" ry="4.7"/><ellipse cx="197.5" cy="56.5" rx="4.4" ry="4.8"/></g>
 <g class="sleep" fill="none" stroke="#d9c3a8" stroke-width="1.3" stroke-linecap="round"><path d="M164 59.4 Q169.2 63.4 174.4 59.4 M193.6 56.6 Q197.5 60.4 201.4 56.6"/></g>
 <g class="happy" fill="none" stroke="#d9c3a8" stroke-width="1.4" stroke-linecap="round"><path d="M164 60.8 Q169.2 55.4 174.4 60.8 M193.6 58 Q197.5 52.6 201.4 58"/></g>
 </g></g>
-<g class="umbrella-wrap" transform="translate(34 -8)" stroke="#243e50" stroke-width="2.6" stroke-linejoin="round"><g class="umbrella">
-<path d="M140 6V42" fill="none" stroke="#243e50" stroke-width="3.2" stroke-linecap="round"/>
+<g class="umbrella-wrap" transform="translate(34 -8)" stroke="#241d19" stroke-width="2.6" stroke-linejoin="round"><g class="umbrella">
+<path d="M140 6V42" fill="none" stroke="#241d19" stroke-width="3.2" stroke-linecap="round"/>
 <path d="M56 32 Q140 -26 224 32 Q210 20 196 31 Q182 20 168 31 Q154 20 140 31 Q126 20 112 31 Q98 20 84 31 Q70 20 56 32 Z" fill="url(#kh-copper)" stroke-width="2.4"/>
-<g stroke="none"><path d="M140 4 L112 31 Q126 20 140 31 Z" fill="#c06a4b" opacity=".35"/><path d="M140 4 L56 32 Q70 20 84 31 Z" fill="#c06a4b" opacity=".35"/><path d="M140 4 L168 31 Q182 20 196 31 Z" fill="#c06a4b" opacity=".35"/></g>
-<path d="M140 3.5 L56 32 M140 3.5 L84 31 M140 3.5 L112 31 M140 3.5 L140 31 M140 3.5 L168 31 M140 3.5 L196 31 M140 3.5 L224 32" fill="none" stroke="#243e50" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-<path d="M86 24 Q110 8 134 4.5" fill="none" stroke="#fbd9bb" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
-<circle cx="140" cy="4.5" r="2.8" fill="#eef3f6" stroke-width="1.8"/>
+<g stroke="none"><path d="M140 4 L112 31 Q126 20 140 31 Z" fill="#a63e11" opacity=".32"/><path d="M140 4 L56 32 Q70 20 84 31 Z" fill="#a63e11" opacity=".32"/><path d="M140 4 L168 31 Q182 20 196 31 Z" fill="#a63e11" opacity=".32"/></g>
+<path d="M140 3.5 L56 32 M140 3.5 L84 31 M140 3.5 L112 31 M140 3.5 L140 31 M140 3.5 L168 31 M140 3.5 L196 31 M140 3.5 L224 32" fill="none" stroke="#241d19" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+<path d="M86 24 Q110 8 134 4.5" fill="none" stroke="#f7e2cc" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+<circle cx="140" cy="4.5" r="2.8" fill="#fbf9f6" stroke-width="1.8"/>
 </g></g>
-<g class="zzz" fill="#0b6e7a" font-family="Caveat, cursive" font-weight="700"><text x="236" y="56" font-size="15">z</text><text x="250" y="36" font-size="21">z</text><text x="265" y="15" font-size="26">Z</text></g>
+<g class="zzz" font-family="Caveat, cursive" font-weight="700"><text x="236" y="56" font-size="15">z</text><text x="250" y="36" font-size="21">z</text><text x="265" y="15" font-size="26">Z</text></g>
 </g>
-<g class="rain" stroke="#5a9db0" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path class="drop" d="M30 80l-5 12m230-3l-5 12m-218 59l-5 12m238 10l-5 12"/><path class="drop" style="animation-delay:.55s" d="M56 58l-5 12m182 22l-5 12m-184 44l-5 12m206 8l-5 12"/></g>
+<g class="rain" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path class="drop" d="M30 80l-5 12m230-3l-5 12m-218 59l-5 12m238 10l-5 12"/><path class="drop" style="animation-delay:.55s" d="M56 58l-5 12m182 22l-5 12m-184 44l-5 12m206 8l-5 12"/></g>
 </svg>
         </button>
       </aside>
@@ -121,7 +120,6 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Lo que hago</span><h2>De un problema a una <em>solución.</em></h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Desarrollo, conectividad y soporte. Todo conectado, sin complicarte.</p>
       </div>
       <div class="skills">
@@ -174,7 +172,6 @@
       <div class="sec-head">
         <span class="eyebrow">Encontremos el camino</span>
         <h2>¿No sabes qué necesitas?</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Responde cuatro preguntas y Kori te dice por dónde partir.</p>
       </div>
       <div class="tool">
@@ -194,7 +191,6 @@
       <div class="sec-head">
         <span class="eyebrow">Hecho con propósito</span>
         <h2>Ideas que ya <em>funcionan.</em></h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Tres proyectos que puedes revisar hoy.</p>
       </div>
 
@@ -204,17 +200,15 @@
           <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="60" y="18" width="200" height="104" rx="10"/><circle class="c" cx="74" cy="31" r="3.5"/><circle class="k" cx="85" cy="31" r="3.5"/><circle class="m" cx="96" cy="31" r="3.5"/><path class="ln" d="M60 42H260"/><rect class="f" x="76" y="56" width="10" height="44" rx="2"/><rect class="c" x="90" y="62" width="12" height="38" rx="2"/><rect class="m" x="106" y="52" width="9" height="48" rx="2"/><rect class="k" x="119" y="60" width="13" height="40" rx="2"/><rect class="f" x="136" y="66" width="10" height="34" rx="2"/><rect class="c" x="150" y="54" width="9" height="46" rx="2"/><path class="ln" d="M72 102H166"/><rect class="k" x="190" y="54" width="52" height="52" rx="6"/><rect class="d" x="197" y="61" width="14" height="14"/><rect class="d" x="221" y="61" width="14" height="14"/><rect class="d" x="197" y="85" width="14" height="14"/><rect class="d" x="216" y="80" width="6" height="6"/><rect class="d" x="227" y="90" width="8" height="9"/></svg></div>
           <div class="status"><span>App web</span><span class="state up">En línea</span></div>
           <h3>BiblioNexo</h3>
-          <!-- TODO: reemplazar la ilustración .cover por una captura real y agregar un resultado con cifras -->
           <dl class="case">
             <dt>El problema</dt>
             <dd>Llevar el catálogo, los lectores y los préstamos de una biblioteca municipal en un solo lugar.</dd>
             <dt>Lo que hice</dt>
-            <dd>Una app web con catálogo, préstamos con control de stock, roles de administrador y librero, y escaneo de códigos QR y de barras.</dd>
+            <dd>Una app web con catálogo, préstamos atómicos con control de stock, roles de administrador y librero, bibliomóvil offline y escaneo de QR y barras.</dd>
           </dl>
           <ul class="chips"><li>JavaScript</li><li>Supabase</li><li>Vercel</li></ul>
           <div class="links">
-            <!-- Recomendado: reemplazar por un alias limpio de Vercel -->
-            <a href="https://biblio-nexo-fuckingkrio.vercel.app/" target="_blank" rel="noopener noreferrer">Ver demo</a>
+            <a href="https://biblionexo.cl/" target="_blank" rel="noopener noreferrer">Ver demo</a>
             <a href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Código</a>
             <a href="casos/biblionexo.html">Ver el caso</a>
           </div>
@@ -224,7 +218,6 @@
           <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="60" y="18" width="200" height="104" rx="10"/><circle class="c" cx="74" cy="31" r="3.5"/><circle class="k" cx="85" cy="31" r="3.5"/><circle class="m" cx="96" cy="31" r="3.5"/><path class="ln" d="M60 42H260"/><path class="ln" style="stroke-width:8" d="M82 100 A34 34 0 0 1 150 100"/><path class="sm" d="M82 100 A34 34 0 0 1 133 71"/><circle class="k" cx="116" cy="100" r="5"/><path class="sc needle" d="M116 100 L134 78"/><rect class="d" x="174" y="56" width="70" height="8" rx="4"/><rect class="f" x="174" y="56" width="52" height="8" rx="4"/><rect class="d" x="174" y="74" width="70" height="8" rx="4"/><rect class="m" x="174" y="74" width="34" height="8" rx="4"/><rect class="d" x="174" y="92" width="70" height="8" rx="4"/><rect class="c" x="174" y="92" width="60" height="8" rx="4"/></svg></div>
           <div class="status"><span>App de escritorio</span><span class="state up">Publicado</span></div>
           <h3>SysDiag</h3>
-          <!-- TODO: reemplazar la ilustración .cover por una captura real -->
           <dl class="case">
             <dt>El problema</dt>
             <dd>Computadores lentos, con cortes de red o temperaturas altas, y nadie sabe por dónde empezar a revisar.</dd>
@@ -241,7 +234,6 @@
           <div class="cover" aria-hidden="true"><svg viewBox="0 0 320 140"><rect class="win" x="36" y="34" width="128" height="72" rx="8"/><path class="f play" d="M90 56 L114 70 L90 84 Z"/><path class="ln" d="M48 96H152"/><path class="sf" style="stroke-width:3" d="M48 96H96"/><path class="sc" d="M174 70H190M184 63l7 7-7 7"/><rect class="win" x="200" y="22" width="26" height="46" rx="5"/><rect class="f" x="205" y="52" width="16" height="4" rx="2"/><rect class="win" x="234" y="38" width="26" height="46" rx="5"/><rect class="c" x="239" y="68" width="16" height="4" rx="2"/><rect class="win" x="268" y="54" width="26" height="46" rx="5"/><rect class="m" x="273" y="84" width="16" height="4" rx="2"/><circle class="k" cx="213" cy="38" r="6"/><circle class="k" cx="247" cy="54" r="6"/><circle class="k" cx="281" cy="70" r="6"/></svg></div>
           <div class="status"><span>Automatización con IA</span><span class="state up">Publicado</span></div>
           <h3>Gigaclip</h3>
-          <!-- TODO: reemplazar la ilustración .cover por una captura real -->
           <dl class="case">
             <dt>El problema</dt>
             <dd>Cortar un video largo en clips para redes sociales toma horas, y las herramientas que lo hacen solas son de pago.</dd>
@@ -256,7 +248,7 @@
 
       </div>
       <figure class="testi" id="testimonio" hidden><blockquote id="testi-texto"></blockquote><figcaption id="testi-autor"></figcaption></figure>
-      <p class="others"><strong>También he hecho:</strong> un sistema de bibliotecas que funciona sin internet, un buscador de películas y series con la API de TMDB, una mini app con contrato en Solidity, una API serverless en AWS y laboratorios de redes con VLANs y OSPF. Todo está en <a href="#accesos">Accesos</a> y en <a href="https://github.com/KryoDevs" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      <p class="others"><strong>También he hecho:</strong> <a href="casos/kryofix.html">KryoFix</a> (gestión de servicio técnico), un buscador de películas y series con la API de TMDB, una mini app con contrato en Solidity, una API serverless en AWS y laboratorios de redes con VLANs y OSPF. Todo está en <a href="#accesos">Accesos</a> y en <a href="https://github.com/KryoDevs" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
     </div>
   </section>
 
@@ -265,7 +257,6 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Índice de proyectos</span><h2>Accesos <em>directos.</em></h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Todo lo que he construido, en un solo lugar. Demos en línea y código abierto en GitHub.</p>
       </div>
       <div class="accesos-filters" role="group" aria-label="Filtrar accesos">
@@ -278,9 +269,9 @@
         <article class="acceso-tile" data-cat="online codigo">
           <span class="kicker">En línea · App web</span>
           <h3>BiblioNexo</h3>
-          <p>Sistema bibliotecario municipal con catálogo, préstamos y modo offline. La demo está publicada y el código es abierto.</p>
+          <p>Sistema bibliotecario municipal con catálogo, préstamos y modo offline. Publicado en dominio propio con código abierto.</p>
           <div class="links">
-            <a href="https://biblio-nexo-fuckingkrio.vercel.app/" target="_blank" rel="noopener noreferrer">Abrir demo ↗</a>
+            <a href="https://biblionexo.cl/" target="_blank" rel="noopener noreferrer">Abrir demo ↗</a>
             <a href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Código</a>
             <a href="casos/biblionexo.html">Ver el caso</a>
           </div>
@@ -292,6 +283,7 @@
           <div class="links">
             <a href="https://techfix-tracker-9a128.web.app/" target="_blank" rel="noopener noreferrer">Abrir demo ↗</a>
             <a href="https://github.com/KryoDevs/KryoFix" target="_blank" rel="noopener noreferrer">Código</a>
+            <a href="casos/kryofix.html">Ver el caso</a>
           </div>
         </article>
         <article class="acceso-tile" data-cat="codigo herramienta">
@@ -308,7 +300,7 @@
           <span class="num">01</span>
           <div class="what"><b>Biblio-Nexo</b><span>Sistema bibliotecario municipal · PWA offline</span></div>
           <span class="meta">JS · Supabase</span>
-          <div class="links"><a href="https://biblio-nexo-fuckingkrio.vercel.app/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Código</a></div>
+          <div class="links"><a href="https://biblionexo.cl/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/KryoDevs/Biblio-Nexo" target="_blank" rel="noopener noreferrer">Código</a></div>
         </div>
         <div class="acceso-row" data-cat="online codigo">
           <span class="num">02</span>
@@ -360,7 +352,6 @@
       <div class="sec-head">
         <span class="eyebrow">Simple y transparente</span>
         <h2>Cómo trabajo</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Tres pasos, sin sorpresas en el camino.</p>
       </div>
       <ol class="steps">
@@ -377,8 +368,7 @@
       <div class="sec-head">
         <span class="eyebrow">Tu próximo proyecto</span>
         <h2>Arma tu cotización</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
-        <p class="sub">Marca lo que necesitas y lo sumo a tu mensaje.</p>
+        <p class="sub">Marca lo que necesitas y lo sumo a tu mensaje o comparte el enlace.</p>
       </div>
       <div class="quote">
         <form id="quote-form">
@@ -403,7 +393,10 @@
           <b id="q-tam">Nada marcado aún</b>
           <div class="gauge" aria-hidden="true"><i id="q-gauge"></i></div>
           <p id="q-det">Marca una o más opciones.</p>
-          <button class="btn primary" id="q-add" type="button" disabled>Agregar a mi mensaje</button>
+          <div class="acts">
+            <button class="btn primary" id="q-add" type="button" disabled>Agregar a mi mensaje</button>
+            <button class="btn" id="q-share" type="button" hidden>Copiar enlace</button>
+          </div>
         </aside>
       </div>
     </div>
@@ -415,7 +408,6 @@
       <div class="sec-head">
         <span class="eyebrow">Detrás del código</span>
         <h2>Sobre mí</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
       </div>
       <div class="about">
         <div class="about-text">
@@ -432,11 +424,11 @@
             <div><dt>Su nombre</dt><dd>Kori significa "hielo" en japonés. Hace pareja con Kryo, que viene del frío.</dd></div>
           </dl>
           <ul class="swatches" aria-label="Paleta de la marca">
-            <li><i style="background:var(--bg)"></i>Niebla glacial</li>
-            <li><i style="background:var(--frost)"></i>Glacial</li>
+            <li><i style="background:var(--bg)"></i>Lino mineral</li>
+            <li><i style="background:var(--frost)"></i>Petróleo</li>
             <li><i style="background:var(--copper)"></i>Cobre</li>
-            <li><i style="background:var(--copihue)"></i>Copihue</li>
-            <li><i style="background:var(--fg)"></i>Pizarra nocturna</li>
+            <li><i style="background:var(--amber)"></i>Ámbar</li>
+            <li><i style="background:var(--fg)"></i>Carbón</li>
           </ul>
         </aside>
       </div>
@@ -460,7 +452,6 @@
       <div class="sec-head">
         <span class="eyebrow">Siempre aprendiendo</span>
         <h2>Formación</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Estudiante de Ingeniería en Telecomunicaciones, Conectividad y Redes, con siete certificados de Cisco Networking Academy e INACAP.</p>
       </div>
       <div class="certs">
@@ -491,14 +482,13 @@
       <div class="sec-head">
         <span class="eyebrow">Notas del taller</span>
         <h2>Bitácora</h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Notas cortas de lo que voy aprendiendo.</p>
       </div>
       <div class="grid">
         <article class="card">
           <div class="status"><span>Redes</span><span>Agosto 2026</span></div>
           <h3>Router-on-a-stick: tres VLANs por un solo enlace</h3>
-          <p>Cómo enrutar entre VLANs con subinterfaces en un router Cisco, y los tres errores que más tiempo hacen perder.</p>
+          <p>Cómo enrutar entre VLANs con subinterfaces en un router Cisco, los tres errores más comunes y un generador rápido de comandos.</p>
           <div class="links">
             <a href="bitacora/router-on-a-stick.html">Leer la nota</a>
             <a href="bitacora/index.html">Ver todas</a>
@@ -514,11 +504,10 @@
       <div class="sec-head">
         <span class="eyebrow">Construyamos algo</span>
         <h2>Las buenas ideas empiezan<br>con una <em>conversación.</em></h2>
-        <svg class="squig" aria-hidden="true"><use href="#squig"/></svg>
         <p class="sub">Escríbeme con una descripción breve de tu problema y te respondo con una propuesta.</p>
       </div>
-      <div class="peek" aria-hidden="true"><svg><use href="#ping-head"/></svg></div>
       <form class="form" id="form-contacto" novalidate>
+        <input class="hp-field" id="f-empresa" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="row">
           <label for="f-nombre">Tu nombre<input id="f-nombre" type="text" autocomplete="name"></label>
           <label for="f-servicio">Qué te interesa
@@ -533,10 +522,11 @@
         <label for="f-mensaje">Cuéntame qué necesitas<textarea id="f-mensaje" placeholder="Ejemplo: tengo una ferretería y llevo el inventario en un cuaderno."></textarea></label>
         <div class="acts">
           <a class="btn" id="f-whatsapp" href="#contacto" target="_blank" rel="noopener noreferrer" hidden>Enviar por WhatsApp</a>
+          <button class="btn" id="f-enviar" type="button" hidden>Enviar directo</button>
           <button class="btn primary" type="submit" id="f-copiar">Copiar mensaje</button>
           <a class="btn" id="f-correo" href="mailto:nicolasd.carrillo@gmail.com">Abrir en mi correo</a>
         </div>
-        <p class="note" id="f-nota" role="status">Este formulario no envía datos: prepara tu mensaje para copiarlo o abrirlo en tu correo.</p>
+        <p class="note" id="f-nota" role="status">Este formulario prepara tu mensaje para enviarlo directo, por WhatsApp o abrirlo en tu correo.</p>
       </form>
       <div class="contact">
         <div class="cbox">
@@ -573,6 +563,7 @@
     <svg aria-hidden="true"><use href="#ping-head"/></svg>
     <span>© <span id="anio">2026</span> Nicolás Esteban Díaz Carrillo · Kryo</span>
     <button class="term-open" id="term-open" type="button" aria-label="Abrir la terminal de Kori">Terminal de Kori</button>
+    <a class="priv-link" href="control.html">Acceso privado</a>
     <span class="hand"><span class="port" aria-hidden="true"><i></i><i></i></span>Hecho en Valdivia, con Kori al lado</span>
   </div>
 </footer>
