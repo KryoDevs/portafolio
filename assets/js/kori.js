@@ -52,20 +52,20 @@
     return '¡Pong! ' + ms + ' ms entre tú y este sitio.' + (ms < 100 ? ' Respuesta rápida.' : ms < 300 ? ' Tiempo de respuesta normal.' : ' La respuesta tardó un poco.');
   }
   var escenario = document.querySelector('.stage');
-  var colores = ['var(--frost)', 'var(--copihue)', 'var(--moss)', 'var(--cream)'];
-  /* Estrellitas que salen disparadas al tocar a Kori */
+  var colores = ['var(--fur-lo)', 'var(--copper)', 'var(--moss)', 'var(--frost)'];
+  /* Huellas que saltan al tocar a Kori */
   function chispas(n) {
     for (var i = 0; i < n; i++) {
       var el = document.createElement('span');
       el.className = 'particle';
       el.style.color = colores[i % colores.length];
-      el.innerHTML = '<svg viewBox="-7 -7 14 14"><path d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/></svg>';
+      el.innerHTML = '<svg viewBox="0 0 24 24"><use href="#paw"/></svg>';
       escenario.appendChild(el);
       var ang = (Math.PI * 2 * i) / n + Math.random() * 0.5, dist = 90 + Math.random() * 70;
       if (!el.animate) { el.remove(); continue; }
       el.animate([
         { transform: 'translate(0,0) scale(.3) rotate(0deg)', opacity: 1 },
-        { transform: 'translate(' + Math.cos(ang) * dist + 'px,' + (Math.sin(ang) * dist - 30) + 'px) scale(1.2) rotate(160deg)', opacity: 0 }
+        { transform: 'translate(' + Math.cos(ang) * dist + 'px,' + (Math.sin(ang) * dist - 30) + 'px) scale(1.1) rotate(25deg)', opacity: 0 }
       ], { duration: 750 + Math.random() * 350, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = (function (x) { return function () { x.remove(); }; })(el);
     }
   }
@@ -79,7 +79,7 @@
     if (dormia) out.textContent = 'Mmm… ya desperté. Tócame otra vez para un ping.';
     else if (racha) out.textContent = '¡Cinco toques seguidos! Sigamos conectados.';
     else { out.textContent = 'Midiendo…'; medir().then(function (ms) { if (request === pingRequest) out.textContent = frasePing(ms); }); }
-    if (!reduce) chispas(racha ? 14 : 6);
+    if (!reduce) chispas(racha ? 9 : 4);
     ping.classList.remove('is-pinging');
     void ping.getBoundingClientRect();
     ping.classList.add('is-pinging');
@@ -110,7 +110,7 @@
   }
   window.Kori = { medir: medir, dormir: dormir, despertar: function () { pingRequest++; despertar(); out.textContent = 'Soy Kori. Tócame y te respondo.'; }, lluvia: lluvia };
 
-  /* Kori de la esquina: comenta la sección que estás viendo cuando lo tocas */
+  /* Kori de la esquina: sus comentarios por sección abren la conversación de soporte (soporte.js) */
   var frases = {
     'inicio': ['Hola, soy Kori, el mapache de Kryo.', 'Tócame arriba y te respondo el ping.'],
     'servicios': ['Apps, redes y soporte. Yo sujeto el cable.', 'Puedes combinar los tres servicios.'],
@@ -126,18 +126,21 @@
   var bubble = document.getElementById('bubble');
   var buddyBtn = document.getElementById('buddy-btn');
   var anterior = '', turno = -1, timer = null;
-  buddyBtn.addEventListener('click', function () {
+  function comentario() {
     var id = document.documentElement.dataset.seccion || 'inicio';
     var lista = frases[id] || frases.inicio;
     if (id !== anterior) { anterior = id; turno = -1; }
     turno = (turno + 1) % lista.length;
-    bubble.textContent = lista[turno]; bubble.hidden = false;
+    return lista[turno];
+  }
+  function globo(t) {
+    bubble.textContent = t; bubble.hidden = false;
     clearTimeout(timer);
     timer = setTimeout(function () { bubble.hidden = true; }, 6000);
-    if (!reduce) {
-      buddyBtn.classList.remove('bump'); void buddyBtn.offsetWidth; buddyBtn.classList.add('bump');
-    }
-  });
+    if (!reduce) { buddyBtn.classList.remove('bump'); void buddyBtn.offsetWidth; buddyBtn.classList.add('bump'); }
+  }
+  window.Kori.comentario = comentario;
+  window.Kori.globo = globo;
 
   /* Kori celebra cuando alguien copia el correo */
   document.addEventListener('kryo:copiado', function () {

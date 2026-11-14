@@ -41,6 +41,6 @@ footer a.hand{text-decoration:none}
 
 /* Identidad "Hielo, cobre y río": páginas interiores */
 .page h1,.page h2{font-family:var(--display)}
-.page .crumb{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.page .crumb{font-family:var(--body);font-size:.8rem;font-weight:600;letter-spacing:0}
 .facts b{font-family:var(--display)}
 .prose code,.prose pre{font-family:var(--mono)}

@@ -64,18 +64,6 @@
   }
   reloj(); setInterval(reloj, 30000);
 
-  /* Las tarjetas se iluminan donde está el cursor */
-  document.querySelectorAll('.card, .skill, .steps li').forEach(function (el) {
-    el.addEventListener('pointermove', function (e) {
-      var r = el.getBoundingClientRect();
-      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-    el.addEventListener('pointerleave', function () {
-      el.style.removeProperty('--mx'); el.style.removeProperty('--my');
-    });
-  });
-
   /* Al entrar en pantalla: las cifras cuentan y los subrayados se dibujan */
   if (!reduce && 'IntersectionObserver' in window) {
     var visto = new IntersectionObserver(function (entries) {

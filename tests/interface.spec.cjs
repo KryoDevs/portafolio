@@ -70,6 +70,38 @@ test('mascot responds, respects server failures, and terminal controls states', 
   await expect(page.locator('#term-open')).toBeFocused();
 });
 
+test('support panel answers from prepared replies and hands off to the page', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.goto('/');
+  const open = page.getByRole('button', { name: 'Abrir el soporte con Kori, la mascota' });
+  await open.click();
+  const panel = page.locator('#soporte');
+  await expect(panel).toBeVisible();
+  await expect(panel.locator('.msg.kori').first()).toContainText('asistente automático');
+  await expect(page.locator('#sop-input')).toBeFocused();
+  await page.locator('#sop-rapidas button', { hasText: 'Precios' }).click();
+  await expect(panel.locator('.msg.kori').last()).toContainText('cotizador');
+  await page.locator('#sop-input').fill('mi wifi se corta');
+  await page.locator('#sop-input').press('Enter');
+  await expect(panel.locator('.msg.kori').last()).toContainText('Redes:');
+  // Escribir una «t» en el panel no abre la terminal oculta.
+  await page.locator('#sop-close').focus();
+  await page.keyboard.press('t');
+  await expect(page.locator('#terminal')).not.toBeVisible();
+  await page.locator('#sop-input').fill('¿cuál es la capital de Francia?');
+  await page.locator('#sop-input').press('Enter');
+  await expect(panel.locator('.msg.kori').last()).toContainText('Eso no lo sé responder');
+  await panel.locator('.msg.kori').last().getByRole('button', { name: 'Ir a contacto' }).click();
+  await expect(panel).not.toBeVisible();
+  await expect(page.locator('#contacto')).toBeInViewport();
+  await open.click();
+  await page.keyboard.press('Escape');
+  await expect(panel).not.toBeVisible();
+  await expect(open).toBeFocused();
+  expect(errors).toEqual([]);
+});
+
 test('no horizontal overflow at 320, 390, 768 and 1440 pixels', async ({ page }) => {
   const pages = ['/', '/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/tarjeta.html', '/404.html'];
   for (const width of [320, 390, 768, 1440]) {

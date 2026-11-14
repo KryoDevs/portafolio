@@ -26,6 +26,7 @@ portafolio-kryo/
 │   │   ├── config.js             LO QUE EDITAS TÚ: contacto, precios, disponibilidad
 │   │   ├── main.js               Menú, barra de progreso, reloj y detalles
 │   │   ├── kori.js               Comportamiento de Kori (ping real, sueño, clima)
+│   │   ├── soporte.js            Conversación de soporte con Kori (respuestas preparadas)
 │   │   ├── herramientas.js       Formulario, diagnóstico y cotizador
 │   │   ├── terminal.js           Consola oculta (tecla T)
 │   │   └── vendor/qrcode.js      Generador de códigos QR (licencia MIT, Kazuhiko Arase)
@@ -65,6 +66,7 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 - **Clima.** Kori consulta el servicio gratuito Open-Meteo con las coordenadas de Valdivia. Si llueve, saca el paraguas. El navegador del visitante hace esa consulta; se desactiva con `clima: false`.
 - **Sueño.** Entre las 23:00 y las 7:00 de Valdivia, Kori duerme hasta que lo tocan.
 - **Terminal.** Se abre con la tecla `T` o con el botón del pie de página. Escribe `ayuda` para ver los comandos. Con `kori lluvia` y `kori dormir` puedes ver esos estados a cualquier hora.
+- **Soporte con Kori.** El mapache de la esquina abre una conversación. Responde con respuestas preparadas (no usa un modelo de IA ni envía datos a ningún servidor), lo dice en su primer mensaje y, cuando no sabe algo, deriva a Contacto. Sus respuestas están en la lista `base` de `assets/js/soporte.js`; los precios y proyectos los toma de `config.js`.
 - **Formulario.** No envía nada por sí solo: arma el mensaje para copiarlo, abrirlo en el correo o enviarlo por WhatsApp.
 
 ## Agregar una nota a la bitácora
@@ -111,6 +113,8 @@ git push -u origin main
 
 
 ## Identidad «Hielo, cobre y río» (noviembre de 2026)
+
+> **Ajuste posterior: sin estética futurista.** Las etiquetas dejaron de ir en Space Mono y mayúsculas: ahora usan Instrument Sans en minúsculas, sin numeración «01 /». Se quitaron las luces que parpadean, el brillo que seguía al cursor en las tarjetas, el desenfoque de la barra, los arcos de señal y la chispa de Kori, y los paquetes animados del mapa de red. Al tocar a Kori saltan huellas. Space Mono queda solo para código y la terminal oculta.
 
 La interfaz abandonó el papel cálido y el verde bosque por una identidad propia
 sacada de Valdivia: **niebla glacial** (`#e9edf1`), **pizarra nocturna**
