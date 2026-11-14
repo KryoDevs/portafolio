@@ -26,7 +26,7 @@ portafolio-kryo/
 │   │   ├── config.js             LO QUE EDITAS TÚ: contacto, precios, disponibilidad
 │   │   ├── main.js               Menú, barra de progreso, reloj y detalles
 │   │   ├── kori.js               Comportamiento de Kori (ping real, sueño, clima)
-│   │   ├── soporte.js            Conversación de soporte con Kori (respuestas preparadas)
+│   │   ├── soporte.js            Conversación de soporte con Kori (respuestas preparadas, IA opcional)
 │   │   ├── herramientas.js       Formulario, diagnóstico y cotizador
 │   │   ├── terminal.js           Consola oculta (tecla T)
 │   │   └── vendor/qrcode.js      Generador de códigos QR (licencia MIT, Kazuhiko Arase)
@@ -37,6 +37,12 @@ portafolio-kryo/
 │       ├── stickers/             Cuatro stickers de Kori en SVG y PNG
 │       ├── icons/                Iconos de app (svg, 180, 512 y maskable)
 │       └── proyectos/            Capturas de pantalla de cada trabajo
+├── api/
+│   ├── chat.js                   Función de servidor para el soporte con IA (solo en Vercel)
+│   └── _conocimiento.js          Lo que Kori puede decir cuando responde con IA
+├── docs/
+│   └── mascota.md                Hoja de personaje de Kori
+├── scripts/set-domain.cjs        Cambia la dirección pública del sitio (npm run dominio)
 ├── robots.txt                    Reglas de rastreo y ruta del sitemap
 ├── sitemap.xml                   URLs públicas para buscadores
 ├── manifest.webmanifest          Metadatos PWA (instalable)
@@ -58,6 +64,7 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 | `testimonio` | Frase y autor. Aparece bajo los trabajos cuando tiene texto. |
 | `desde` | Precio "desde" de cada servicio, en pesos. |
 | `tarifas` | Rango `[mínimo, máximo]` de cada opción del cotizador. Sin tarifas, el cotizador muestra el tamaño del proyecto en vez de un precio. |
+| `soporteIA` | Dirección de la función de IA. Vacío: Kori usa solo respuestas preparadas. |
 | `clima` | `true` para que Kori consulte el clima de Valdivia. |
 
 ## Cómo funcionan las partes interactivas
@@ -68,6 +75,26 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 - **Terminal.** Se abre con la tecla `T` o con el botón del pie de página. Escribe `ayuda` para ver los comandos. Con `kori lluvia` y `kori dormir` puedes ver esos estados a cualquier hora.
 - **Soporte con Kori.** El mapache de la esquina abre una conversación. Responde con respuestas preparadas (no usa un modelo de IA ni envía datos a ningún servidor), lo dice en su primer mensaje y, cuando no sabe algo, deriva a Contacto. Sus respuestas están en la lista `base` de `assets/js/soporte.js`; los precios y proyectos los toma de `config.js`.
 - **Formulario.** No envía nada por sí solo: arma el mensaje para enviarlo por WhatsApp (se abre el chat con el texto escrito), copiarlo o abrirlo en el correo.
+
+## Soporte con IA (opcional)
+
+Viene apagado. Para encenderlo el sitio debe estar en Vercel, porque GitHub Pages no ejecuta funciones.
+
+1. En el proyecto de Vercel, crea la variable de entorno `ANTHROPIC_API_KEY` con tu clave. La clave nunca va en el repositorio ni en `config.js`.
+2. En `assets/js/config.js`, pon `soporteIA: '/api/chat'`.
+3. Si el sitio y la función viven en dominios distintos, define también `SOPORTE_ORIGEN` con la dirección del sitio.
+
+La función limita cada mensaje a 500 caracteres, guarda solo los últimos 6 turnos y acepta 8 preguntas por minuto por IP. Ese límite es en memoria y frena abusos simples; cada pregunta consume saldo de tu clave, así que conviene fijar un tope de gasto en la cuenta de la API. Si la función falla o no hay clave, Kori responde con lo preparado.
+
+Lo que la IA puede decir está en `api/_conocimiento.js`. Al cambiar servicios, proyectos o contacto en el sitio, actualízalo también ahí.
+
+## Cambiar al dominio propio
+
+```bash
+npm run dominio -- kryodevs.cl
+```
+
+Reemplaza la dirección actual en las páginas, `sitemap.xml` y `robots.txt`. Con un dominio propio escribe además el archivo `CNAME`, que solo usa GitHub Pages. Hoy el sitio apunta a su dirección de Vercel, `portafolio-six-mu-88.vercel.app`. Después ejecuta las pruebas y revisa el cambio con `git diff`.
 
 ## Agregar una nota a la bitácora
 

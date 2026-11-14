@@ -84,17 +84,38 @@
     log.scrollTop = log.scrollHeight;
     estado('hablando', 950);
   }
-  function responder(txt) {
+  function preparada(txt) {
     var e = buscar(txt);
     if (!e) { decir('Eso no lo sé responder. Escríbele a Kryo y te contesta él.', [['Ir a contacto', 'contacto']]); return; }
     decir(typeof e.r === 'function' ? e.r() : e.r, e.a);
+  }
+  /* Con soporteIA configurado se consulta a la función del servidor; ante cualquier fallo, respuesta preparada */
+  var historial = [];
+  function conIA(txt) {
+    var control = window.AbortController ? new AbortController() : null;
+    var corte = control ? setTimeout(function () { control.abort(); }, 12000) : null;
+    return fetch(C.soporteIA, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mensaje: txt, historial: historial.slice(-6) }),
+      signal: control ? control.signal : undefined
+    }).then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('estado ' + r.status)); })
+      .then(function (d) {
+        clearTimeout(corte);
+        if (!d || typeof d.respuesta !== 'string' || !d.respuesta.trim()) throw new Error('sin respuesta');
+        historial.push({ rol: 'visitante', texto: txt }, { rol: 'kori', texto: d.respuesta });
+        var e = buscar(txt);
+        decir(d.respuesta.trim(), e && e.a);
+      });
   }
   function preguntar(txt) {
     burbuja('tu', txt);
     var espera = burbuja('kori espera', '…');
     espera.setAttribute('aria-hidden', 'true');
     estado('pensando');
-    setTimeout(function () { espera.remove(); responder(txt); }, reduce ? 0 : 550);
+    setTimeout(function () {
+      if (!C.soporteIA || !window.fetch) { espera.remove(); preparada(txt); return; }
+      conIA(txt).catch(function () { estado('error', 600); preparada(txt); }).then(function () { espera.remove(); });
+    }, reduce ? 0 : 550);
   }
   function abrir() {
     if (dlg.open) return;

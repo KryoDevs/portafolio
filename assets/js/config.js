@@ -19,6 +19,10 @@ window.KRYO = {
   },
   /* true: Kori consulta el clima de Valdivia (servicio Open-Meteo) y saca el paraguas si llueve. */
   clima: true,
+  /* Soporte con IA. Vacío: Kori usa solo sus respuestas preparadas.
+     Con la dirección de la función (por ejemplo '/api/chat' en Vercel), Kori consulta a la IA
+     y vuelve a las respuestas preparadas si la función falla. Ver README, «Soporte con IA». */
+  soporteIA: '',
   /* Perfil de GitHub. Se usa en la sección Accesos y en la terminal. */
   github: 'https://github.com/KryoDevs',
   /* Índice de proyectos de la sección Accesos (#accesos).

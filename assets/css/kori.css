@@ -72,18 +72,14 @@
 .hero .ping-btn{width:280px;max-width:90%;margin-top:6px;position:relative;z-index:1}
 .ping .head{transform-origin:140px 153px}.ping .tail{transform-origin:194px 249px}
 .ping .torso{transform-origin:140px 270px}.ping .shadow{transform-origin:146px 283px}
-.orbit-label{position:absolute;display:grid;place-items:center;width:42px;height:42px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 12px #0f1f2e08;color:var(--frost);z-index:3}
-.orbit-code{top:136px;left:24px;font:600 .8rem/1 monospace;transform:rotate(-9deg)}
-.orbit-wifi{top:242px;right:22px;font:500 2.3rem/1 var(--body);color:var(--copihue);transform:rotate(9deg)}
 .mascot-signature{display:flex;align-items:center;gap:12px;margin-top:4px}
 .mascot-signature strong{font:700 1.5rem/1 var(--hand);color:var(--fg);transform:rotate(-5deg)}
 .mascot-signature strong span{color:var(--copihue);font-size:.9rem;margin-left:3px}
 .mascot-signature>span{border-left:1px solid var(--line);padding-left:12px;color:var(--muted);font-size:.65rem}
 .hero .hint{font-size:.6rem;margin-top:10px;color:var(--muted)}
-@media(max-width:760px){.hero .stage{min-height:400px;padding-top:50px}.hero .ping-btn{width:260px}.stage::before{width:270px;height:270px}.orbit-code{left:22px}.orbit-wifi{right:22px}}
+@media(max-width:760px){.hero .stage{min-height:400px;padding-top:50px}.hero .ping-btn{width:260px}.stage::before{width:270px;height:270px}}
 
 /* Identidad "Hielo, cobre y río" */
-.orbit-code{font-family:var(--mono);font-weight:700}
 .hero .stage{border-radius:18px}
 
 /* Soporte: conversación con Kori */
@@ -102,6 +98,7 @@ dialog.sop::backdrop{background:rgb(0 0 0 / .25)}
 .sop[data-estado="pensando"] .sop-av{animation:bob 1.2s ease-in-out infinite}
 .sop[data-estado="hablando"] .sop-av{animation:nod .45s ease 2}
 .sop[data-estado="feliz"] .sop-av{animation:bump .4s ease}
+.sop[data-estado="error"] .sop-av{rotate:7deg;opacity:.75}
 @keyframes nod{50%{transform:translateY(2px) rotate(3deg)}}
 .sop-log{flex:1;min-height:150px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
 .msg{max-width:88%;padding:.6rem .85rem;border-radius:14px;font-size:.9rem;line-height:1.45;overflow-wrap:anywhere}

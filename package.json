@@ -6,7 +6,8 @@
   "scripts": {
     "test": "python -m unittest discover -s tests -p 'test_*.py'",
     "test:e2e": "playwright test",
-    "assets": "node scripts/render-assets.cjs"
+    "assets": "node scripts/render-assets.cjs",
+    "dominio": "node scripts/set-domain.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

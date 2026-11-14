@@ -106,6 +106,31 @@ test('support panel answers from prepared replies and hands off to the page', as
   expect(errors).toEqual([]);
 });
 
+test('support uses the AI function when configured and falls back when it fails', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'KRYO', { configurable: true, set(v) {
+      v.soporteIA = '/api/chat';
+      Object.defineProperty(window, 'KRYO', { value: v, writable: true, configurable: true });
+    } });
+  });
+  let cuerpo = null;
+  await page.route('**/api/chat', route => { cuerpo = route.request().postDataJSON(); return route.fulfill({ json: { respuesta: 'Respuesta de la IA sobre redes.' } }); });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Abrir el soporte con Kori, la mascota' }).click();
+  await page.locator('#sop-input').fill('mi wifi se corta');
+  await page.locator('#sop-input').press('Enter');
+  await expect(page.locator('#soporte .msg.kori').last()).toContainText('Respuesta de la IA sobre redes.');
+  expect(cuerpo.mensaje).toBe('mi wifi se corta');
+  await expect(page.locator('#soporte .msg.espera')).toHaveCount(0);
+  // Si la función falla, Kori responde con lo preparado en vez de quedarse en silencio.
+  await page.unroute('**/api/chat');
+  await page.route('**/api/chat', route => route.fulfill({ status: 503, json: { error: 'x' } }));
+  await page.locator('#sop-input').fill('¿qué servicios ofreces?');
+  await page.locator('#sop-input').press('Enter');
+  await expect(page.locator('#soporte .msg.kori').last()).toContainText('Kryo ofrece tres servicios');
+  await expect(page.locator('#soporte .msg.espera')).toHaveCount(0);
+});
+
 test('no horizontal overflow at 320, 390, 768 and 1440 pixels', async ({ page }) => {
   const pages = ['/', '/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/tarjeta.html', '/404.html'];
   for (const width of [320, 390, 768, 1440]) {
