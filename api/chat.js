@@ -1,7 +1,7 @@
 /* Soporte con IA para Kori. Función de servidor (Vercel): el navegador nunca ve la clave.
    Variables de entorno:
      ANTHROPIC_API_KEY   obligatoria; sin ella la función responde 503 y Kori usa sus respuestas preparadas
-     SOPORTE_MODELO      opcional; modelo a usar
+     SOPORTE_MODELO      opcional; modelo a usar (por defecto claude-haiku-4-5)
      SOPORTE_ORIGEN      opcional; origen permitido si el sitio vive en otro dominio (p. ej. https://kryodevs.cl) */
 const conocimiento = require('./_conocimiento.js');
 
@@ -62,7 +62,7 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': clave, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify({
-        model: process.env.SOPORTE_MODELO || 'claude-haiku-5-5',
+        model: process.env.SOPORTE_MODELO || 'claude-haiku-4-5',
         max_tokens: 300,
         system: conocimiento,
         messages: lista

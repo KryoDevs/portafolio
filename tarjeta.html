@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Tarjeta de presentación de Kryo con código QR hacia su portafolio.">
+<meta name="description" content="Tarjeta de presentación de Kryo con código QR y descarga de contacto (.vcf).">
 <title>Tarjeta de Kryo</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/fonts.css">
@@ -16,20 +16,23 @@
 <a class="skip" href="#main">Saltar al contenido</a>
 <header class="nav">
   <nav class="wrap" aria-label="Navegación principal">
-    <a class="brand" href="index.html"><img src="assets/img/favicon.svg" alt="" width="38" height="33">Kryo</a>
-    <div class="menu">
+    <a class="brand" href="index.html"><img src="assets/img/kori-cabeza.webp" alt="" width="40" height="40">kryo<span class="brand-dot">.</span></a>
+    <div class="menu" id="menu">
       <a href="index.html#servicios">Servicios</a>
-      <a href="index.html#proyectos">Trabajos</a>
+      <a href="index.html#proyectos">Proyectos</a>
       <a href="index.html#accesos">Accesos</a>
+      <a href="index.html#sobre-mi">Sobre mí</a>
       <a href="bitacora/index.html">Bitácora</a>
-      <a href="index.html#contacto">Contacto</a>
+      <a class="nav-contact" href="index.html#contacto">Hablemos</a>
     </div>
-  <button class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button><button class="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false"><span></span><span></span></button></nav>
+    <button class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+    <button class="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false"><span></span><span></span></button>
+  </nav>
 </header>
 <main id="main" class="wrap page">
   <a class="crumb" href="index.html">← Inicio</a>
   <h1>Tarjeta de presentación</h1>
-  <p class="lead">Imprímela o muéstrala desde el celular. El código QR lleva a este sitio.</p>
+  <p class="lead">Imprímela, muéstrala desde el celular o guarda el contacto directo en tu teléfono.</p>
   <div class="bcard">
     <img src="assets/img/stickers/kori.png" alt="Kori, la mascota de Kryo" width="208" height="226">
     <div class="who">
@@ -45,25 +48,52 @@
   <p class="qr-url" id="qr-url"></p>
   <div class="acts">
     <button class="btn primary" id="imprimir" type="button">Imprimir tarjeta</button>
+    <button class="btn" id="descargar-vcf" type="button">Guardar contacto (.vcf)</button>
     <a class="btn" href="index.html">Volver al inicio</a>
   </div>
 </main>
 <footer>
   <div class="wrap">
-    <img src="assets/img/favicon.svg" alt="" width="44" height="38">
+    <img src="assets/img/kori-cabeza.webp" alt="" width="42" height="42">
     <span>© 2026 Nicolás Esteban Díaz Carrillo · Kryo</span>
     <a class="hand" href="index.html">Volver al inicio</a>
   </div>
 </footer>
+<script src="assets/js/config.js"></script>
 <script src="assets/js/vendor/qrcode.js"></script>
 <script>
 (function () {
+  var C = window.KRYO || {};
   var base = new URL('./', location.href).href;
   var publicado = /^https?:$/.test(location.protocol);
   var qr = qrcode(0, 'M'); qr.addData(base); qr.make();
   document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
   document.getElementById('qr-url').textContent = publicado ? 'El código lleva a ' + base : 'Publica el sitio para que el código lleve a su dirección real.';
   document.getElementById('imprimir').addEventListener('click', function () { window.print(); });
+  document.getElementById('descargar-vcf').addEventListener('click', function () {
+    var correo = C.correo || 'nicolasd.carrillo@gmail.com';
+    var tel = C.whatsapp ? '+' + C.whatsapp : '';
+    var lines = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Díaz Carrillo;Nicolás Esteban;;;',
+      'FN:Nicolás Díaz Carrillo (Kryo)',
+      'ORG:Kryo',
+      'TITLE:Desarrollo web, redes y soporte técnico',
+      'EMAIL;TYPE=INTERNET:' + correo,
+      tel ? 'TEL;TYPE=CELL:' + tel : '',
+      'ADR;TYPE=WORK:;;Valdivia;Los Ríos;;CL',
+      publicado ? 'URL:' + base : '',
+      C.github ? 'URL:' + C.github : '',
+      'END:VCARD'
+    ].filter(Boolean).join('\r\n');
+    var blob = new Blob([lines], { type: 'text/vcard;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'kryo-contacto.vcf';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
 })();
 </script>
 </body>

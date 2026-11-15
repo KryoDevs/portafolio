@@ -2,57 +2,68 @@
 
 Sitio personal de **Nicolás Esteban Díaz Carrillo (Kryo)**: servicios de apps web, redes y soporte técnico en Valdivia, Chile. La mascota del sitio es **Kori**, un mapache de polerón negro con un cable de red en las manos.
 
-Es un sitio estático: HTML, CSS y JavaScript, sin paso de compilación.
+Es un sitio estático (HTML, CSS y JavaScript sin paso de compilación) acompañado de funciones serverless en Vercel para soporte opcional con IA, envío directo de consultas y monitoreo privado de subdominios.
 
 ## Estructura
 
 ```
-portafolio-kryo/
+portafolio/
 ├── index.html                    Página principal
+├── control.html                  Panel privado de monitoreo de subdominios y consultas (noindex)
 ├── 404.html                      Página de error ("Paquete perdido")
-├── tarjeta.html                  Tarjeta de presentación con código QR
+├── tarjeta.html                  Tarjeta de presentación con QR y descarga de contacto (.vcf)
 ├── casos/
-│   └── biblionexo.html           Caso completo de BiblioNexo
+│   ├── biblionexo.html           Caso completo de BiblioNexo (biblionexo.cl)
+│   └── kryofix.html              Caso completo de KryoFix
 ├── bitacora/
 │   ├── index.html                Lista de notas
-│   └── router-on-a-stick.html    Primera nota
+│   └── router-on-a-stick.html    Primera nota con copia directa y generador dot1Q
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css            Paleta, tipografías y modo claro/oscuro
-│   │   ├── kori.css              Dibujo y animaciones de la mascota
-│   │   ├── styles.css            Diseño de la página principal
-│   │   └── paginas.css           Diseño de las páginas interiores
+│   │   ├── fonts.css             Fuentes autohospedadas (Bricolage, Instrument Sans, Space Mono, Caveat, Fraunces)
+│   │   ├── tokens.css            Paleta "Lino mineral, carbón y ojos ámbar" (claro/oscuro)
+│   │   ├── kori.css              Escenario y animaciones de la mascota
+│   │   ├── styles.css            Diseño consolidado de la página principal
+│   │   ├── paginas.css           Diseño de casos, bitácora y tarjeta
+│   │   └── control.css           Estilos del panel privado (control.html)
 │   ├── js/
-│   │   ├── config.js             LO QUE EDITAS TÚ: contacto, precios, disponibilidad
-│   │   ├── main.js               Menú, barra de progreso, reloj y detalles
-│   │   ├── kori.js               Comportamiento de Kori (ping real, sueño, clima)
-│   │   ├── soporte.js            Conversación de soporte con Kori (respuestas preparadas, IA opcional)
-│   │   ├── herramientas.js       Formulario, diagnóstico y cotizador
-│   │   ├── terminal.js           Consola oculta (tecla T)
+│   │   ├── config.js             Configuración central: contacto, precios, disponibilidad y proyecto Supabase
+│   │   ├── interface.js          Tema claro/oscuro persistente y menú móvil
+│   │   ├── main.js               Barra de lectura, reloj de Valdivia y contadores
+│   │   ├── kori.js               Comportamiento de Kori (ping, polerones, sueño, clima, estado)
+│   │   ├── soporte.js            Conversación de soporte con Kori (contexto vivo + IA opcional)
+│   │   ├── herramientas.js       Formulario directo/WhatsApp/correo, diagnóstico y cotizador compartible
+│   │   ├── accesos.js            Filtros del índice de accesos
+│   │   ├── terminal.js           Consola oculta (tecla T) alimentada desde KRYO
+│   │   ├── control.js            Controlador del panel privado (Supabase Auth + REST + /api/monitor)
 │   │   └── vendor/qrcode.js      Generador de códigos QR (licencia MIT, Kazuhiko Arase)
 │   └── img/
-│       ├── kori.png              Ilustración original de Kori, con fondo transparente
-│       ├── kori.webp             La misma, optimizada para la portada
-│       ├── kori-cabeza.webp      Cabeza de Kori para el avatar
-│       ├── favicon.svg           Cabeza de Kori para la pestaña del navegador
-│       ├── kori.svg              Kori completo, para la página 404
+│       ├── kori.png / kori.webp  Ilustración principal de Kori
+│       ├── kori-3d.webp          Boceto 3D alternativo para la portada
+│       ├── kori-poleron-*.webp   Variantes de polerón (cierre, oversize, universitario)
+│       ├── kori-cabeza.webp      Cabeza de Kori para avatares
+│       ├── favicon.svg           Cabeza de Kori para la pestaña del navegador y PWA
 │       ├── og-image.png          Vista previa al compartir el enlace
 │       ├── stickers/             Cuatro stickers de Kori en PNG
-│       ├── icons/                Iconos de app (svg, 180, 512 y maskable)
-│       └── proyectos/            Capturas de pantalla de cada trabajo
+│       └── icons/                Iconos PWA (180, 512 y maskable)
 ├── api/
-│   ├── chat.js                   Función de servidor para el soporte con IA (solo en Vercel)
-│   └── _conocimiento.js          Lo que Kori puede decir cuando responde con IA
+│   ├── chat.js                   Soporte con IA (Claude Haiku 4.5, solo en Vercel)
+│   ├── _conocimiento.js          Contexto que Kori puede responder con IA
+│   ├── monitor.js                Sonda HTTP segura y estado de despliegues Vercel (JWT requerido)
+│   └── contacto.js               Persistencia pública de consultas en Supabase (con honeypot y rate-limit)
 ├── docs/
 │   └── mascota.md                Hoja de personaje de Kori
-├── scripts/set-domain.cjs        Cambia la dirección pública del sitio (npm run dominio)
-├── robots.txt                    Reglas de rastreo y ruta del sitemap
+├── scripts/
+│   ├── render-assets.cjs         Regenera stickers, og-image e iconos (npm run assets)
+│   └── set-domain.cjs            Cambia la dirección pública del sitio (npm run dominio)
+├── tests/
+│   ├── test_site.py              Pruebas estáticas de HTML, enlaces y manifiesto
+│   ├── interface.spec.cjs        Pruebas E2E, responsive y WCAG con Playwright + axe-core
+│   └── api.spec.cjs              Pruebas unitarias de chat, monitor y contacto
+├── robots.txt                    Reglas de rastreo (excluye /control.html)
 ├── sitemap.xml                   URLs públicas para buscadores
-├── manifest.webmanifest          Metadatos PWA (instalable)
-├── vercel.json                   Cabeceras de seguridad y caché si se despliega en Vercel
-├── .nojekyll                     Evita que GitHub Pages procese el sitio con Jekyll
-├── .gitignore
-└── README.md
+├── manifest.webmanifest          Metadatos PWA
+└── vercel.json                   Cabeceras de seguridad, noindex y caché
 ```
 
 ## Configurar el sitio
@@ -61,187 +72,42 @@ Todo lo que cambia con el tiempo está en `assets/js/config.js`:
 
 | Clave | Qué hace |
 |---|---|
-| `disponibilidad` | Texto de la etiqueta verde de la portada. Vacío la oculta. |
-| `whatsapp` | Tu número con código de país, sin signos. Activa la tarjeta de WhatsApp y lo deja como botón principal del formulario. |
-| `linkedin` | Dirección de tu perfil. Activa la tarjeta de LinkedIn. |
-| `testimonio` | Frase y autor. Aparece bajo los trabajos cuando tiene texto. |
+| `disponibilidad` | Texto de la etiqueta de disponibilidad en portada. Vacío la oculta. |
+| `whatsapp` | Tu número con código de país, sin signos. |
+| `linkedin` | Dirección de tu perfil. |
+| `testimonio` | Frase y autor bajo los proyectos cuando tiene texto. |
 | `desde` | Precio "desde" de cada servicio, en pesos. |
-| `tarifas` | Rango `[mínimo, máximo]` de cada opción del cotizador. Sin tarifas, el cotizador muestra el tamaño del proyecto en vez de un precio. |
-| `soporteIA` | Dirección de la función de IA. Vacío: Kori usa solo respuestas preparadas. |
+| `tarifas` | Rango `[mínimo, máximo]` de cada opción del cotizador. |
+| `soporteIA` | Ruta de la función de IA (`/api/chat` o vacío para respuestas locales). |
 | `clima` | `true` para que Kori consulte el clima de Valdivia. |
+| `control` | URL pública y clave publicable de Supabase (`kryo-control`) más rutas `/api/monitor` y `/api/contacto`. |
 
-## Cómo funcionan las partes interactivas
+## Cómo funcionan las partes interactivas y privadas
 
-- **Ping de Kori.** Al tocarlo, mide cuánto tarda el sitio en responder al visitante. Mide latencia, no velocidad de descarga. Solo funciona con el sitio publicado, no al abrir el archivo desde el disco.
-- **Clima.** Kori consulta el servicio gratuito Open-Meteo con las coordenadas de Valdivia. Si llueve, saca el paraguas. El navegador del visitante hace esa consulta; se desactiva con `clima: false`.
-- **Sueño.** Entre las 23:00 y las 7:00 de Valdivia, Kori duerme hasta que lo tocan.
-- **Terminal.** Se abre con la tecla `T` o con el botón del pie de página. Escribe `ayuda` para ver los comandos. Con `kori lluvia` y `kori dormir` puedes ver esos estados a cualquier hora.
-- **Soporte con Kori.** El mapache de la esquina abre una conversación. Responde con respuestas preparadas (no usa un modelo de IA ni envía datos a ningún servidor), lo dice en su primer mensaje y, cuando no sabe algo, deriva a Contacto. Sus respuestas están en la lista `base` de `assets/js/soporte.js`; los precios y proyectos los toma de `config.js`.
-- **Formulario.** No envía nada por sí solo: arma el mensaje para enviarlo por WhatsApp (se abre el chat con el texto escrito), copiarlo o abrirlo en el correo.
+- **Paleta «Lino mineral, carbón y ojos ámbar».** Fondos piedra cálida (`#f3efe9` claro / `#141210` oscuro), tinta carbón (`#1e1a18` / `#f2ece4`), acento petróleo (`#0f5b67` / `#6ec2cb`) y cobre artesanal (`#a63e11` / `#f08643`) con contraste verificado WCAG AA/AAA.
+- **Control privado de subdominios (`control.html`).** Portal excluido de buscadores (`noindex, nofollow` y `robots.txt`) protegido por **Supabase Auth** (`disable_signup: true` en el proyecto `kryo-control`). Desde ahí puedes iniciar sesión con correo/contraseña o magic link, revisar el estado HTTP y la latencia de cada subdominio registrado en `public.subdominios`, ejecutar sondas en vivo mediante `/api/monitor`, inspeccionar el historial (`public.chequeos`) y gestionar mensajes guardados en `public.consultas`.
+- **Envío directo en Contacto.** El formulario permite guardar la consulta directo en `public.consultas` mediante `/api/contacto`, enviarla por WhatsApp, copiarla al portapapeles o abrirla en correo.
+- **Soporte con Kori y contexto vivo.** Kori conoce el clima y horario de Valdivia mediante `window.Kori.estado()`, los proyectos reales del índice y las respuestas locales o con IA (`/api/chat`).
+- **Terminal oculta.** Se abre con la tecla `T` o desde el pie de página (`ayuda`, `proyectos`, `redes`, `control`, `kori lluvia`, `kori dormir`).
 
-## Soporte con IA (opcional)
+## Variables de entorno en Vercel
 
-Viene apagado. Para encenderlo el sitio debe estar en Vercel, porque GitHub Pages no ejecuta funciones.
+| Variable | Uso |
+|---|---|
+| `SUPABASE_URL` | URL del proyecto `kryo-control` (`https://ydymohvqpibwsujoxlcz.supabase.co`). |
+| `SUPABASE_PUBLISHABLE_KEY` | Clave publicable de Supabase para validar JWTs en `/api/monitor` y guardar consultas en `/api/contacto`. |
+| `ANTHROPIC_API_KEY` | Opcional; habilita `/api/chat` con Claude Haiku 4.5. |
+| `VERCEL_TOKEN` | Opcional; permite listar el estado de los últimos despliegues desde `/api/monitor`. |
 
-1. En el proyecto de Vercel, crea la variable de entorno `ANTHROPIC_API_KEY` con tu clave. La clave nunca va en el repositorio ni en `config.js`.
-2. En `assets/js/config.js`, pon `soporteIA: '/api/chat'`.
-3. Si el sitio y la función viven en dominios distintos, define también `SOPORTE_ORIGEN` con la dirección del sitio.
-
-La función limita cada mensaje a 500 caracteres, guarda solo los últimos 6 turnos y acepta 8 preguntas por minuto por IP. Ese límite es en memoria y frena abusos simples; cada pregunta consume saldo de tu clave, así que conviene fijar un tope de gasto en la cuenta de la API. Si la función falla o no hay clave, Kori responde con lo preparado.
-
-Lo que la IA puede decir está en `api/_conocimiento.js`. Al cambiar servicios, proyectos o contacto en el sitio, actualízalo también ahí.
-
-## Cambiar al dominio propio
+## Pruebas
 
 ```bash
-npm run dominio -- kryodevs.cl
-```
-
-Reemplaza la dirección actual en las páginas, `sitemap.xml` y `robots.txt`. Con un dominio propio escribe además el archivo `CNAME`, que solo usa GitHub Pages. Hoy el sitio apunta a su dirección de Vercel, `portafolio-six-mu-88.vercel.app`. Después ejecuta las pruebas y revisa el cambio con `git diff`.
-
-## Agregar una nota a la bitácora
-
-1. Copia `bitacora/router-on-a-stick.html` con otro nombre y cambia su contenido.
-2. Duplica la tarjeta en `bitacora/index.html` y en la sección "Bitácora" de `index.html`.
-
-## Verlo en tu computador
-
-Abre `index.html` en el navegador. Para probar el ping y el clima necesitas un servidor local:
-
-```bash
-python -m http.server 8000
-```
-
-y luego abre `http://localhost:8000`.
-
-## Subirlo a GitHub
-
-```bash
-git init
-git add .
-git commit -m "Portafolio inicial"
-git branch -M main
-git remote add origin https://github.com/KryoDevs/portafolio.git
-git push -u origin main
-```
-
-## Publicarlo con GitHub Pages
-
-1. En el repositorio entra a **Settings → Pages**.
-2. En **Source** elige **Deploy from a branch**, rama `main` y carpeta `/ (root)`.
-3. Guarda. En uno o dos minutos el sitio queda en `https://kryodevs.github.io/portafolio/`.
-
-## Pendientes
-
-- [ ] Revisar los textos del caso BiblioNexo y de la nota de la bitácora: son borradores
-- [ ] Sumar proyectos nuevos a la sección Accesos (`index.html`) y a `KRYO.proyectos` en `config.js`
-- [ ] Capturas de pantalla en `assets/img/proyectos/` (busca `TODO` en `index.html` y `casos/biblionexo.html`)
-- [ ] Completar `testimonio`, `desde` y `tarifas` en `config.js` (`whatsapp` y `linkedin` ya están)
-- [ ] Foto personal en la sección "Sobre mí"
-- [ ] Cambiar la URL de la demo de BiblioNexo por un alias limpio de Vercel
-- [ ] Cambiar `og:url`, `sitemap.xml` y manifest si se confirma un dominio propio
-
-
-## Identidad «Hielo, cobre y río» (noviembre de 2026)
-
-> **Kori v5 (vigente).** La mascota es ahora una ilustración naturalista elegida por Kryo: mapache de polerón negro con un cable de red. Reemplaza al dibujo vectorial de las versiones 3 y 4, cuyas notas se conservan más abajo como historial. Parpadeo, ojos cerrados, paraguas y «zzz» son capas dibujadas sobre la imagen. `npm run assets` regenera stickers, vista previa e iconos con Chromium de Playwright; ver `docs/mascota.md`.
-
-> **Ajuste posterior: sin estética futurista.** Las etiquetas dejaron de ir en Space Mono y mayúsculas: ahora usan Instrument Sans en minúsculas, sin numeración «01 /». Se quitaron las luces que parpadean, el brillo que seguía al cursor en las tarjetas, el desenfoque de la barra, los arcos de señal y la chispa de Kori, y los paquetes animados del mapa de red. Al tocar a Kori saltan huellas. Space Mono queda solo para código y la terminal oculta.
-
-La interfaz abandonó el papel cálido y el verde bosque por una identidad propia
-sacada de Valdivia: **niebla glacial** (`#e9edf1`), **pizarra nocturna**
-(`#0f1f2e`), **teal glacial** (`#0b6e7a`) como señal y **cobre vivo**
-(`#c24e1a`) como acento, con **copihue** (`#b42318`) para lo urgente y su
-equivalente nocturno (`#0a141d`, `#7dd3d8`, `#ff8a4c`). Todos los pares de
-texto/fondo cumplen WCAG AA en claro y oscuro.
-
-La tipografía también es propia: **Bricolage Grotesque** (display variable,
-peso 200–800 y ancho 75–100 %, servida en un solo archivo `woff2` de 91 KB),
-**Instrument Sans** (texto) y **Space Mono** (etiquetas técnicas, numeración y
-coordenadas). Caveat se queda para las notas a mano y Fraunces itálica para el
-acento serif. Todo se sirve desde `assets/fonts/` con sus licencias OFL; sin
-Google Fonts y sin compilación.
-
-La estructura también cambió: una cinta de servicios en movimiento, un
-**índice de accesos** con filtros (todos, en línea, código, herramientas) y
-enlaces directos a demos y repositorios, y la mascota Kori como hilo conductor.
-
-Con modo oscuro seleccionable. La elección se guarda localmente en el navegador. El menú móvil
-funciona con teclado y se cierra al navegar, pulsar Escape o tocar fuera.
-Las fuentes variables se sirven desde `assets/fonts/` con sus licencias OFL;
-no se requieren Google Fonts ni un proceso de compilación.
-
-Kori se redibujó en SVG, conservando su cable de red, audífonos, ping y estados.
-Los stickers PNG y la vista previa social reflejan la nueva identidad.
-
-#### Kori v4: estilo anime y paleta renovada
-
-Sobre el redibujo v3, la mascota pasó a un lenguaje de ilustración anime:
-ojos grandes con iris degradado, anillo limbal, doble brillo y sombra de
-párpado; pestañas gruesas con pestañeta exterior; sombreado *cel* de borde
-duro; brillos de cabello y de plástico en audífonos; rubor diagonal en las
-mejillas; y lineart fino y limpio. La paleta del sitio se renovó completa
-(papel cálido `#f6f2e7`, bosque profundo `#20362b`, verde `#1e6b50` y copihue
-`#b03f29`, con su equivalente nocturno) y todos los colores duros de CSS,
-tarjeta, vista social y sombras quedaron alineados a los tokens.
-
-#### Ilustración de Kori v3: acabado de artista digital
-
-La mascota volvió a ilustrarse con técnicas de dibujo digital vectorial:
-degradados de pelaje, polerón y cobre; oclusión ambiental bajo la cabeza y los
-brazos; luz de contorno; mechones de pelaje escalonados en mejillas y cola;
-anillos de la cola recortados con clipPath; audífonos con almohadillas,
-especulares y LED; conector RJ45 con pines dorados sostenido entre las patas;
-micrófono de boom; paraguas con paneles y varillas; y sombras de contacto
-suaves sobre el suelo. Se conservan todos los ganchos de animación
-(`.hop`, `.head`, `.tail`, `.torso`, `.ear`, `.eyes`, `#ping-eyes`, `.happy`,
-`.sleep`, `.smile`, `.zzz`, `.umbrella`, `.rain`, `.led`, `.spark`) y se
-añadieron arcos de señal (`.arc`) que emiten desde el audífono durante el ping.
-El disco de fondo usa un degradado radial y su intensidad cambia con el tema
-mediante `--halo-op` en `tokens.css`. Los PNG de stickers y `og-image.png`
-se regeneran con `npm run assets`. Los SVG
-de los stickers están en `assets/img/stickers/`. Para regenerar los PNG y
-`og-image.png` desde los SVG:
-
-```bash
-npm ci
-npm run assets
-```
-
-### Pruebas
-
-Las dependencias de Node son exclusivamente herramientas de desarrollo; no se
-publican ni son necesarias para ejecutar el sitio.
-
-```bash
-# Estructura HTML, enlaces/fragmentos locales, SVG y fuentes locales
+# Estructura HTML, enlaces/fragmentos locales, SVG, manifest y fuentes locales
 npm test
-# También funciona sin Node:
-python -m unittest discover -s tests -p 'test_*.py'
 
-# Interacciones, navegación, viewport y accesibilidad automatizada
-npm ci
-npx playwright install chromium
+# Pruebas unitarias de funciones API (/api/chat, /api/monitor, /api/contacto)
+npx playwright test tests/api.spec.cjs
+
+# Interacciones, navegación, viewport y accesibilidad automatizada (requiere Chromium)
 npm run test:e2e
 ```
-
-Playwright inicia un servidor estático en el puerto 8000 o reutiliza el existente.
-En entornos con Chromium ya instalado, se puede indicar
-`CHROMIUM_EXECUTABLE_PATH=/ruta/a/chromium`. Los reportes de pruebas no se
-incluyen en Git. La revisión automática de accesibilidad complementa, pero no
-sustituye, las pruebas manuales con lectores de pantalla.
-
-El diagnóstico general, las mejoras aplicadas y las prioridades pendientes están
-en [ANALISIS.md](ANALISIS.md). La imagen social está actualizada, pero aún hace
-falta configurar su URL absoluta cuando se confirme el dominio público.
-
-
-### Revisión automática de pull requests
-
-El workflow `.github/workflows/ci.yml` ejecuta las pruebas estáticas y de
-navegador en cada PR hacia `main` y en cada push a `main`. También se puede
-lanzar manualmente desde Actions. No usa secretos ni realiza despliegues.
-
-En la ejecución de Actions, el artefacto **revision-portafolio** contiene el
-reporte HTML y capturas de escritorio claro/oscuro, proyectos y móvil para
-revisión visual. Se conserva durante 14 días; las capturas no se añaden a Git.

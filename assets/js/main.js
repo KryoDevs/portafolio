@@ -64,13 +64,12 @@
   }
   reloj(); setInterval(reloj, 30000);
 
-  /* Al entrar en pantalla: las cifras cuentan y los subrayados se dibujan */
+  /* Al entrar en pantalla: las cifras cuentan */
   if (!reduce && 'IntersectionObserver' in window) {
     var visto = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         visto.unobserve(en.target);
-        if (en.target.classList.contains('squig')) { en.target.classList.add('draw'); return; }
         var fin = parseInt(en.target.textContent, 10), resto = en.target.textContent.replace(/^[0-9]+/, ''), t0 = null;
         function paso(t) {
           if (t0 === null) t0 = t;
@@ -81,11 +80,11 @@
         requestAnimationFrame(paso);
       });
     }, { threshold: 0.6 });
-    document.querySelectorAll('.stats b, .squig').forEach(function (el) { visto.observe(el); });
+    document.querySelectorAll('.stats b').forEach(function (el) { visto.observe(el); });
   }
 
   /* Un saludo para quien abre la consola */
   try {
-    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#7dd3d8');
+    console.log('%c  /\\___/\\\n ( o   o )   Hola, curioso.\n (  =^=  )   Soy Kori. El código está en github.com/KryoDevs\n  \\_____/', 'font-family:monospace;color:#6ec2cb');
   } catch (e) {}
 })();

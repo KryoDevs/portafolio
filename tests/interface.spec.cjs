@@ -36,7 +36,21 @@ test('mobile menu opens, closes on navigation and supports Escape', async ({ pag
   await expect(page.locator('.menu')).not.toBeVisible();
 });
 
-test('diagnostic and quote feed the contact message', async ({ page }) => {
+test('Kori outfit and 3D controls stay clear of the floating support icon on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto('/');
+  await page.locator('#kori-outfit').click();
+  await expect(page.locator('#kori-portrait')).toHaveAttribute('href', 'assets/img/kori-poleron-cierre.webp');
+  await page.locator('#kori-3d').click();
+  await expect(page.locator('#kori-portrait')).toHaveAttribute('href', 'assets/img/kori-3d.webp');
+  await expect(page.locator('.buddy')).toBeHidden();
+  await page.locator('#servicios').scrollIntoViewIfNeeded();
+  await expect(page.locator('.buddy')).toBeVisible();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.locator('.buddy')).toBeVisible();
+});
+
+test('diagnostic and quote feed the contact message and share button appears', async ({ page }) => {
   await page.goto('/');
   for (let step = 0; step < 4; step++) await page.locator('#diag-body .opt').first().click();
   await expect(page.locator('#diag-body')).toContainText('Parte por un diagnóstico de tu red');
@@ -45,6 +59,7 @@ test('diagnostic and quote feed the contact message', async ({ page }) => {
   await expect(page.locator('#f-servicio')).toHaveValue('Redes');
   await page.locator('#q-sitio').check();
   await expect(page.locator('#q-tam')).toHaveText('Proyecto pequeño');
+  await expect(page.locator('#q-share')).toBeVisible();
   await page.locator('#q-add').click();
   await expect(page.locator('#f-mensaje')).toHaveValue(/Sitio web para presentar mi negocio/);
   await expect(page.locator('#f-correo')).toHaveAttribute('href', /mailto:.*body=/);
@@ -132,7 +147,7 @@ test('support uses the AI function when configured and falls back when it fails'
 });
 
 test('no horizontal overflow at 320, 390, 768 and 1440 pixels', async ({ page }) => {
-  const pages = ['/', '/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/tarjeta.html', '/404.html'];
+  const pages = ['/', '/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/casos/kryofix.html', '/tarjeta.html', '/control.html', '/404.html'];
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of pages) {
@@ -156,17 +171,50 @@ test('automated accessibility checks in light, dark and mobile modes', async ({ 
   }
 });
 
-test('inner pages have valid navigation, QR and no runtime errors', async ({ page }) => {
+test('inner pages and control login gate have valid navigation, helpers and 0 WCAG violations', async ({ page }) => {
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
-  for (const path of ['/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/tarjeta.html']) {
+  for (const path of ['/bitacora/index.html', '/bitacora/router-on-a-stick.html', '/casos/biblionexo.html', '/casos/kryofix.html', '/tarjeta.html', '/control.html']) {
     await page.goto(path);
     await expect(page.locator('h1')).toBeVisible();
     await page.getByRole('button', { name: 'Cambiar a tema oscuro' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await page.getByRole('button', { name: 'Cambiar a tema claro' }).click();
   }
+  // Verificar bloque de login privado y accesibilidad en control.html
+  await expect(page.locator('#auth-view')).toBeVisible();
+  await expect(page.locator('#dash-view')).toBeHidden();
+  await page.evaluate(() => document.fonts.ready);
+  const axeControl = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(axeControl.violations).toEqual([]);
+
+  // Verificar flujo autenticado mockeado en control.html (subdominios + sonda /api/monitor)
+  await page.route('https://ydymohvqpibwsujoxlcz.supabase.co/auth/v1/token*', route => route.fulfill({
+    json: { access_token: 'jwt-test', refresh_token: 'rt-test', expires_in: 3600, user: { id: 'u1', email: 'nicolasd.carrillo@gmail.com' } }
+  }));
+  await page.route('https://ydymohvqpibwsujoxlcz.supabase.co/rest/v1/subdominios*', route => route.fulfill({
+    json: [{
+      id: 'sub-1', nombre: 'BiblioNexo', subdominio: 'biblionexo.cl', url: 'https://biblionexo.cl/',
+      entorno: 'produccion', proveedor: 'vercel', ruta_health: '/', esperado_min: 200, esperado_max: 399,
+      ultimo_estado: 'online', ultimo_codigo: 200, ultima_latencia_ms: 120, ultimo_chequeo_at: new Date().toISOString(), notas: ''
+    }]
+  }));
+  await page.route('https://ydymohvqpibwsujoxlcz.supabase.co/rest/v1/chequeos*', route => route.fulfill({ json: [] }));
+  await page.route('https://ydymohvqpibwsujoxlcz.supabase.co/rest/v1/consultas*', route => route.fulfill({ json: [] }));
+  await page.locator('#login-email').fill('nicolasd.carrillo@gmail.com');
+  await page.locator('#login-pass').fill('clave-segura-test');
+  await page.locator('#login-form button[type="submit"]').click();
+  await expect(page.locator('#dash-view')).toBeVisible();
+  await expect(page.locator('#sub-grid .sub-card')).toHaveCount(1);
+
+  // Verificar QR en tarjeta.html y generador dot1Q en bitacora/router-on-a-stick.html
+  await page.goto('/tarjeta.html');
   await expect(page.locator('#qr svg')).toBeVisible();
+  await page.goto('/bitacora/router-on-a-stick.html');
+  await page.locator('#nh-vlan').fill('40');
+  await page.locator('#nh-red').fill('10.0.40.0/26');
+  await expect(page.locator('#nh-out')).toContainText('255.255.255.192');
+  await expect(page.locator('#nh-out')).toContainText('10.0.40.1');
   expect(errors).toEqual([]);
 });
 

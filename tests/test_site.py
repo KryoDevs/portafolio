@@ -2,17 +2,32 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+import json
 import unittest
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [ROOT / p for p in ('index.html', '404.html', 'tarjeta.html', 'casos/biblionexo.html', 'bitacora/index.html', 'bitacora/router-on-a-stick.html')]
+PAGES = [
+    ROOT / p
+    for p in (
+        'index.html',
+        '404.html',
+        'tarjeta.html',
+        'control.html',
+        'casos/biblionexo.html',
+        'casos/kryofix.html',
+        'bitacora/index.html',
+        'bitacora/router-on-a-stick.html',
+    )
+]
+
 
 class Document(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.ids, self.links, self.images, self.h1 = [], [], [], 0
         self.feed(text)
+
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if 'id' in attrs:
@@ -24,6 +39,7 @@ class Document(HTMLParser):
         for key in ('href', 'src'):
             if key in attrs:
                 self.links.append(attrs[key])
+
 
 class SiteTests(unittest.TestCase):
     def test_structure(self):
@@ -53,9 +69,15 @@ class SiteTests(unittest.TestCase):
             with self.subTest(path=path):
                 ET.parse(path)
 
+    def test_manifest_icons_exist(self):
+        manifest = json.loads((ROOT / 'manifest.webmanifest').read_text())
+        for icon in manifest.get('icons', []):
+            self.assertTrue((ROOT / icon['src']).exists(), f"Missing manifest icon: {icon['src']}")
+
     def test_no_remote_font_dependency(self):
         for page in PAGES:
             self.assertNotIn('fonts.googleapis.com', page.read_text())
+
 
 if __name__ == '__main__':
     unittest.main()
